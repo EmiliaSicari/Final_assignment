@@ -1,0 +1,10 @@
+---
+title: "Rationality vs reality"
+subtitle: "challenging the standard rational model"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+

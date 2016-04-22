@@ -1,6 +1,6 @@
 ---
 title: "Rationality vs Reality"
-subtitle: "Challenging the standard rationational model"
+subtitle: "Challenging the standard rationational choice theory"
 author: "Emilia Sicari & Rafael Lopez V."
 date: "April 19, 2016"
 output:
@@ -8,8 +8,9 @@ output:
     number_sections: yes
     toc: yes
     toc_depth: 2
+bibliography: bibliography.bib
 ---
-
+\pagebreak
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -17,6 +18,40 @@ knitr::opts_chunk$set(echo = TRUE)
 #Introduction
 
 #Literature review
+
+##"The challenge of our time"
+
+In the last decades, the increase in income inequality has generated growing concern. In 2013 it was defined "the challenge of our time" by President Obama and one year later Pope Francis condemned the global "economy of exclusion". In fact, inequality and economic growth can be regarded as two sides of the same coin and the rise of the former associates both developed economies, where the gap between rich and poor is now at highest levels in decades, and emerging economies, experiencing more mixed trends [@dabla2015causes]. 
+
+The relation between economic develompemtn and inequality is bilateral. On the one hand, a rise in income inequality reduces economic growth through various channels. First, by triggering political instability, which in turn tends to reduce investment and - consequently - economic growth.  Moreover, disparities in income distribution encourage poor people to undertake rent-seeking or illegal activities threatening property rights, and that drives down investment [@alesina1996income]. In addition, inequality reduces the capacity of poorer members of the society to invest in education thus hampering social mobility and skill development [@cingano2014trends]. Furthermore, it reduces social consensus required to adjust shocks and sustain growth. Neverthess, all those effects may be non linear: increases in inequality from low levels provides growth enhancing incentives, while increases part some point encourage rent-seeking and lower growth [@ostry2014redistribution]. Finally, in highly unequal context, the majority of the voters - who are usually poor - ask for redistributive policies, which decrease the after-tax marginal product of capital, hence lowering the rate of accumulation and driving down growth [@alesina1996income]. Nevertheless, redistribution policies may also  affect growth positively, by reducing tensions and incentivizing productive activities and capital accumulation. Yet, the net effect of redistributive policies on growth has to weigh the costs of distortionary taxation against the benefits of reduced social tensions. More broadly, taxation may not be inherently detrimental to growth, as long as it reduces tax expenditure or loopholes that benefit the rich, increases public investment through progressive taxation or social insurance spending on welfare favouring poor people [@ostry2014redistribution]. 
+
+On the other hand, economic growth may produce a rise in income inequality, leading to social tensions and political discontent that jeopardize the wellbeing of society [@gallo2002economic]. According to the inverted U hypothesis[@kuznets1955economic], there income inequality widens in the early phases of economic growth; then it stabilizes for a while; and finally it narrows in the later phases. There are two factors explaining the rise in income inequality. First, the concentration of savings in the hands of the upper social classes leads to higher amount of income for them and their descendants. Second, increase in the urban share of the population resulting from economic growth is assumed to be more unequal than rural population, whose income is lower than the urban one. Hence, this gap in relative mean incomes tends to widen as a result of a more rapid growth of the per capita productivity in economic urban activities than in agriculture. However, such negative effects of economic growth only hold in the short run, since in the long run this trend tends to reverse due to government redistribution policies and other exogenous factors (the decrease in the proportion of rich families and immigration entering at the lower income levels). Moreover, this tendency towards increasing inequality is reversed when all the surplus labour is absorbed into modern sector employment, becoming a scarce factor of production. Therefore, further growth, implying an increase in labour demand, will push the wages up, thus levelling inequality. However, no definite causal relation has been found that allows generalizing the ways in which economic growth affects income inequality. Instead, empirical evidence shows that the impact of economic growth on income distribution depends more on the way in which growth is pursued than on the level of per capita income or the rate of growth [@gallo2002economic]. 
+
+## Inequality and consumption behavior
+
+According to rational choice theory, individuals have rational preferences and use the full and relevant information at their disposal to determine which options are available, rank them and choose the most preferred one in order to maximise their utility (optimization-based apprioach)[@levin2004introduction]. It is further assumed that individuals rationally pursue their self-interest taking into account all economics constraints (such as time, prices, income and capital). Particularly, in maximising utility consumers are constrained by the total amount of wealth they draw upon to purchase goods/services, save money or invest. Hence, utility maximisation is a matter of arranging spending permitted by the budget constraint to achieve the highest total utility possible. Ultimately, it is by weighing up the marginal benefit (the increased benefit obtained by consuming an additional unit of a product) and marginal cost of making a given purchase, that consumers make the final consumption decision: only if the  marginal benefit of purchasing one item exceed its marginal cost the consumer will make the purchase [@green2002rational]. 
+
+Despite optimization-based approach has been witnessing a remarkable intellectual convergence that proceeded almost without interruptions since the 19th century [@levin2004introduction], in recent years it has started to be Standard rational choice theory has been challenged and/or complemented by findings in the behavioral economics turf. Differently from the standard theory, behavioural economics draws on psychology and the behavioural sciences in assessing consumer behaviour, maintaing that there is a wide variety of cognitive, social and emotional variables that can influence consumers' choice. The behavioural factors which affect consumer choice can be broadly categorised as follows:
+- Loss Aversion: people would rather not lose than not win.
+- Reference Point: people may evaluate changes relative to some reference point rather than objectively.
+    + Priming: people’s behaviour may be impacted if they are first exposed to certain sensations.
+    + Anchoring: people use an initial reference point in estimating values.
+    + Salience: consumers are drawn to what seems relevant to them.
+- Time Inconsistency: people may change their minds over time
+    + Hyperbolic discounting: people may change their valuation of goods over time.
+    + Procrastination: important decisions may be delayed.
+- Social Factors: Choice can be impacted by the choices of others
+    + Social norms: people are influenced by the actions of those around them.
+    + Ego: consumers behave in a way that supports the impression of a positive self-image.	      + Messenger: consumers are influenced by who communicates information.
+- Additional Factors
+    + Mental accounting: consumers may be inconsistent in valuing money.
+    + Heuristics: people may use mental short-cuts when making choices.
+    + Affect: emotions can be powerful in shaping consumer behaviour [@green2002rational]. 
+Following this approach, consumption decisions can therefore be explained not only by comparing costs and benefits related to them, but consumers can also act "irrationally" and get fully emotional basing their decisions on the feelings like pleasure, happiness and gratification, that they get through the buying behavior. For instance, people purchase quality and luxury goods to acquire some hedonic values because of the consumption activity [@bilge2015luxury].
+
+Among the above-mentioned variables that may drive to luxury consumption, reference points and attach bias. Reference points are mental thresholds that individual set in order to compare themselves with others. It is often assumed that the relevant reference point for evaluating gains and losses is the current status of wealth and welfare, exhibited, for instance, by purchasing and expensive good [@Wilkinson2012]: in fact, especially when information is incomplete, people may use conspicuous consumption as a signal of their wealth to acquire acknowledgement of the social status [@jin2010income]. However, the reference point may also be the expected status, rather than the current one. Moreover, rational choice may be distorted when the value of a good is not give exclusively by its measurable value but by subjective attached values. For example, the car used by a Rock Star can reach higher prices on an auction that the very the same model, because its additional embedded attributes: fame, status, etc [@Wilkinson2012].
+
+In general, income inequality can produce two different consumption behaviour in the the people, depending on the social stratus of which they are part. In the case of lower classes, inequality may strengthen the incentive to reduce consumption and accumulate wealth so as to improve social status. However,if both the poor and the rich tend to over-accumulate in the rat-race of status seeking, the poor have a stronger status-seeking incentive to save than rich families do: in fact, the diminishing marginal utility of status means that the poor get more pleasure from a marginal increase in their relative wealth than the rich. Sociologists have long emphasized that individuals care about social status, and their behavior are often motivated by the desire to improve their ranks in the hierarchy, not less than by pecuniary rewards such as consumption [@jin2010income]. 
 
 #Research question, justification and hypotheses
 
@@ -28,6 +63,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Conclusion
 
+\pagebreak
+
+#References
 
 
 

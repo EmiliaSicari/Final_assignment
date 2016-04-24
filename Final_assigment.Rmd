@@ -12,7 +12,19 @@ bibliography: bibliography.bib
 ---
 \pagebreak
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+#Setting workind directories
+setwd(try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE))
+
+#Loading packages 
+library(Quandl)
+library(rio)
+library(ggplot2)
+library(stargazer)
+library(pander)
+library(knitr)
+library(corrplot)
+library(ggmap)
 ```
 
 #Introduction
@@ -53,13 +65,117 @@ Among the above-mentioned variables that may drive to luxury consumption, refere
 
 In general, income inequality can produce two different consumption behaviour in the the people, depending on the social stratus of which they are part. In the case of lower classes, inequality may strengthen the incentive to reduce consumption and accumulate wealth so as to improve social status. However,if both the poor and the rich tend to over-accumulate in the rat-race of status seeking, the poor have a stronger status-seeking incentive to save than rich families do: in fact, the diminishing marginal utility of status means that the poor get more pleasure from a marginal increase in their relative wealth than the rich. Sociologists have long emphasized that individuals care about social status, and their behavior are often motivated by the desire to improve their ranks in the hierarchy, not less than by pecuniary rewards such as consumption [@jin2010income]. 
 
-#Research question, justification and hypotheses
+#General overwiew of the project
 
-#Description of variables 
+##Research question, justification and hypotheses
 
-#Methodology
+The aim of our work is to investigate **how the rise in inequality, economic growth and usage of public transportation influences the purchase of cars (as an example of luxury good) in Singapore, from 1995 to 2014**. 
 
-#Results of the analyses/Empirical evidenc
+In fact, Singapore claims to be a successful country, which implies increasing competition, economic  development, as well as inequality in comparison with other countries that lack Singapore's success standards. The government of Singapore constantly displays [**how well ranked the country is**]( http://www.egov.gov.sg/accolades-and-awards-international-awards), in order to promote the *'success'* paradigm. Kishore Mahbudani, Dean of Lee Kuan Yew School of Public Policy, recently stated that the island went from having a 500 dollars GDP per capita in 1965 to 76.237 dollars in 2015, almost doubling U.K., its former colonizer. Likewise, He said that *'more than one out of six households have $1 million in cash savings'* [@LecturebyDeanKish:2015vv]. International competitiveness of Singapore is out of doubt. However, how competitive Singaporeans are between each other, how unequal the society is and what is triggered by this traits, are considerations worth analyzing. 
+
+According to a recent survey[@Mahbudani:2015vu], 9 out 15 Singaporeans agreed that its society is based on competitiveness, materialism, self-centredness, *'kiasi-ism'* (fear of diying) and blame-shifting. Additionally,the same rate of Singaporean youngsters are worried that extreme competition would get them out of not affording what they called "basic goods", namely flats and a cars [@Rachel:2014wq].
+
+The consideration a cars as a basic need in a country that has relentlessly tried to have world class transportation systems indicates that there are hidden reasons for owning cars. Singapore has tried to deter the purchase of cars by subjecting the purchase of cars to high taxaation: in fact  car onwers need to own a certificate of car entitlement that can cost even more than 70.000 dollars. Therefore *'Singapore has made the car one of the most important status symbols in Singapore. This explains the attraction of European car brands in Singapore'* [@Mahbudani:2014tv].
+
+When in the so-called developing world - to which Singapore belongs - the number of private cars grows despite the attempt of the state to reduce their usage [@TheEconomist:2012wi], such overpopulation of cars might be nderstood under the lenses of high inequality, fierce competition and the need of displaying status symbols. That is true especially if that occurs in a context providing a wide variety and density of alternative public means of transportations, as shown by the figure below. 
+
+```{r, echo = FALSE, message=FALSE, warning = FALSE, results='asis'}
+
+# Creating a table 
+Variable <- c("MRT","LRT","Taxis","Buses")
+
+Description <- c("Mass Rapid transit: available from 1987, it is now the major component of the railway system in Singapore, covering the entire city-state.", "Light Rail Transit: opened in 1999, it consists of localised rail systems acting as feeder services to the MRT", "A popular form of public transport in Singapore, with relatively low fares compared to most", "The most convenient and accessible modes of public transport in Singapore, complementing the MRT and LRT systems")  
+
+public.transports <- data.frame(Variable, Description)
+
+pander::pander(public.transports, split.cells = 30, split.table = Inf, keep.line.breaks = TRUE, justify = "left", caption = 'Public transport in Singapore')
+```
+
+```{r, echo = FALSE, fig.align = 'center', fig.cap = "Public Transportation Coverage in Singapore", fig.width = 5, fig.height = 5}
+library(ggplot2)
+#creating a map showing coverage of PT in Singapore
+Mrt.map <- read.csv("/Users/emiliasicari/Desktop/Final_assignment/MRT coordinates.csv", sep = ";")
+Mrt.map
+sapply(Mrt.map, class)
+names(Mrt.map)
+places <- c('Singapore')
+ggmap::geocode(places)
+Mrt.map <- ggmap::qmap(location = 'Singapore', zoom = 11, source = "stamen", maptype = "toner")
+Finalmap <- points(Mrt.map$Name, col = "red", cex =.6)
+```
+
+
+```
+Therefore by collecting and analysing data on economic growth, inequality, and usage of public tranportation, the hypotheses to be tested are the following:
+
+- *H1:* The higher the economic growth, the higher the purchase of luxury cars
+- *H2:* The higher the inequality, the higher the purchase of luxury cars
+- *H3:* The less usage of public transport, the higher the purchase of luxury cars
+
+##Description of variables 
+
+As suggested by the research question and the hypotheses, the dependent variable is the number of private cars in Singapore between 1995 and 2014 (in thousands)
+
+On the other hand, the explanatory variables are economic growth, inequality and usage of public transports. Economic growth is measured by Singopore's GDP per capita in singaporean dollars (in thousands) at current prices, derived by dividing current price GDP by total population. Inequality is measured by the number of times by which in number of times by which the top 10% earners are richer than those earning the bottom 90% average income. Both top 10% average income and bottom 90% average income are measured in real singaporean dollars (in thousands). Finally, the usage of public transports can be divided into three parts:
+- usage of buses;
+
+- usage of MRT;
+
+- usage of LRT;
+In all of the cases data is expressed by the daily average of  commuters (in thousands) using public trasport yearly.
+
+The following table summarizes the variables taken into consideration for the analysis ^[Time frame refers to the time span available in the sources from which gathered the data. Instead, as specified by the research question, our analysis only takes into account the years from 1995 to 2014].
+
+```{r, echo = FALSE, message=FALSE, warning = FALSE, results='asis'}
+
+# Creating the summary table stated before
+Variable <- c("gdp per capita","inequality","anual motor vehicle","public transport utilization")
+
+Description <- c("measured in singaporean dollars at current prices", "top 10% and bottom 90% singaporean's average income measured in singaporean dollars", "number of: cars, rental cars, buses, taxis, buses, motorbikes", "average commuters using daily: MRT, LRT, Buses, Taxis")  
+
+Time.frame <- c("1980-2021", "1947-2009", "1960-2015", "1995-2014")
+
+data.table <- data.frame(Variable, Description, Time.frame)
+
+pander::pander(data.table, split.cells = 30, split.table = Inf, keep.line.breaks = TRUE, justify = "left", caption = 'Summary of variables')
+```
+
+##Methodology
+
+##Data sources and gathering
+
+This document and particularly data processing was made using: R [-@CiteR], Quandl [-@R-Quandl], Corrplot [-@R-corrplot], Ggplot[-@R-ggplot2], Pander [-@R-pander], Repmis [-@R-repmis] and Rio [-@R-rio]. 
+
+The data for our empirical analysis were retrieved from:
+
+- IMF Cross Country Macroeconomic Statistics open data available on [Quandl](https://www.quandl.com/data/ODA/SGP_NGDPPC). From this source we downloaded data showing the trend in Singopore's GDP per capita meassured in singaporean dollars from 1981 to 2021 (forecasted from 2015 onwards). The data was provided in csv format and imported on R using the URL of the website.
+
+- World Top Incomes Database available on [Knoema](http://knoema.com/), provides access to data on the distribution of top incomes in more than twenty five countries across the globe. From this source we downloaded data on the top 10% average income and bottom 90% average income in Singapore from 1947 until 2009, meassured in singaporean dollars. Since it was not possible to directly import the database to R, we requested and received the data via e-mail in csv format. This data set is available in the repository.^[We did not gather data from the database [Clio Infra](https://www.quandl.com/data/CLIO/SGP_II-Income-Inequality-Singapore) as initially stated in our [ResearchProposal](https://github.com/EmiliaSicari/ResearchProposal), since  it did not provide sufficient data for the time span we are considering.]  
+
+- [Singapore's open data portal](https://data.gov.sg) offered two data bases: 
+    + The [Annual Motor Vehicle Population](https://data.gov.sg/dataset/annual-motor-vehicle-population-by-type-of-vehicles),  provides the number of public and private vehicles from 1960 to 2015, including: mortorbikes, rental cars, buses, taxis and other type of vehicles. While mortorbikes, rental cars and cars are private means of transportation, buses and taxis are to be considered public since in Singapore even the taxis are provided by the state.
+    
+    + [Public transport utilization](https://data.gov.sg/dataset/public-transport-utilisation-average-public-transport-ridership). This data is expressed as the daily average of thounsand commuters using public trasport by year. It covers the span from 1995 to 2014 and includes the following modes of transportation: MRT (underground), LRT (a localised rail systems acting as feeder services to the Mass Rapid Transit network), taxis (publicly run) and buses.
+
+## Cleaning, processing and merging data sets
+
+- After importing data we used the "date" variable (year) as a unique identifier for all four datasets, in order to merge them afterwards.
+
+- Since time frames of the data were different, we selected a common span of time: 1995-2014. In the case of bottom 90% and top 10% average income, we had to make a linear regression to forecast missing values (from 2009 until 2014). The results, available in a new dataframe, were later on bounded with the orginal one, in order to have the entire time series.  As for LRT, values from 1995 until 1998 were missing since the service started to be provided from 1999 [@SingaporeInfopedia:2005tl]; therefore, we completed the dataframe giving the value "0" for the first 4 years of the time span taken into consideration.
+
+- Cleaning the data was limited to changing column names, eliminating the unnecesary ones and organizing the various data frames so to merge them more easily afterwards, using the year as common denominator. Only in the case of the dataframe cointaining the number of private cars in Singapore from 1995 until 2014 (car.pop.1) we had to change the format of the data from characters to integers, due to an incorrect import.
+
+- In order to have an indicator showing the trend in inequality in Singapore between 1995 and 2014, we created a new variable - named "inequality" - by divididing the top 10% avereage income by the bottom 90% average income for each year: the coefficient of the division shows how many times Singaporeans earning the top 10% average income are reacher than the bottom 90% earners of the population.  
+
+- As for the number of cars, we simply divided them into the categories provided in the data original set: cars, buses, etc. Originally, they were in one column so we separate them in several ones to have the year as a unique identifier. 
+
+- Finally, we merged all the single dataframes into the new one, containing all the variables that we used to perfom descriptive and inferential statistical analyses.
+
+#Statistical analysis
+
+##Descriptive statistics 
+
+##Inferential Statistics
 
 #Conclusion
 

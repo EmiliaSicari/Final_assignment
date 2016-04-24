@@ -1,6 +1,6 @@
 ---
 title: "Rationality vs reality"
-subtitle: "challenging the standard rational model"
+subtitle: "Challenging the standard rationational choice theory"
 output: ioslides_presentation
 ---
 

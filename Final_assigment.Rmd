@@ -8,13 +8,27 @@ output:
     number_sections: yes
     toc: yes
     toc_depth: 2
-bibliography: bibliography.bib
+bibliography: 
+  - bibliography.bib
+  - packages.bib
 ---
+
 \pagebreak
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-#Setting workind directories
-setwd(try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE))
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+
+#Setting working directories
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE)
+try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
+
+#Sourcing the external Rscript in which we created the dataframe from which extrapolate the data to create the summary table
+source("Preliminary_analyses.R")
+
+```
+
+```{r setup, include=FALSE, error=FALSE, message=FALSE, results = 'asis'}
+knitr::opts_chunk$set(echo = TRUE) 
 
 #Loading packages 
 library(Quandl)
@@ -24,7 +38,7 @@ library(stargazer)
 library(pander)
 library(knitr)
 library(corrplot)
-library(ggmap)
+
 ```
 
 #Introduction
@@ -35,35 +49,31 @@ library(ggmap)
 
 In the last decades, the increase in income inequality has generated growing concern. In 2013 it was defined "the challenge of our time" by President Obama and one year later Pope Francis condemned the global "economy of exclusion". In fact, inequality and economic growth can be regarded as two sides of the same coin and the rise of the former associates both developed economies, where the gap between rich and poor is now at highest levels in decades, and emerging economies, experiencing more mixed trends [@dabla2015causes]. 
 
-The relation between economic develompemtn and inequality is bilateral. On the one hand, a rise in income inequality reduces economic growth through various channels. First, by triggering political instability, which in turn tends to reduce investment and - consequently - economic growth.  Moreover, disparities in income distribution encourage poor people to undertake rent-seeking or illegal activities threatening property rights, and that drives down investment [@alesina1996income]. In addition, inequality reduces the capacity of poorer members of the society to invest in education thus hampering social mobility and skill development [@cingano2014trends]. Furthermore, it reduces social consensus required to adjust shocks and sustain growth. Neverthess, all those effects may be non linear: increases in inequality from low levels provides growth enhancing incentives, while increases part some point encourage rent-seeking and lower growth [@ostry2014redistribution]. Finally, in highly unequal context, the majority of the voters - who are usually poor - ask for redistributive policies, which decrease the after-tax marginal product of capital, hence lowering the rate of accumulation and driving down growth [@alesina1996income]. Nevertheless, redistribution policies may also  affect growth positively, by reducing tensions and incentivizing productive activities and capital accumulation. Yet, the net effect of redistributive policies on growth has to weigh the costs of distortionary taxation against the benefits of reduced social tensions. More broadly, taxation may not be inherently detrimental to growth, as long as it reduces tax expenditure or loopholes that benefit the rich, increases public investment through progressive taxation or social insurance spending on welfare favouring poor people [@ostry2014redistribution]. 
+The relation between economic development and inequality is bilateral. On the one hand, a rise in income inequality reduces economic growth at least in three ways. First, it triggers political instability, which in turn tends to reduce investment and - consequently - economic growth. Moreover, disparities in income distribution encourage poor people to undertake rent-seeking or illegal activities threatening property rights, and that drives down investment [@alesina1996income]. In addition, inequality reduces the capacity of poorer members of the society to invest in education thus hampering social mobility and skill development [@cingano2014trends]. Furthermore, it reduces social consensus required to adjust shocks and sustain growth. Neverthess, all those effects may be non linear: increases in inequality from low levels provides growth enhancing incentives, while increases part some point encourage rent-seeking and lower growth [@ostry2014redistribution]. Finally, in highly unequal contexts the majority of the voters - who are usually poor - ask for redistributive policies, which decrease the after-tax marginal product of capital, hence lowering the rate of accumulation and driving down growth [@alesina1996income]. Nevertheless, redistribution policies may also  affect growth positively, by reducing tensions and incentivizing productive activities and capital accumulation. Yet, the net effect of redistributive policies on growth has to weigh the costs of distortionary taxation against the benefits of reduced social tensions. More broadly, taxation may not be inherently detrimental to growth, as long as it reduces tax expenditure or loopholes that benefit the rich, increases public investment through progressive taxation or social insurance spending on welfare favouring poor people [@ostry2014redistribution]. 
 
-On the other hand, economic growth may produce a rise in income inequality, leading to social tensions and political discontent that jeopardize the wellbeing of society [@gallo2002economic]. According to the inverted U hypothesis[@kuznets1955economic], there income inequality widens in the early phases of economic growth; then it stabilizes for a while; and finally it narrows in the later phases. There are two factors explaining the rise in income inequality. First, the concentration of savings in the hands of the upper social classes leads to higher amount of income for them and their descendants. Second, increase in the urban share of the population resulting from economic growth is assumed to be more unequal than rural population, whose income is lower than the urban one. Hence, this gap in relative mean incomes tends to widen as a result of a more rapid growth of the per capita productivity in economic urban activities than in agriculture. However, such negative effects of economic growth only hold in the short run, since in the long run this trend tends to reverse due to government redistribution policies and other exogenous factors (the decrease in the proportion of rich families and immigration entering at the lower income levels). Moreover, this tendency towards increasing inequality is reversed when all the surplus labour is absorbed into modern sector employment, becoming a scarce factor of production. Therefore, further growth, implying an increase in labour demand, will push the wages up, thus levelling inequality. However, no definite causal relation has been found that allows generalizing the ways in which economic growth affects income inequality. Instead, empirical evidence shows that the impact of economic growth on income distribution depends more on the way in which growth is pursued than on the level of per capita income or the rate of growth [@gallo2002economic]. 
+On the other hand, economic growth may produce a rise in income inequality, leading to social tensions and political discontent that jeopardize the wellbeing of society [@gallo2002economic]. According to the inverted U hypothesis [@kuznets1955economic], income inequality widens in the early phases of economic growth; then it stabilizes for a while; and finally it narrows in the later phases. There are two factors explaining the rise in income inequality. First, the concentration of savings in the hands of the upper social classes leads to higher amount of income for them and their descendants. Second, the rise in the urban share of the population resulting from economic growth, that is assumed to be more unequal than rural population, whose income is lower than the urban one: hence, this gap in relative mean incomes tends to widen as a result of a more rapid growth of the per capita productivity in economic urban activities than in agriculture. However, such negative effects of economic growth only hold in the short run, since in the long run this trend tends to reverse due to government redistribution policies and other exogenous factors (the decrease in the proportion of rich families and immigration entering at the lower income levels). Moreover, this tendency towards increasing inequality is reversed when all the surplus labour is absorbed into modern sector employment, becoming a scarce factor of production. Therefore, further growth, implying an increase in labour demand, will push the wages up, thus levelling inequality. 
+Nevertheless, no definite causal relation has been found that allows generalizing the ways in which economic growth affects income inequality. Instead, empirical evidence shows that the impact of economic growth on income distribution depends more on the way in which growth is pursued than on the level of per capita income or the rate of growth [@gallo2002economic]. 
 
 ## Inequality and consumption behavior
 
-According to rational choice theory, individuals have rational preferences and use the full and relevant information at their disposal to determine which options are available, rank them and choose the most preferred one in order to maximise their utility (optimization-based apprioach)[@levin2004introduction]. It is further assumed that individuals rationally pursue their self-interest taking into account all economics constraints (such as time, prices, income and capital). Particularly, in maximising utility consumers are constrained by the total amount of wealth they draw upon to purchase goods/services, save money or invest. Hence, utility maximisation is a matter of arranging spending permitted by the budget constraint to achieve the highest total utility possible. Ultimately, it is by weighing up the marginal benefit (the increased benefit obtained by consuming an additional unit of a product) and marginal cost of making a given purchase, that consumers make the final consumption decision: only if the  marginal benefit of purchasing one item exceed its marginal cost the consumer will make the purchase [@green2002rational]. 
+According to rational choice theory, individuals have rational preferences and use the full and relevant information at their disposal to determine which options are available, rank them and choose the most preferred one in order to maximise their utility (optimization-based apprioach) [@levin2004introduction]. It is further assumed that individuals rationally pursue their self-interest taking into account all economics constraints (such as time, prices, income and capital). Particularly, in maximising utility consumers are constrained by the total amount of wealth they draw upon to purchase goods/services, save money or invest. Hence, utility maximisation is a matter of arranging spending permitted by the budget constraint to achieve the highest total utility possible. Ultimately, it is by weighing up the marginal benefit (the increased benefit obtained by consuming an additional unit of a product) and marginal cost of making a given purchase, that consumers make the final consumption decision: only if the  marginal benefit of purchasing one item exceed its marginal cost the consumer will make the purchase [@green2002rational]. 
 
-Despite optimization-based approach has been witnessing a remarkable intellectual convergence that proceeded almost without interruptions since the 19th century [@levin2004introduction], in recent years it has started to be Standard rational choice theory has been challenged and/or complemented by findings in the behavioral economics turf. Differently from the standard theory, behavioural economics draws on psychology and the behavioural sciences in assessing consumer behaviour, maintaing that there is a wide variety of cognitive, social and emotional variables that can influence consumers' choice. The behavioural factors which affect consumer choice can be broadly categorised as follows:
-- Loss Aversion: people would rather not lose than not win.
-- Reference Point: people may evaluate changes relative to some reference point rather than objectively.
-    + Priming: people’s behaviour may be impacted if they are first exposed to certain sensations.
-    + Anchoring: people use an initial reference point in estimating values.
-    + Salience: consumers are drawn to what seems relevant to them.
-- Time Inconsistency: people may change their minds over time
-    + Hyperbolic discounting: people may change their valuation of goods over time.
-    + Procrastination: important decisions may be delayed.
-- Social Factors: Choice can be impacted by the choices of others
-    + Social norms: people are influenced by the actions of those around them.
-    + Ego: consumers behave in a way that supports the impression of a positive self-image.	      + Messenger: consumers are influenced by who communicates information.
-- Additional Factors
-    + Mental accounting: consumers may be inconsistent in valuing money.
-    + Heuristics: people may use mental short-cuts when making choices.
-    + Affect: emotions can be powerful in shaping consumer behaviour [@green2002rational]. 
-Following this approach, consumption decisions can therefore be explained not only by comparing costs and benefits related to them, but consumers can also act "irrationally" and get fully emotional basing their decisions on the feelings like pleasure, happiness and gratification, that they get through the buying behavior. For instance, people purchase quality and luxury goods to acquire some hedonic values because of the consumption activity [@bilge2015luxury].
+Despite optimization-based approach has been witnessing a remarkable intellectual convergence since 19th century [@levin2004introduction], in recent years it has been challenged and/or complemented by findings in the behavioral economics turf. Differently from the standard theory, behavioural economics draws on psychology and the behavioural sciences in assessing consumer behaviour, maintaing that there is a wide variety of cognitive, social and emotional variables that can influence consumers' choice. The behavioural factors which affect consumers' choice can be categorised as follows:
+- Adversion to loss.
 
-Among the above-mentioned variables that may drive to luxury consumption, reference points and attach bias. Reference points are mental thresholds that individual set in order to compare themselves with others. It is often assumed that the relevant reference point for evaluating gains and losses is the current status of wealth and welfare, exhibited, for instance, by purchasing and expensive good [@Wilkinson2012]: in fact, especially when information is incomplete, people may use conspicuous consumption as a signal of their wealth to acquire acknowledgement of the social status [@jin2010income]. However, the reference point may also be the expected status, rather than the current one. Moreover, rational choice may be distorted when the value of a good is not give exclusively by its measurable value but by subjective attached values. For example, the car used by a Rock Star can reach higher prices on an auction that the very the same model, because its additional embedded attributes: fame, status, etc [@Wilkinson2012].
+- Evaluation of choices relatively to some reference point rather than objectively.
 
-In general, income inequality can produce two different consumption behaviour in the the people, depending on the social stratus of which they are part. In the case of lower classes, inequality may strengthen the incentive to reduce consumption and accumulate wealth so as to improve social status. However,if both the poor and the rich tend to over-accumulate in the rat-race of status seeking, the poor have a stronger status-seeking incentive to save than rich families do: in fact, the diminishing marginal utility of status means that the poor get more pleasure from a marginal increase in their relative wealth than the rich. Sociologists have long emphasized that individuals care about social status, and their behavior are often motivated by the desire to improve their ranks in the hierarchy, not less than by pecuniary rewards such as consumption [@jin2010income]. 
+- Changing opinions over time.
+
+- Influence of social factors (social norms, ego, channels through which they receive information, etc.)
+
+- Additional factors such as incapacity to value money (due to attached values, for instance), mental short-cuts when taking decisions, and emotions [@green2002rational]. 
+
+Among the above-mentioned variables that may encourage luxury consumption, reference points and attached values  are particularly relevant. Reference points are mental thresholds that individual set in order to compare themselves with others. It is often assumed that the relevant reference point for evaluating gains and losses is the current status of wealth and welfare, exhibited, for instance, by purchasing and expensive good [@Wilkinson2012]: in fact, especially when information is incomplete, people may use conspicuous consumption as a signal of their wealth to acquire acknowledgement of the social status [@jin2010income]. However, the reference point may also be the expected status, rather than the current one. Moreover, rational choice may be distorted when the value of a good is not give exclusively by its measurable value but by subjective attached values. For example, the car used by a Rock Star can reach higher prices on an auction that the very the same model, because its additional embedded attributes: fame, status, etc [@Wilkinson2012].
+
+Following this approach, consumption decisions can therefore be explained not only by comparing costs and benefits related to them, but consumers can also act "irrationally" and get fully emotional basing their decisions on the feelings like pleasure, happiness and gratification, that they get through the buying behavior. For instance, people might purchase a luxury good such as a car to acquire some hedonic values [@bilge2015luxury], rather than because it emerges as the best mode of transportation after rationally weighing travel time, travel cost, value of journey, and quality of transport [@DepartmentforTransport:2011ui].
+
+In general, individuals care about social status, and their behavior are often motivated by the desire to improve their ranks in the hierarchy, not less than by pecuniary rewards such as consumption. Nevertheless, income inequality can produce different consumption behaviours in the the people, depending on the social strata of which they are part. In the case of lower classes, inequality may strengthen the incentive to reduce consumption and accumulate wealth so to improve social status more than rich families: in fact, the diminishing marginal utility of status means that the poor get more pleasure from a marginal increase in their relative wealth than the rich [@jin2010income]. 
 
 #General overwiew of the project
 
@@ -71,57 +81,38 @@ In general, income inequality can produce two different consumption behaviour in
 
 The aim of our work is to investigate **how the rise in inequality, economic growth and usage of public transportation influences the purchase of cars (as an example of luxury good) in Singapore, from 1995 to 2014**. 
 
-In fact, Singapore claims to be a successful country, which implies increasing competition, economic  development, as well as inequality in comparison with other countries that lack Singapore's success standards. The government of Singapore constantly displays [**how well ranked the country is**]( http://www.egov.gov.sg/accolades-and-awards-international-awards), in order to promote the *'success'* paradigm. Kishore Mahbudani, Dean of Lee Kuan Yew School of Public Policy, recently stated that the island went from having a 500 dollars GDP per capita in 1965 to 76.237 dollars in 2015, almost doubling U.K., its former colonizer. Likewise, He said that *'more than one out of six households have $1 million in cash savings'* [@LecturebyDeanKish:2015vv]. International competitiveness of Singapore is out of doubt. However, how competitive Singaporeans are between each other, how unequal the society is and what is triggered by this traits, are considerations worth analyzing. 
+Singapore claims to be a successful country, which implies increasing competition, economic  development, as well as inequality in comparison with other countries that lack Singapore's success standards. The government of Singapore constantly displays [how well ranked the country is]( http://www.egov.gov.sg/accolades-and-awards-international-awards), in order to promote the *'success'* paradigm. Kishore Mahbudani, Dean of Lee Kuan Yew School of Public Policy, recently stated that the island went from having a 500 dollars GDP per capita in 1965 to 76.237 dollars in 2015, almost doubling U.K., its former colonizer. Likewise, he added that *'more than one out of six households have $1 million in cash savings'* [@LecturebyDeanKish:2015vv]. International competitiveness of Singapore is out of doubt. However, how competitive Singaporeans are between each other, how unequal the society is and what is triggered by this traits, are considerations worth analyzing. 
 
-According to a recent survey[@Mahbudani:2015vu], 9 out 15 Singaporeans agreed that its society is based on competitiveness, materialism, self-centredness, *'kiasi-ism'* (fear of diying) and blame-shifting. Additionally,the same rate of Singaporean youngsters are worried that extreme competition would get them out of not affording what they called "basic goods", namely flats and a cars [@Rachel:2014wq].
+According to a recent survey [@Mahbudani:2015vu], 9 out 15 Singaporeans agreed that its society is based on competitiveness, materialism, self-centredness, *'kiasi-ism'* (fear of diying) and blame-shifting. Additionally,the same rate of Singaporean youngsters are worried that extreme competition would get them out of not affording what they called "basic goods", namely flats and a cars [@Rachel:2014wq].
 
-The consideration a cars as a basic need in a country that has relentlessly tried to have world class transportation systems indicates that there are hidden reasons for owning cars. Singapore has tried to deter the purchase of cars by subjecting the purchase of cars to high taxaation: in fact  car onwers need to own a certificate of car entitlement that can cost even more than 70.000 dollars. Therefore *'Singapore has made the car one of the most important status symbols in Singapore. This explains the attraction of European car brands in Singapore'* [@Mahbudani:2014tv].
+The consideration a cars as a basic need in a country that has relentlessly tried to have world class transportation systems indicates that there are hidden reasons for owning cars. In fact, the country displays a variety of alternative public means of transportation covering almost all the island, a factor that should limit the scope of owing a car. In fact, a part from buses and taxis (that are public in Singapore), the country also has two extensive rail lines, the MRT (Mass Rapid transit) and the LRT (Light Rail Transit, complementing the MRT). 
 
-When in the so-called developing world - to which Singapore belongs - the number of private cars grows despite the attempt of the state to reduce their usage [@TheEconomist:2012wi], such overpopulation of cars might be nderstood under the lenses of high inequality, fierce competition and the need of displaying status symbols. That is true especially if that occurs in a context providing a wide variety and density of alternative public means of transportations, as shown by the figure below. 
+![Figure1:SingaporePublicTransitMap](SingaporeTransitMap.jpg "Fingure 1: Singapore Public Transit Map")
 
-```{r, echo = FALSE, message=FALSE, warning = FALSE, results='asis'}
+In addition, Singapore has tried to deter the purchase of cars by subjecting the purchase of cars to high taxation: in fact  car onwers need to own a certificate of car entitlement that can cost even more than 70.000 dollars. Therefore *'Singapore has made the car one of the most important status symbols in Singapore. This explains the attraction of European car brands in Singapore'* [@Mahbudani:2014tv].
 
-# Creating a table 
-Variable <- c("MRT","LRT","Taxis","Buses")
+When in the so-called developing world - to which Singapore belongs - the number of private cars grows despite the attempt of the state to reduce their usage [@TheEconomist:2012wi] through extensive provision of public transports and high taxation on car purchasing, such overpopulation of cars might be understood under the lenses of high inequality, fierce competition and the need of displaying status symbols.
 
-Description <- c("Mass Rapid transit: available from 1987, it is now the major component of the railway system in Singapore, covering the entire city-state.", "Light Rail Transit: opened in 1999, it consists of localised rail systems acting as feeder services to the MRT", "A popular form of public transport in Singapore, with relatively low fares compared to most", "The most convenient and accessible modes of public transport in Singapore, complementing the MRT and LRT systems")  
-
-public.transports <- data.frame(Variable, Description)
-
-pander::pander(public.transports, split.cells = 30, split.table = Inf, keep.line.breaks = TRUE, justify = "left", caption = 'Public transport in Singapore')
-```
-
-```{r, echo = FALSE, fig.align = 'center', fig.cap = "Public Transportation Coverage in Singapore", fig.width = 5, fig.height = 5}
-library(ggplot2)
-#creating a map showing coverage of PT in Singapore
-Mrt.map <- read.csv("/Users/emiliasicari/Desktop/Final_assignment/MRT coordinates.csv", sep = ";")
-Mrt.map
-sapply(Mrt.map, class)
-names(Mrt.map)
-places <- c('Singapore')
-ggmap::geocode(places)
-Mrt.map <- ggmap::qmap(location = 'Singapore', zoom = 11, source = "stamen", maptype = "toner")
-Finalmap <- points(Mrt.map$Name, col = "red", cex =.6)
-```
-
-
-```
-Therefore by collecting and analysing data on economic growth, inequality, and usage of public tranportation, the hypotheses to be tested are the following:
+Under these considerations, by collecting and analysing data on economic growth, inequality, and usage of public tranportation, the hypotheses to be tested are the following:
 
 - *H1:* The higher the economic growth, the higher the purchase of luxury cars
+
 - *H2:* The higher the inequality, the higher the purchase of luxury cars
+
 - *H3:* The less usage of public transport, the higher the purchase of luxury cars
 
 ##Description of variables 
 
-As suggested by the research question and the hypotheses, the dependent variable is the number of private cars in Singapore between 1995 and 2014 (in thousands)
+As suggested by the research question and the hypotheses, the dependent variable is the number of private cars in Singapore between 1995 and 2014 (in thousands).
 
-On the other hand, the explanatory variables are economic growth, inequality and usage of public transports. Economic growth is measured by Singopore's GDP per capita in singaporean dollars (in thousands) at current prices, derived by dividing current price GDP by total population. Inequality is measured by the number of times by which in number of times by which the top 10% earners are richer than those earning the bottom 90% average income. Both top 10% average income and bottom 90% average income are measured in real singaporean dollars (in thousands). Finally, the usage of public transports can be divided into three parts:
+On the other hand, the explanatory variables are economic growth, inequality and usage of public transports. Economic growth is measured by Singopore's GDP per capita in singaporean dollars (in thousands) at current prices, derived by dividing current price GDP by total population. Inequality is measured by the number of times by which in number of times by which the top 10% earners are richer than those earning the bottom 90% average income. Both top 10% and bottom 90% average income are measured in real singaporean dollars (in thousands). Finally, the usage of public transports can be divided into three parts:
+
 - usage of buses;
 
 - usage of MRT;
 
-- usage of LRT;
+- usage of LRT.
+
 In all of the cases data is expressed by the daily average of  commuters (in thousands) using public trasport yearly.
 
 The following table summarizes the variables taken into consideration for the analysis ^[Time frame refers to the time span available in the sources from which gathered the data. Instead, as specified by the research question, our analysis only takes into account the years from 1995 to 2014].
@@ -129,11 +120,11 @@ The following table summarizes the variables taken into consideration for the an
 ```{r, echo = FALSE, message=FALSE, warning = FALSE, results='asis'}
 
 # Creating the summary table stated before
-Variable <- c("gdp per capita","inequality","anual motor vehicle","public transport utilization")
+Variable <- c("GDP per capita", "Top 10% average income", "Bottom 90% average income", "Inequality","Annual motor vehicles", "Public transport utilization")
 
-Description <- c("measured in singaporean dollars at current prices", "top 10% and bottom 90% singaporean's average income measured in singaporean dollars", "number of: cars, rental cars, buses, taxis, buses, motorbikes", "average commuters using daily: MRT, LRT, Buses, Taxis")  
+Description <- c("Current price GDP divided by the population, in singaporean dollars (thousands)", "Average income earned by the richest 10% of the poluation in real singaporean dollars (in thousands)", "Average income earned by the poorest 90% of the poluation in real singaporean dollars (in thousands)", "Difference beteen top 10% and bottom 90% average income (number of times)", "Number of cars, rental cars, buses, taxis, buses, motorbikes (in thousands)", "Average daily commuters using MRT, LRT, buses, taxis")  
 
-Time.frame <- c("1980-2021", "1947-2009", "1960-2015", "1995-2014")
+Time.frame <- c("1980-2021", "1947-2009", "1947-2009", "1947-2009", "1960-2015", "1995-2014")
 
 data.table <- data.frame(Variable, Description, Time.frame)
 
@@ -144,9 +135,7 @@ pander::pander(data.table, split.cells = 30, split.table = Inf, keep.line.breaks
 
 ##Data sources and gathering
 
-This document and particularly data processing was made using: R [-@CiteR], Quandl [-@R-Quandl], Corrplot [-@R-corrplot], Ggplot[-@R-ggplot2], Pander [-@R-pander], Repmis [-@R-repmis] and Rio [-@R-rio]. 
-
-The data for our empirical analysis were retrieved from:
+The data for our empirical analysis were retrieved from the following sources:
 
 - IMF Cross Country Macroeconomic Statistics open data available on [Quandl](https://www.quandl.com/data/ODA/SGP_NGDPPC). From this source we downloaded data showing the trend in Singopore's GDP per capita meassured in singaporean dollars from 1981 to 2021 (forecasted from 2015 onwards). The data was provided in csv format and imported on R using the URL of the website.
 
@@ -159,27 +148,209 @@ The data for our empirical analysis were retrieved from:
 
 ## Cleaning, processing and merging data sets
 
-- After importing data we used the "date" variable (year) as a unique identifier for all four datasets, in order to merge them afterwards.
+After importing data we used the "date" variable (year) as a unique identifier for all four datasets, in order to merge them afterwards. The following operations were needed before proceeding to the merge.
 
-- Since time frames of the data were different, we selected a common span of time: 1995-2014. In the case of bottom 90% and top 10% average income, we had to make a linear regression to forecast missing values (from 2009 until 2014). The results, available in a new dataframe, were later on bounded with the orginal one, in order to have the entire time series.  As for LRT, values from 1995 until 1998 were missing since the service started to be provided from 1999 [@SingaporeInfopedia:2005tl]; therefore, we completed the dataframe giving the value "0" for the first 4 years of the time span taken into consideration.
+Since time frames of the data were different, we selected a common span of time: 1995-2014. In the case of bottom 90% and top 10% average income, we had to make a linear regression to forecast missing values (from 2009 until 2014). The results, available in a new dataframe, were later on bounded with the orginal one, in order to have the entire time series.  As for LRT, values from 1995 until 1998 were missing since the service started to be provided from 1999 [@SingaporeInfopedia:2005tl]; therefore, we completed the dataframe giving the value "0" for the first 4 years of the time span taken into consideration.
 
-- Cleaning the data was limited to changing column names, eliminating the unnecesary ones and organizing the various data frames so to merge them more easily afterwards, using the year as common denominator. Only in the case of the dataframe cointaining the number of private cars in Singapore from 1995 until 2014 (car.pop.1) we had to change the format of the data from characters to integers, due to an incorrect import.
+Cleaning the data was limited to changing column names, eliminating the unnecesary ones and organizing the various data frames so to merge them more easily afterwards, using the year as common denominator. Only in the case of the dataframe cointaining the number of private cars in Singapore from 1995 until 2014 ˆ[car.pop.1] we had to change the format of the data from characters to integers, due to an incorrect import.
 
-- In order to have an indicator showing the trend in inequality in Singapore between 1995 and 2014, we created a new variable - named "inequality" - by divididing the top 10% avereage income by the bottom 90% average income for each year: the coefficient of the division shows how many times Singaporeans earning the top 10% average income are reacher than the bottom 90% earners of the population.  
+In order to have an indicator showing the trend in inequality in Singapore between 1995 and 2014, we created a new variable - named "inequality" - by divididing the top 10% avereage income by the bottom 90% average income for each year: the coefficient of the division shows how many times Singaporeans earning the top 10% average income are reacher than the bottom 90% earners of the population.  
 
-- As for the number of cars, we simply divided them into the categories provided in the data original set: cars, buses, etc. Originally, they were in one column so we separate them in several ones to have the year as a unique identifier. 
+As for the number of cars, we simply divided them into the categories provided in the data original set: cars, buses, etc. Originally, they were in one column so we separate them in several ones to have the year as a unique identifier. 
 
-- Finally, we merged all the single dataframes into the new one, containing all the variables that we used to perfom descriptive and inferential statistical analyses.
+Finally, we merged all the single dataframes into the new one, containing all the variables that we used to perfom descriptive and inferential statistical analyses.
+
+##Packages used
+This document and particularly data processing was made using: R [-@CiteR], Quandl [-@R-Quandl], Corrplot [-@R-corrplot], Ggplot[-@R-ggplot2], Pander [-@R-pander], Repmis [-@R-repmis], Stargazer [-@R-stargazer], Knitr [@-R-knitrs]. 
 
 #Statistical analysis
 
-##Descriptive statistics 
+##Descriptive statistics and central tendency
+
+The table below shows the basic decriptive statistics for our variables.
+
+Throughout the period the average GDP per capita is 50.277 singaporean dollars, but it varied a lot, ranging from a minimum of 35.345,5 to 70.966,9 singaporean dollars per person. An even grater variation can be observed in the top 10% average income, whose value has been increasing reaching the peak of 325,450 singaporean dollars. Compared to the top 10%, the bottom 90% average income witnessed a more reduced change and its average of 29.022 singaporean dollars shows a great distance from the top 10% earners. In fact, if we look at inequality we see that on average top 10% average income is 6 times greater than the bottom 90% average income. Moreover, the difference between the richest and the poorest has been high for the entire period, with the top 10% earners gaining from 4 to 8 times more than the bottom 90% earners. 
+
+As for the number of vehicles, troughout the period there were, on average, 466.148 cars in Singapore, and their number varied consistently, with a minimum of 342.245 (in 1995) and a maximum of 607.292 (in 2013). Instead, the variation in the number of rental cars, taxis, buses and motorbikes was more restrained, as shown by the standard deviation.  
+
+Finally, if we look at the usage of public transports, we see that the highest variation in the number of passengers was witnessed by the MRT, with a number of daily commuters ranging from 740 to 2762 thousands. However, buses show the highest number of average daily passengers, whose amount was more stable than MRT passengers in the time-span considered. Finally, the LRT displays the lowest amount of daily passengers and a relatively low variation, probably due to the fact that the service was only provided from 1999 onwards [@SingaporeInfopedia:2005tl]. 
+
+
+```{r, echo = FALSE, message=FALSE, warning = FALSE, results = "asis"}
+
+#Creating a new data frame without date for summary purposes
+data.final.s <- data.final
+data.final.s$date <- NULL 
+
+# Creating nicer labels
+labels1 <- c("gdp per capita", "inequality", "top 10% income", "bottom 90% income", "number of cars", "number of rental cars", "number of taxis", "number of buses", "number of motorbikes", "other vehicles", "bus usage", "mrt usage", "lrt usage")
+
+# Creating the table
+stargazer(data.final.s, type = "latex",
+        title = "General data summary", label = "labels1",
+        digits = 1, header = FALSE)
+```
+
+###Trends in gdp per capita and inequality
+
+The following graph shows the trend of the explanatory variables in Singapore between 1995 and 2014. As we can see, although slowly, the gdp per capita has risen thourghout the whole period, despite a slight decline between 2002 and 2005 and a more serious reduction in the years of the financial crisis, between 2008 and 2010. The top 10% average income shows the same trend: a steady increase throughout the whole period (in 2014 its value was more than 100% higher than the initial one), with a slight decline between 2002 and 2005, and a more serious reduction in the years of the financial crisis. However, the value of the bottom 90% average income has barely changed, enlarging the difference between the top and bottom populations. 
+
+```{r, echo=FALSE, fig.align='center', fig.width = 6, fig.height = 4}
+
+# Creating first figure: trend in gdp, bottom 90% and top 10% average income
+fig.1 <- ggplot2::ggplot(data.final, aes(x= date)) +
+  geom_line(aes(y=data.final$top, color= "top")) +
+  geom_line(aes(y=data.final$bottom, color = "bottom")) + 
+  geom_line (aes(y=data.final$gdp.per.capita, color = "gdp.per.capita")) +
+  theme_light()
+
+#changing the name of the variables in the axis
+fig.1<-fig.1 + labs(x = "years", y = NULL)
+
+#changing the position of the legend 
+fig.1 <- fig.1 + theme(legend.position="bottom")
+
+#changing the name of title and labels of legend
+fig.1 <- fig.1 + scale_colour_discrete(name= NULL,
+                         breaks=c("bottom", "gdp.per.capita", "top"),
+                         labels=c("Bottom 90% average income", "Gdp per capita",
+                                  "Top 10% average income"))
+
+#changing the colour of the background of the plot
+fig.1 <- fig.1 + theme(panel.border = element_blank(),
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       axis.line.x = element_line(size = 0.25, linetype = "solid",
+                                   colour = "black"), 
+                       axis.line.y = element_line(size = 0.25, linetype = "solid", 
+                                                  colour = "black"))
+
+#giving a title to the graph
+fig.1 <- fig.1 + ggtitle("Figure 1 - Gdp per capita, top 10% and bottom 90% average income\n in Singapore measured in national currency at current prices (1995-2014)") + theme(plot.title = element_text(lineheight= 1, size = 10))
+
+fig.1
+```
+
+The growing difference between the top and bottom earners is clarified by the following graph, showing trend in inequality in Singapore, measured in number of times by which the top 10% earners are richer than those earning the bottom 90% average income. The graph confirms what already highlighted above: the difference between the rich and the poor has been increasing all the time, and the trend only reversed between 2002 and 2005 and between 2008 and 2010. The average ratio between both groups is 6.1 and has reaached a maximun value of 7.8.
+
+```{r, echo=FALSE, fig.align='center', fig.width = 6, fig.height = 4}
+#creating the second figure: trend in inequality in number of times. 
+fig.2 <- ggplot2::ggplot(data.final, aes(x=data.final$date, y=data.final$inequality)) + geom_line(aes(group=1), colour="#3399FF") + theme_classic()
+
+#changing the name of the variables in the y axis
+fig.2 <-fig.2 + labs(x = "years", y = "inequality")
+
+#changing the colour of the background of the plot
+fig.2 <- fig.2 + theme(panel.border = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          axis.line.x = element_line(size = 0.25, linetype = "solid",
+                                   colour = "black"), 
+          axis.line.y = element_line(size = 0.25, linetype = "solid",
+                                   colour = "black"))
+                                   
+#giving a title to the graph
+fig.2 <- fig.2 + ggtitle("Figure 2 - Inequality in Singapore measured by the distance between \n the top 10% and bottom 90% average income in number of times (1995-2014)") + theme(plot.title = element_text(lineheight=1, size = 10))
+
+fig.2
+```
+
+###Trends in ownership and usage of vehicles
+
+The following graph shows the number of public and private vehicles present in Singapore between 1995 and 2015. What is striking, is the continuous and rapid increase in the number of privately owned cars (especially since 2006). This trend supports the hypothesis  which links high the economic growth, high the inequality and increase of cars' purchase ^[For more details about the hypotheses see https://github.com/EmiliaSicari/ResearchProposal]. A further assumption to be investigated is that such increase might be linked to the likewise rise in the top 10% average income: as the rich become richer, the purchase of luxury goods, such as cars, increases as well. 
+
+```{r, echo=FALSE, fig.align='center', fig.width = 6, fig.height = 4}
+#creating the third figure: trend in number of vehicles      
+fig.3 <- ggplot2::ggplot(data.final, aes(x=data.final$date)) + 
+  geom_line(aes(y=data.final$cars, colour="cars")) + 
+  geom_line(aes(y=data.final$rentalcars, color="rental cars")) + 
+  geom_line(aes(y=data.final$taxis, colour="taxis")) +
+  geom_line(aes(y=data.final$buses, colour="buses")) +
+  geom_line(aes(y=data.final$motorbikes, colour="motorbikes")) + 
+  theme_classic()
+
+#changing the name of the variables in the axes
+fig.3 <- fig.3 + labs(x = "years", y = NULL)
+
+#hiding the title of the legend
+fig.3 <- fig.3 + theme(legend.title=element_blank())
+
+#changing the position of the legend 
+fig.3 <- fig.3 + theme(legend.position="bottom")
+
+#making axes appear
+fig.3 <- fig.3 + theme(axis.line.x = element_line(size = 0.25, linetype = "solid",
+                                   colour = "black"), 
+                       axis.line.y = element_line(size = 0.25, linetype = "solid", 
+                                                  colour = "black"))
+
+# giving a title to the graph 
+fig.3 <- fig.3 + ggtitle("Figure 3 - Number of public and private vehicles in Singapore (1995-2014)") + theme(plot.title = element_text(lineheight=1, size = 10))
+
+# changing the scale of the y axis
+fig.3 <- fig.3 + scale_y_continuous(name= NULL, labels = comma)
+
+fig.3     
+
+```
+
+At the same time,  the number of passengers in the main public transportation (MRT and buses) has increased consistenlty over time. Despite that, the publicly owned buses have not significantly changed in number. Consequently, this also supports the hypothesis that the usage of public transport is not entirely linked with the purchase of cars: in fact, usage of public transport has either increased (in the case of MRT and buses) or stayed the same (in the case of LRT), while the number of private cars has grown consistently. Even in this case a further assumption to be investigated is that those using public transports are lower earners. 
+
+```{r, echo=FALSE, fig.align='center', fig.width = 6, fig.height = 4}
+#Creating the fourth figure: trend in vehicles utilization           
+fig.4 <- ggplot2::ggplot(data.final, aes(x=data.final$date)) + 
+  geom_line(aes(y=data.final$bus.u, color="buses")) + 
+  geom_line(aes(y=data.final$mrt.u, color="MRT")) + 
+  geom_line(aes(y=data.final$lrt.u, color="LRT")) + theme_light()
+
+#changing the name of the variables in the y axis
+fig.4 <-fig.4 + labs(x = "years", y = NULL)
+
+#changing the colour of the background of the plot and making axis appear
+fig.4 <- fig.4 + theme(panel.border = element_blank(),
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       axis.line.x = element_line(size = 0.25, linetype = "solid",
+                                   colour = "black"), 
+                       axis.line.y = element_line(size = 0.25, linetype = "solid", 
+                                                  colour = "black"))
+
+##changing the position of the legend 
+fig.4 <- fig.4 + theme(legend.position="bottom")
+
+#changing the name of title and labels of legend
+fig.4 <- fig.4 + scale_colour_discrete(name= NULL,
+                         breaks=c("buses", "LRT", "MRT"),
+                         labels=c("buses", "MRT", "LRT"))
+fig.4 <- fig.4 + ggtitle("Figure 4 - Average daily passengers using public transport in Singapore \n in thousands (1995-2014)") + theme(plot.title = element_text(lineheight=1, size = 10))
+
+fig.4
+```
+
+## Correlation analysis
+
+The graph below ^[bus.u, lrt.u and mrt.u stand for the utilization of these modes of transportation. We also eliminated the "other" variable since it not included in the anlysis] shows the correlation among the varibles considered in our analysis: the darker the colour, the stronger the correlation. Likewise, the size of the circles shows the magnitude of the correlation. While blue indicates negative correlation, red is associated with positive correlation.
+
+What clearly emerges from the plot, is that the variables are in almost all of the cases highly and positively correlated to each other. Bottom 90% average income and buse utilization are less correlated to the other variables, and bottom 90% average income is also negatively correlated with both inequality and buses utilization (which weakens the assumption that the poorest are those who use more public transportations). However, high correlation among explanatory variables might create problems due to multicollinearity and may show a biased in the variables   in general , which will be assesed in the next stage of the research. 
+
+``````{r, echo=FALSE, fig.align='center', fig.cap="Correlation Matrix", fig.width = 10, fig.height = 10}
+# Creating a new data frame eliminating the date and other variables, not neeccesary for the correletion matrix
+data.final.c <- data.final.s
+data.final.c$other <- NULL
+# Changing the names to makte the chart fit in the page
+names(data.final.c) <- c("gdp", "ineq.", "top", "bottom", "cars", "rental cars", "taxis", "buses", "m.bikes", "bus.u", "mrt.u", "lrt.u")
+
+# Creating a correlation plot
+source("http://www.sthda.com/upload/rquery_cormat.r") 
+corrplot(cor(data.final.c), method = "number", type = "lower")
+```
+\pagebreak
 
 ##Inferential Statistics
 
-#Conclusion
+#Conclusions
 
-\pagebreak
+\pagebreak 
 
 #References
 

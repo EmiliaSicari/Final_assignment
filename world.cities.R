@@ -9,16 +9,14 @@ setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/")
 world.cities <- as.data.frame(read.csv("cities.transport.statistics.csv", 
                                        header = TRUE, sep = ";"))
 
-# Correcting wrong data in this coordinates (17:4)
-world.cities[17,4] <- paste(9050)
 
 #Creating new variables
 world.cities["M.population"] <- world.cities$M.Population..000*1000 #population in absolute numbers
 world.cities["C.population"] <- world.cities$C.Population..000.*1000 # population in absolute numbers
-world.cities["M.population.millions"] <- world.cities$m.population/1000000 #population in millions
-world.cities["C.population.millions"] <- world.cities$c.population/1000000 #population in millions
-world.cities["metropolitan.density"] <- world.cities$m.population/world.cities$M.Area.km2 #population density in metropolitan areas 
-world.cities["city.density"] <- world.cities$c.population/world.cities$C.Area.km2  #population density in main city areas
+world.cities["M.population.millions"] <- world.cities$M.population/1000000 #population in millions
+world.cities["C.population.millions"] <- world.cities$C.population/1000000 #population in millions
+world.cities["metropolitan.density"] <- world.cities$M.population/world.cities$M.Area.km2 #population density in metropolitan areas 
+world.cities["city.density"] <- world.cities$C.population/world.cities$C.Area.km2  #population density in main city areas
 world.cities["rail.density"] <- world.cities$Rail.length.km/world.cities$M.population.millions #rail kilometers by million people
 world.cities["metropolitan.rail.stations.density"] <- world.cities$No.of.rail.stations/world.cities$M.Area.km2 #density of rails in the metropolitan area
 world.cities["city.rail.stations.density"] <- world.cities$No.of.rail.stations/world.cities$C.Area.km2 #density of rails in the city area
@@ -28,10 +26,36 @@ world.cities["road.density.c"] <- world.cities$Road.length.km/world.cities$C.Are
 world.cities["cars.100.hab.m"] <- (world.cities$Private.cars..000./world.cities$M.Population..000.)*100 #private cars per 100 inhabitahts in the metropolitan area
 world.cities["cars.100.hab.c"] <- (world.cities$Private.cars..000./world.cities$C.Population..000.)*100 #private cars per 100 inhabitabts in the city area
 world.cities["daily.railridership.average.c"] <- (world.cities$MRT.LRT.usage..000./world.cities$C.Population..000.)*100
+world.cities["daily.railridership.average.m"] <- (world.cities$MRT.LRT.usage..000./world.cities$M.Population..000.)*100
 world.cities["daily.busridership.average.c"] <- (world.cities$Public.bus.usage..000./world.cities$C.Population..000.)*100
-sapply(world.cities, class)
-
-as.numeric(world.cities$C.Population..000.)
+world.cities["daily.busridership.average.m"] <- (world.cities$Public.bus.usage..000./world.cities$M.Population..000.)*100
+world.cities["average.ridership"] <- (world.cities$daily.busridership.average.m + world.cities$daily.railridership.average.m)/2
 # Ploting variables relations
-#
-world.cities
+# density of rail stations vs daily rail ridership in metropolitan areas
+library(ggplot2)
+cities1 <- ggplot(world.cities, aes(x=world.cities$metropolitan.rail.stations.density, 
+                                    y=world.cities$daily.railridership.average.m)) + 
+  geom_point() + geom_text(aes(label=City),hjust=0, vjust=1) 
+cities1
+
+# number of buses vs daily bus ridership in metropolitan areas
+cities2 <- ggplot(world.cities, aes(x=world.cities$public.buses.per.million.m, 
+                                    y=world.cities$daily.busridership.average.m)) + 
+  geom_point() + geom_text(aes(label=City),hjust=0, vjust=1) 
+cities2 
+
+# number of private cars vs average public transportation usage
+cities3 <- ggplot(world.cities, aes(x=world.cities$cars.100.hab.m, 
+                                    y=world.cities$average.ridership)) + 
+  geom_point() + geom_text(aes(label=City),hjust=0, vjust=1) 
+cities3        
+       
+
+
+                  
+                  
+                  
+
+
+
+

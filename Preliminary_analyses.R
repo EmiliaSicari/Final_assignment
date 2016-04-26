@@ -15,7 +15,7 @@ library(stargazer)
 library(pander)
 library(knitr)
 library(corrplot)
-
+library(WDI)
 
 # creating an object of the packages for citation purposes
 packages <- c('devtools', 'repmis', 'Quandl', 'data.table', 'rio', 'ggplot2', 'stargazer', 'pander', 'corrplot', 'scales')
@@ -205,16 +205,30 @@ names(trans.ut.mrt) <- c("date", "mrt.u")
 trans.ut.lrt2$type <- NULL
 names(trans.ut.lrt2) <- c("date", "lrt.u")
 
+#downloading data on population trend
+URL.population <- "https://data.gov.sg/dataset/d1778088-f56a-4353-891f-21f803b2dad5/resource/f9dbfc75-a2dc-42af-9f50-425e4107ae84/download/level1.csv"
+population <- repmis::source_data(URL.population)
+#selecting only total residents
+population <- subset(population, level_1 == "Total Residents")
+#selecting only the time span of interest
+population <- subset(population, year > "1994")
+population <- subset(population, year < "2015")
+#eliminating useless column
+population$level_1 <- NULL
+#changing the name of the first columns
+names(population) <- c("date", "population")
+
 # Creating the very final data frame, inserting the missing data on utilization, as well as bottom 90% and top 10% average income
 data.final1 <- merge (almost.complete.dataframe, trans.ut.bus, by ='date')
 data.final2 <- merge (data.final1, trans.ut.mrt, by ='date')
 data.final3 <- merge (data.final2, top.complete, by='date')
 data.final4 <- merge (data.final3, bottom.complete, by='date')
-data.final <-  merge (data.final4, trans.ut.lrt2, by ='date')
+data.final5 <- merge(data.final4, population, by = 'date')
+data.final <-  merge (data.final5, trans.ut.lrt2, by ='date')
 
 # Moving the columns
-data.final <- data.final[,c(1,2,3,12,13,4,5,6,7,8,9,10,11,14)]
-data.final
+#data.final <- data.final[,c(1,2,14,13,3,4,5,6,7,8,9,10,11,15)]
+#data.final
 
 # Exporting the final data frame as csv file
 rio::export(data.final, "final.data.frame.csv", col.names = TRUE)

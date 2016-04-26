@@ -14,6 +14,7 @@ bibliography:
 ---
 
 \pagebreak
+<<<<<<< Updated upstream
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE) 
@@ -29,6 +30,13 @@ source("Preliminary_analyses.R")
 
 ```{r setup, include=FALSE, error=FALSE, message=FALSE, results = 'asis'}
 knitr::opts_chunk$set(echo = TRUE) 
+=======
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+#Setting workind directories
+setwd(try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE))
+setwd(try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE))
+>>>>>>> Stashed changes
 
 #Loading packages 
 library(Quandl)
@@ -38,7 +46,12 @@ library(stargazer)
 library(pander)
 library(knitr)
 library(corrplot)
+<<<<<<< Updated upstream
 
+=======
+library(ggmap)
+source("world.cities.R")
+>>>>>>> Stashed changes
 ```
 
 #Introduction
@@ -56,7 +69,33 @@ Nevertheless, no definite causal relation has been found that allows generalizin
 
 ## Inequality and consumption behavior
 
+<<<<<<< Updated upstream
 According to rational choice theory, individuals have rational preferences and use the full and relevant information at their disposal to determine which options are available, rank them and choose the most preferred one in order to maximise their utility (optimization-based apprioach) [@levin2004introduction]. It is further assumed that individuals rationally pursue their self-interest taking into account all economics constraints (such as time, prices, income and capital). Particularly, in maximising utility consumers are constrained by the total amount of wealth they draw upon to purchase goods/services, save money or invest. Hence, utility maximisation is a matter of arranging spending permitted by the budget constraint to achieve the highest total utility possible. Ultimately, it is by weighing up the marginal benefit (the increased benefit obtained by consuming an additional unit of a product) and marginal cost of making a given purchase, that consumers make the final consumption decision: only if the  marginal benefit of purchasing one item exceed its marginal cost the consumer will make the purchase [@green2002rational]. 
+=======
+According to rational choice theory, individuals have rational preferences and use the full and relevant information at their disposal to determine which options are available, rank them and choose the most preferred one in order to maximise their utility (optimization-based apprioach)[@levin2004introduction]. It is further assumed that individuals rationally pursue their self-interest taking into account all economics constraints (such as time, prices, income and capital). Particularly, in maximising utility consumers are constrained by the total amount of wealth they draw upon to purchase goods/services, save money or invest. Hence, utility maximisation is a matter of arranging spending permitted by the budget constraint to achieve the highest total utility possible. Ultimately, it is by weighing up the marginal benefit (the increased benefit obtained by consuming an additional unit of a product) and marginal cost of making a given purchase, that consumers make the final consumption decision: only if the  marginal benefit of purchasing one item exceed its marginal cost the consumer will make the purchase [@green2002rational]. 
+
+Despite optimization-based approach has been witnessing a remarkable intellectual convergence that proceeded almost without interruptions since the 19th century [@levin2004introduction], in recent years it has started to be Standard rational choice theory has been challenged and/or complemented by findings in the behavioral economics turf. Differently from the standard theory, behavioural economics draws on psychology and the behavioural sciences in assessing consumer behaviour, maintaing that there is a wide variety of cognitive, social and emotional variables that can influence consumers' choice. The behavioural factors which affect consumer choice can be broadly categorised as follows:
+- Loss Aversion: people would rather not lose than not win.
+- Reference Point: people may evaluate changes relative to some reference point rather than objectively.
+    + Priming: people???s behaviour may be impacted if they are first exposed to certain sensations.
+    + Anchoring: people use an initial reference point in estimating values.
+    + Salience: consumers are drawn to what seems relevant to them.
+- Time Inconsistency: people may change their minds over time
+    + Hyperbolic discounting: people may change their valuation of goods over time.
+    + Procrastination: important decisions may be delayed.
+- Social Factors: Choice can be impacted by the choices of others
+    + Social norms: people are influenced by the actions of those around them.
+    + Ego: consumers behave in a way that supports the impression of a positive self-image.	      + Messenger: consumers are influenced by who communicates information.
+- Additional Factors
+    + Mental accounting: consumers may be inconsistent in valuing money.
+    + Heuristics: people may use mental short-cuts when making choices.
+    + Affect: emotions can be powerful in shaping consumer behaviour [@green2002rational]. 
+Following this approach, consumption decisions can therefore be explained not only by comparing costs and benefits related to them, but consumers can also act "irrationally" and get fully emotional basing their decisions on the feelings like pleasure, happiness and gratification, that they get through the buying behavior. For instance, people purchase quality and luxury goods to acquire some hedonic values because of the consumption activity [@bilge2015luxury].
+
+Among the above-mentioned variables that may drive to luxury consumption, reference points and attach bias. Reference points are mental thresholds that individual set in order to compare themselves with others. It is often assumed that the relevant reference point for evaluating gains and losses is the current status of wealth and welfare, exhibited, for instance, by purchasing and expensive good [@Wilkinson2012]: in fact, especially when information is incomplete, people may use conspicuous consumption as a signal of their wealth to acquire acknowledgement of the social status [@jin2010income]. However, the reference point may also be the expected status, rather than the current one. Moreover, rational choice may be distorted when the value of a good is not give exclusively by its measurable value but by subjective attached values. For example, the car used by a Rock Star can reach higher prices on an auction that the very the same model, because its additional embedded attributes: fame, status, etc [@Wilkinson2012].
+
+In general, income inequality can produce two different consumption behaviour in the the people, depending on the social stratus of which they are part. In the case of lower classes, inequality may strengthen the incentive to reduce consumption and accumulate wealth so as to improve social status. However,if both the poor and the rich tend to over-accumulate in the rat-race of status seeking, the poor have a stronger status-seeking incentive to save than rich families do: in fact, the diminishing marginal utility of status means that the poor get more pleasure from a marginal increase in their relative wealth than the rich. Sociologists have long emphasized that individuals care about social status, and their behavior are often motivated by the desire to improve their ranks in the hierarchy, not less than by pecuniary rewards such as consumption [@jin2010income]. 
+>>>>>>> Stashed changes
 
 Despite optimization-based approach has been witnessing a remarkable intellectual convergence since 19th century [@levin2004introduction], in recent years it has been challenged and/or complemented by findings in the behavioral economics turf. Differently from the standard theory, behavioural economics draws on psychology and the behavioural sciences in assessing consumer behaviour, maintaing that there is a wide variety of cognitive, social and emotional variables that can influence consumers' choice. The behavioural factors which affect consumers' choice can be categorised as follows:
 - Adversion to loss.

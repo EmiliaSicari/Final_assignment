@@ -230,5 +230,19 @@ data.final <-  merge (data.final5, trans.ut.lrt2, by ='date')
 #data.final <- data.final[,c(1,2,14,13,3,4,5,6,7,8,9,10,11,15)]
 #data.final
 
+# Transforming  variables in terms of change
+data.final["gdp.per.capita.%"] <- log(data.final$gdp.per.capita)
+data.final["inequality.%"] <- log(data.final$inequality)
+data.final["cars.%"] <- log(data.final$cars)
+data.final["rentalcars.%"] <- log(data.final$rentalcars)
+data.final["buses.%"] <- log(data.final$buses)
+data.final["motorbikes.%"] <- log(data.final$motorbikes)
+data.final["bus.u.%"] <- log(data.final$bus.u)
+data.final["mrt.u.%"] <- log(data.final$mrt.u)
+data.final["top.%"] <- log(data.final$top)
+data.final["bottom.%"] <- log(data.final$bottom)
+data.final["population.%"] <- log(data.final$population)
+data.final["lrt.u.%"] <- log(data.final$lrt.u)
+
 # Exporting the final data frame as csv file
 rio::export(data.final, "final.data.frame.csv", col.names = TRUE)

@@ -4,8 +4,9 @@
 
 #setting working directory
 getwd()
-try(setwd("/Users/emiliasicari/Desktop/Third_assignment"), silent = TRUE)
-try(setwd("/Users/rafalopezv/Dropbox/R/Third-assignment/"), silent = TRUE)
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE)
+try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
+getwd()
 
 #loading packages 
 library(Quandl)
@@ -15,10 +16,12 @@ library(stargazer)
 library(pander)
 library(knitr)
 library(corrplot)
-library(WDI)
+library(dplyr)
+library(magrittr)
+library(repmis)
 
 # creating an object of the packages for citation purposes
-packages <- c('devtools', 'repmis', 'Quandl', 'data.table', 'rio', 'ggplot2', 'stargazer', 'pander', 'corrplot', 'scales')
+packages <- c('devtools', 'repmis', 'Quandl', 'data.table', 'rio', 'ggplot2', 'stargazer', 'pander', 'corrplot','WDI', 'dplyr', 'magrittr')
 repmis::LoadandCite(packages, file = 'packages.bib')
 
 # importing data on Singapore's economic growth, selecting only the time span of interest
@@ -231,18 +234,100 @@ data.final <-  merge (data.final5, trans.ut.lrt2, by ='date')
 #data.final
 
 # Transforming  variables in terms of change
-data.final["gdp.per.capita.%"] <- log(data.final$gdp.per.capita)
-data.final["inequality.%"] <- log(data.final$inequality)
-data.final["cars.%"] <- log(data.final$cars)
-data.final["rentalcars.%"] <- log(data.final$rentalcars)
-data.final["buses.%"] <- log(data.final$buses)
-data.final["motorbikes.%"] <- log(data.final$motorbikes)
-data.final["bus.u.%"] <- log(data.final$bus.u)
-data.final["mrt.u.%"] <- log(data.final$mrt.u)
-data.final["top.%"] <- log(data.final$top)
-data.final["bottom.%"] <- log(data.final$bottom)
-data.final["population.%"] <- log(data.final$population)
-data.final["lrt.u.%"] <- log(data.final$lrt.u)
+data.final["gdp.per.capita.ch"] <- log(data.final$gdp.per.capita)
+data.final["inequality.ch"] <- log(data.final$inequality)
+data.final["cars.ch"] <- log(data.final$cars)
+data.final["buses.ch"] <- log(data.final$buses)
+data.final["motorbikes.ch"] <- log(data.final$motorbikes)
+data.final["bus.u.ch"] <- log(data.final$bus.u)
+data.final["mrt.u.ch"] <- log(data.final$mrt.u)
+data.final["top.ch"] <- log(data.final$top)
+data.final["bottom.ch"] <- log(data.final$bottom)
+data.final["population.ch"] <- log(data.final$population)
+data.final["lrt.u.ch"] <- log(data.final$lrt.u)
+
+# Creating a one year lagged variable for lagged variables: car purchases, gdp percapita, top and bottom income) 
+data.final <- 
+  data.final %>%
+  mutate(lcars = lag(data.final$cars, 1)) #lagged for cars
+
+data.final <- 
+  data.final %>%
+  mutate(lgdp = lag(data.final$gdp.per.capita.ch, 1)) # lagged for gdp
+
+data.final <- 
+  data.final %>%
+  mutate(ltop = lag(data.final$top.ch, 1)) # lagged for 10% top income
+
+data.final <- 
+  data.final %>%
+  mutate(lbottom = lag(data.final$bottom.ch, 1)) # lagged for 90% bottom income
 
 # Exporting the final data frame as csv file
 rio::export(data.final, "final.data.frame.csv", col.names = TRUE)
+
+# Modelling
+M1 <- lm(cars.ch ~ lcars + 
+           gdp.per.capita.ch + population.ch + inequality + 
+           bus.u + mrt.u + lrt.u , data = data.final)
+
+M2 <- lm(cars.ch ~ lcars + 
+           gdp.per.capita.ch + population.ch + lgdp + inequality + 
+           bus.u + mrt.u + lrt.u, data = data.final)
+
+M3 <- lm(cars.ch ~ lcars + 
+           gdp.per.capita.ch + population.ch + lgdp + lbottom +
+           ltop + bus.u + mrt.u + lrt.u, data = data.final)
+
+M4 <- lm(cars.ch ~ lcars +  
+           population.ch + lbottom +
+           ltop + bus.u + mrt.u + lrt.u, data = data.final)
+
+#Creating a summary table of all the models
+labelsi <- c("Cars purchase change(log)")
+labelsd <- c("Car purchases (log/lag)", "Gdp per capita (log)", "Population (log)", "Gdp per capita (log/lag)", 
+              "Inequality gap", "Bottom 90% income(log/lag)", "Top 10 % (log/lag)", "Bus usage(000)", "MRT usage(000)","LRT usage (000)")
+
+
+
+#Creating a summary table of the model1
+
+labelsi1 <- c("Cars purchase change (lagged)")
+labelsd1 <- c("Percentage change in cars purchase", "Gdp per capita change (log)", "Population change (log)", "inequality gap", 
+              "usage of buses(000)", "usage of MRT(000)", "usage of LRT(000)",
+              "(Intercept)")
+
+
+#Creating a summary table of the model2
+
+labelsi2 <- c("Cars purchase change (lagged)")
+labelsd2 <- c("Percentage change in cars purchase",
+              "Gdp per capita change (log)",
+              "Population change (log)",
+              "Gdp per capita change (lagged)",
+              "Inequality gap", "usage of buses(000)", "usage of MRT(000)", 
+              "usage of LRT(000)","(Intercept)")
+
+
+#Creating a summary table of the model3
+
+labelsi3 <- c("Cars purchase change (lagged)")
+labelsd3 <- c("Percentage change in cars purchase",
+              "Gdp per capita change (log)",
+              "Population change (log)",
+              "Gdp per capita change (lagged)",
+              "Bottom", "Top",
+              "usage of buses(000)", "usage of MRT(000)", 
+              "usage of LRT(000)","(Intercept)")
+
+#Creating a summary table of the model3
+M4 <- lm(cars.ch ~ lcars + 
+           population.ch + lbottom +
+           ltop + bus.u + mrt.u + lrt.u, data = data.final)
+
+labelsi4 <- c("Cars purchase change (lagged)")
+labelsd4 <- c("Percentage change in cars purchase",
+              "Population change (log)",
+              "Bottom", "Top",
+              "usage of buses(000)", "usage of MRT(000)", 
+              "usage of LRT(000)","(Intercept)")

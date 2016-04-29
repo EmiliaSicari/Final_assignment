@@ -17,7 +17,8 @@ setwd("/Users/emiliasicari/Desktop/Final_assignment/Presentation/")
 library(ggplot2)
 library(stargazer)
 source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R")
-source("/Users/emiliasicari/Desktop/Final_assignment/Figures.R")
+source("/Users/emiliasicari/Desktop/Final_assignment/Presentation/Figures.R")
+getwd()
 ```
 
 ## <small>Overview</small>

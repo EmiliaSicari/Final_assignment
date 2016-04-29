@@ -337,13 +337,4 @@ labelsd4 <- c("Percentage change in cars purchase",
               "Population change (log)",
               "Bottom", "Top",
               "usage of buses(000)", "usage of MRT(000)", 
-<<<<<<< Updated upstream
-              "usage of LRT(000)","(Intercept)")
-=======
               "usage of LRT(000)")
-
-labelsd4
-
-
-
->>>>>>> Stashed changes

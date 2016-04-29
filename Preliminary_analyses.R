@@ -6,7 +6,9 @@
 getwd()
 try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE)
 try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
+
 getwd()
+
 
 #loading packages 
 library(Quandl)
@@ -262,6 +264,12 @@ data.final <-
 data.final <- 
   data.final %>%
   mutate(lbottom = lag(data.final$bottom.ch, 1)) # lagged for 90% bottom income
+
+#Creating a new column gggregating the daily number of passengers on the various means (mrt, lrt, buses)   
+data.final["PTutilization"] <- data.final$bus.u + data.final$mrt.u + data.final$lrt.u
+
+#Transforming PTutilization into a variable in term of change
+data.final["PTutilization.%"] <- log(data.final$PTutilization)
 
 # Exporting the final data frame as csv file
 rio::export(data.final, "final.data.frame.csv", col.names = TRUE)

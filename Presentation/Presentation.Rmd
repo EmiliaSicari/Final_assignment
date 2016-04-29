@@ -1,10 +1,119 @@
 ---
 title: "Rationality vs reality"
 subtitle: "Challenging the standard rationational choice theory"
-output: ioslides_presentation
+author: "Emilia Sicari & Rafael Lopez V."
+date: "Monday, 2nd May 2016"
+output:
+  revealjs::revealjs_presentation:
+    theme: white
+    transition: fade
+    highlight: pygments
+    fig_caption: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+```{r, include = FALSE}
+# Setting working directory
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Presentation/"), silent = TRUE)
+getwd()
+
+source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R")
+source("/Users/emiliasicari/Desktop/Final_assignment/Figures.R")
+```
+
+## <small>Overview</small>
+
+1. Theoretical background
+
+2. Research question, justification and hypotheses 
+
+3. Description of variables
+
+4. Methodology
+
+5. Preliminary results
+
+6. Conclusions
+
+## <small>'The challenge of our time'</small>
+
+![](Images_presentation/GlobalInequality.jpeg)
+
+## <small>Some 'crude' facts about inequality</small>
+- The richest **1% of the** population is **wealthier than the rest of the world combined**.
+
+- In 2010, **388 individuals** had the same wealth as 3.6 billion people.
+
+- In 2015, this share of population further narrowed to **62 people**.
+
+- In the last 15 years, the **average annual income of the poorest 10%** of people in the world has **risen by less than a single dollar cent per year**.
+
+## <small>Economic growth triggers inequality</small>
+- Inverted U hypothesis 
+    + the concentration of savings in the hands of the upper social classes 
+    + the rise in the urban share of the population
+
+![](Images_presentation/Growth-Inequality.jpeg)
+
+## <small>Inequality hampers economic growth</small>
+- Political instability;
+- rent-seeking activities threatening property rights;
+- reduced investment in education;
+
+![](Images_presentation/Inequality-Growth.png)
+
+## <small>Rational choice theory</small>
+
+- **preferences, constraints and prices** affect consumers' choice
+- Indivuduals are rational and use **information** to determine which options are available, rank them and choose the most preferred one
+- goods posses **inherent and unique** characteristics
+- utility maximisation is a matter of **arranging spending to to achieve the highest total utility**
+
+## <small>Behavioural economics</small>
+
+- **Cognitive, social and emotional variables** influence consumers' choice.
+
+![](Images_presentation/behavioural.jpeg)
+
+## <small>Inequality and consumption behaviour</small> 
+
+Consumption behaviour differs according to social status
+![](Images_presentation/SavingMoney.jpeg)
+![](Images_presentation/LuxuryGood.jpeg)
+
+## <small>Research question</small>
+
+**How the rise in inequality, economic growth and usage of public transportation influences the purchase of cars (as an example of luxury good) in Singapore, from 1995 to 2014**. 
+
+![](Images_presentation/ResearchQuestion.jpeg)
+
+## <small>The case study</small>
+
+A successful developing economy...
+
+
+![](Images_presentation/LittleRedDot2.gif)
+
+## <small>The case study</small>
+
+... With a world class transportation system and policies deterring the purchase of private cars
+
+![](Images_presentation/SingaporeTransitMap.jpg)
+
+## <small>Hypotheses</small>
+
+- *H1:* The higher the economic growth, the higher the purchase of luxury cars
+
+- *H2:* The higher the inequality, the higher the purchase of luxury cars
+
+- *H3:* The less usage of public transport, the higher the purchase of luxury cars
+![](Images_presentation/Hypotheses.gif)
+
+
+# <small>Dependent variable</small>
+Number of privately owned cars
+
+
+```{r, echo=FALSE}
+plot(CARS)
 ```
 

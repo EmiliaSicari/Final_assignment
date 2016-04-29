@@ -287,7 +287,8 @@ M3 <- lm(cars.ch ~ lcars +
            gdp.per.capita.ch + population.ch + lgdp + lbottom +
            ltop + bus.u + mrt.u + lrt.u, data = data.final)
 
-M4 <- lm(cars.ch ~ lcars +  
+M4 <- lm(cars.ch ~ lcars +
+           gdp.per.capita.ch +
            population.ch + lbottom +
            ltop + bus.u + mrt.u + lrt.u, data = data.final)
 
@@ -329,13 +330,20 @@ labelsd3 <- c("Percentage change in cars purchase",
               "usage of LRT(000)","(Intercept)")
 
 #Creating a summary table of the model3
-M4 <- lm(cars.ch ~ lcars + 
-           population.ch + lbottom +
-           ltop + bus.u + mrt.u + lrt.u, data = data.final)
 
 labelsi4 <- c("Cars purchase change (lagged)")
 labelsd4 <- c("Percentage change in cars purchase",
+              "GDP percapita change",
               "Population change (log)",
               "Bottom", "Top",
               "usage of buses(000)", "usage of MRT(000)", 
+<<<<<<< Updated upstream
               "usage of LRT(000)","(Intercept)")
+=======
+              "usage of LRT(000)")
+
+labelsd4
+
+
+
+>>>>>>> Stashed changes

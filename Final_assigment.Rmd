@@ -12,6 +12,7 @@ output:
 bibliography: 
   - bibliography.bib
   - packages.bib
+highlight: zenburn
 ---
 
 \pagebreak
@@ -340,7 +341,7 @@ corrplot(cor(data.final.s), method = "number", type = "lower")
 ##Inferential Statistics
 
 ``````{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, results="asis", header=FALSE}
-stargazer::stargazer(M1, M2, M3, M4, dep.var.labels=labelsi, covariate.labels = labelsd,
+stargazer::stargazer(M2, M3, M4, dep.var.labels=labelsi, covariate.labels = labelsd,
                      title = 'Regression Results',
                      digits = 2, type = 'latex', header = FALSE)
 ```

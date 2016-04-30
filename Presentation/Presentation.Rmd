@@ -1,13 +1,20 @@
 ---
-title: "Rationality vs reality"
-subtitle: "Challenging the standard rationational choice theory"
+title: "Why do you buy a car?"
+subtitle: "Assessing consumers'choice through behavioral approach"
 author: "Emilia Sicari & Rafael Lopez V."
 date: "Monday, 2nd May 2016"
 output: 
   revealjs::revealjs_presentation:
-  theme: white 
-  widescreen: true
-  fig_caption: true
+  reveal_options:
+    slideNumber: true
+    theme: white 
+    highlight: pygments
+    transition: zoom
+    widescreen: true
+    fig_caption: true
+    fonttheme: serif
+  ioslides_presentation: null
+  slidy_presentation: default  
 ---
 
 ```{r setup, include=FALSE}
@@ -117,7 +124,16 @@ plot(POPULATION)
 plot(PT)
 ```
 
+## <small>Regression analysis</small>
+
+- In our inferential analyses, we perfomed a multiple regression. 
+
+- We regressed the percentage change of cars (C) on the lagged existing number of cars (EC), the percentage change in GDP per capita (GDPpc), percentage change in population (POP), lagged bottom 90% average income (BOT), lagged top 10% average income, and average daily commuters on buses (BUS), MRT and LRT.
+
+<small>**$$C_{T} = {\beta}_1 + {\beta}_2 EC_{t-1} + {\beta}_3 GDPpc_{ch} + {\beta}_4 POP_{ch} + {\beta}_5 BOT_{t-1} + {\beta}_6 TOP{t-1} + {\beta}_7 BUS_{u} + {\beta}_8 MRT_{u} + {\beta}_9 LRT_{u} $$**</small>
+
 ## <small>Regression results</small>
+
 ```{r, echo=FALSE, include = FALSE, warning=FALSE, error=FALSE, message=FALSE, results="asis", header=FALSE}
 stargazer::stargazer(M4, dep.var.labels=labelsi4, covariate.labels = labelsd4,
                      single.row = TRUE, no.space = TRUE, font.size = "tiny",
@@ -128,23 +144,26 @@ stargazer::stargazer(M4, dep.var.labels=labelsi4, covariate.labels = labelsd4,
 
 ## <small>Main findings(1)</small>
 
-- Rather than inequality, it is the consumption behavior of the bottom 90% of the population that influences the purchase of cars;
+- Rather than inequality, it is the consumption behavior of the bottom 90% of the population that influences the purchase of cars:
+
     + if the bottom 90% average income increased to approximately $60.000, the number of cars would increase by 9%;
 
-- The presence of cars has onlya slight influence on new buyers;
+- The presence of cars has onlya slight influence on new buyers.
 
 ## <small>Main findings(2)</small>
 
 - A rise in the GDP per capita by 10%, causes an increase in the number of cars by 2.3%;
 
-- Population trend has does not affect the number of cars.
+- Population trend has does not affect the number of cars;
 
-- MRT and LRT have a in impact on the population of cars, but only MRT decreseas their number
+- MRT and LRT have a in impact on the population of cars, but only MRT decreseas their number.
 
 ## <small>Conclusions</small>
 
 - The model matches almost all the hypotheses, however, its explanatory power il limited:
+
     + R squared is too high probably because of the lowe number of observation and the high correlation between the variables;
-    + more population quartiles in terms of income would be useful to know which segment of the population is affecting more purchase of cars and its relation woth the social status.
+    
+    + The model demonstrate that the lower classes have more impact on the car consumption, supporting the assumption that consumption behaviour might be a way to improve the rank in the social hierarchy. However, more population quartiles in terms of income would be useful to know which segment of the population is affecting more purchase of cars and its relation woth the social status.
     
     

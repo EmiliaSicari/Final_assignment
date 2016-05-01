@@ -20,13 +20,18 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 getwd()
-setwd("/Users/emiliasicari/Desktop/Final_assignment/Presentation/")
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Presentation/"))
+try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Presentation/"))
 library(ggplot2)
 library(stargazer)
-source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R")
-source("/Users/emiliasicari/Desktop/Final_assignment/Presentation/Figures.R")
+try(source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"))
+try(source("/Users/emiliasicari/Desktop/Final_assignment/Presentation/Figures.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Presentation/Figures.R"))
 getwd()
+
 ```
+## We want to find out if the purchase of cars in Singapore is influenced by "my neighbor has a car so I want one too", income inequality,public transport usage, and population and wealth growth.
 
 ## <small>Overview</small>
 
@@ -94,10 +99,10 @@ getwd()
 
 ![](Images_presentation/Singapore.jpeg)
 
-## <small>Dependent variable: number of privare cars</small>
+## <small>Independent variables: population trend</small>
 
 ```{r, echo=FALSE, fig.align = 'center'}
-plot(CARS)
+plot(POPULATION)
 ```
 
 ## <small>Independent variables: GDP per capita, top 10% and bottom 90% average income</small>
@@ -112,16 +117,16 @@ plot(IV)
 plot(INEQUALITY)
 ```
 
-## <small>Independent variables: population trend</small>
-
-```{r, echo=FALSE, fig.align = 'center'}
-plot(POPULATION)
-```
-
 ## <small>Independent variables: number of daily commuters using public transports</small>
 
 ```{r, echo=FALSE, fig.align = 'center'}
 plot(PT)
+```
+
+## <small>Dependent variable: number of privare cars</small>
+
+```{r, echo=FALSE, fig.align = 'center'}
+plot(CARS)
 ```
 
 ## <small>Regression analysis</small>
@@ -148,7 +153,7 @@ stargazer::stargazer(M4, dep.var.labels=labelsi4, covariate.labels = labelsd4,
 
     + if the bottom 90% average income increased to approximately $60.000, the number of cars would increase by 9%;
 
-- The presence of cars has onlya slight influence on new buyers.
+- The presence of cars has only a slight influence on new buyers.
 
 ## <small>Main findings(2)</small>
 
@@ -160,10 +165,8 @@ stargazer::stargazer(M4, dep.var.labels=labelsi4, covariate.labels = labelsd4,
 
 ## <small>Conclusions</small>
 
-- The model matches almost all the hypotheses, however, its explanatory power il limited:
-
-    + R squared is too high probably because of the lowe number of observation and the high correlation between the variables;
-    
-    + The model demonstrate that the lower classes have more impact on the car consumption, supporting the assumption that consumption behaviour might be a way to improve the rank in the social hierarchy. However, more population quartiles in terms of income would be useful to know which segment of the population is affecting more purchase of cars and its relation woth the social status.
-    
-    
+- The model matches almost all the hypotheses, however, its explanatory power is limited:
+    + R squared is too high probably because of the low number of observation and the high correlation between the variables;
+    + The model demonstrate that the lower classes have more impact on the car consumption
+    + Consumption behaviour might be a way to improve the rank in the social hierarchy
+    + more population quartiles in terms of income would be useful to know which segment of the population is affecting more purchase of cars and its relation with the social status.

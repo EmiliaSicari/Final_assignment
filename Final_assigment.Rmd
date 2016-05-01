@@ -322,10 +322,23 @@ corrplot(cor(data.final.s), method = "number", type = "lower")
 
 **$$C_{T} = {\beta}_1 + {\beta}_2 EC_{t-1} + {\beta}_3 GDPpc_{ch} + {\beta}_4 POP_{ch} + {\beta}_5 BOT_{t-1} + {\beta}_6 TOP{t-1} + {\beta}_7 BUS_{u} + {\beta}_8 MRT_{u} + {\beta}_9 LRT_{u} $$**
 
+<<<<<<< Updated upstream
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, results="asis", header=FALSE}
 stargazer::stargazer(M4, dep.var.labels=labelsi4, covariate.labels = labelsd4,
                      title = 'Regression Results',
+<<<<<<< Updated upstream
                      digits = 2, type = 'latex', out = 'Regression_Results.pdf', header = FALSE)
+=======
+                     single.row = TRUE, digits = 2, type = 'latex', out = 'Regression_Results.pdf', header = FALSE)
+=======
+``````{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, results="asis", header = FALSE}
+
+stargazer::stargazer(M4, dep.var.labels=labelsi4, covariate.labels = labelsd4,
+                     title = 'Regression Results',
+                     digits = 2, type = 'latex', header = FALSE,
+                     out = 'r')
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 ```
 
 \pagebreak

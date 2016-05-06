@@ -248,6 +248,7 @@ data.final["bus.u.pop"] <- (data.final$bus.u/data.final$population)*100000
 data.final["lrt.u.pop"] <- (data.final$lrt.u/data.final$population)*100000
 data.final["mrt.u.pop"] <- (data.final$mrt.u/data.final$population)*100000
 data.final["car.u.pop"] <- (data.final$cars/data.final$population)*100
+data.final["non.residents"] <- data.final$population-data.final$residents
 
 # Creating lagged variables:  car purchases, gdp percapita, top and bottom income) 
 data.final <- 
@@ -294,9 +295,10 @@ labelsi <- c("Cars per 100 people")
 labelsd <- c("Cars per 100 people(lagged)", 
              "Gdp per capita (log)", 
              "Gdp per capita (log/lagged)", 
-             "Inequality gap", "Bus usage per 100 people", 
+             "Inequality gap", "Top 10% avegare income(lagged)",
+             "Bottom 90% average income",
+             "Bus usage per 100 people", 
              "MRT usage per 100 people","LRT usage per 100 people")
-
 
 
 #Creating a summary table of the model1

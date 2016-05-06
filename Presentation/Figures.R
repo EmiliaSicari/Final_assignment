@@ -4,17 +4,18 @@
 
 #Setting working directory
 try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Presentation/"), silent = TRUE)
-try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
+try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Presentation/"), silent = TRUE)
 
 #Sourcing external file with preliminary analyses to data
-source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R")
+try(source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"))
 
 #Loading packages
 library(ggplot2)
 library(scales)
 
 #Creating the first figure: trend in number of cars
-CARS <- ggplot2::ggplot(data.final, aes(x=data.final$date, y=data.final$cars)) + geom_line(aes(group=1), colour="#3399FF") + theme_classic()
+CARS <- ggplot2::ggplot(data.final, aes(x=data.final$date, y=data.final$car.pop)) + geom_line(aes(group=1), colour="#3399FF") + theme_classic()
 
 #Changing the colour of the background of the plot
 CARS <- CARS + theme(panel.border = element_blank(),
@@ -28,7 +29,7 @@ CARS <- CARS + theme(panel.border = element_blank(),
 CARS <- CARS + scale_y_continuous(labels = comma)
 
 #Changing the name of the variables in the y axis
-CARS <- CARS + labs(x = "years", y = "cars")
+CARS <- CARS + labs(x = "years", y = "Number of cars per 100 people")
 
 #Calling the figure
 CARS
@@ -37,7 +38,7 @@ CARS
 INEQUALITY <- ggplot2::ggplot(data.final, aes(x=data.final$date, y=data.final$inequality)) + geom_line(aes(group=1), colour="#3399FF") + theme_classic()
 
 #Changing the name of the variables in the y axis
-INEQUALITY <- INEQUALITY + labs(x = "years", y = "inequality")
+INEQUALITY <- INEQUALITY + labs(x = "years", y = "income inequality gap: top 10% and bottom 90% earners")
 
 #Changing the colour of the background of the plot
 INEQUALITY <- INEQUALITY + theme(panel.border = element_blank(),
@@ -82,9 +83,9 @@ IV
 
 #Creating the fourth figure: trend in vehicles utilization           
 PT <- ggplot2::ggplot(data.final, aes(x= date)) +
-  geom_line(aes(y=data.final$mrt.u, color= "mrt.u")) +
-  geom_line(aes(y=data.final$lrt.u, color = "lrt.u")) + 
-  geom_line (aes(y=data.final$bus.u, color = "bus.u")) +
+  geom_line(aes(y=data.final$mrt.u.pop, color= "mrt.u")) +
+  geom_line(aes(y=data.final$lrt.u.pop, color = "lrt.u")) + 
+  geom_line (aes(y=data.final$bus.u.pop, color = "bus.u")) +
   theme_light()
 
 #Changing the colours of lines and labels of the legend
@@ -94,7 +95,7 @@ PT <- PT + scale_color_manual(values=c("#000066", "#3399FF", "#33CCFF"),
                               labels=c("MRT", "LRT", "Buses"))
 
 #Changing the name of the variables in the axis
-PT <- PT + labs(x = "years", y = NULL)
+PT <- PT + labs(x = "years", y = "mode usage per 100 people")
 
 #Changing the position of the legend 
 PT <- PT + theme(legend.position="bottom")
@@ -111,10 +112,20 @@ PT <- PT + theme(panel.border = element_blank(),
 PT
 
 #Creating the final graph: trend in population
-POPULATION <- ggplot2::ggplot(data.final, aes(x=data.final$date, y=data.final$population)) + geom_line(aes(group=1), colour="#3399FF") + theme_classic()
+POPULATION <- ggplot2::ggplot(data.final, aes(x=data.final$date)) + 
+  geom_line(aes(y=data.final$residents, color= "residents")) +
+  geom_line(aes(y=data.final$non.residents, color= "non.residents")) + 
+  theme_classic()
 
+#Changing the colours of lines and labels of the legend
+
+POPULATION <- POPULATION + scale_color_manual(values=c("#000066", "#3399FF"),
+                              name = NULL,
+                              breaks=c("residents", "non.residents"),
+                              labels=c("residents", "non residents"))
+POPULATION
 #Changing the name of the variables in the y axis
-POPULATION <- POPULATION + labs(x = "years", y = "population in millions")
+POPULATION <- POPULATION + labs(x = "years", y = "absolute numbers")
 
 #Changing the colour of the background of the plot
 POPULATION <- POPULATION + theme(panel.border = element_blank(),
@@ -124,6 +135,11 @@ POPULATION <- POPULATION + theme(panel.border = element_blank(),
                                                             colour = "black"), 
                                  axis.line.y = element_line(size = 0.25, linetype = "solid",
                                                            colour = "black"))
+
+#Changing the position of the legend
+
+POPULATION <- POPULATION + theme(legend.position="bottom")
+
 #Calling the figure
 POPULATION
 

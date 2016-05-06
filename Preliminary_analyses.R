@@ -7,9 +7,6 @@ getwd()
 try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE)
 try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
 
-getwd()
-
-
 #loading packages 
 library(Quandl)
 library(rio)
@@ -21,10 +18,6 @@ library(corrplot)
 library(dplyr)
 library(magrittr)
 library(repmis)
-
-# creating an object of the packages for citation purposes
-packages <- c('devtools', 'repmis', 'Quandl', 'data.table', 'rio', 'ggplot2', 'stargazer', 'pander', 'corrplot','WDI', 'dplyr', 'magrittr')
-repmis::LoadandCite(packages, file = 'packages.bib')
 
 # importing data on Singapore's economic growth, selecting only the time span of interest
 URL <- "https://www.quandl.com/api/v3/datasets/ODA/SGP_NGDPPC.csv?api_key=zKGy91t7cY2TmfwbfAwe"
@@ -211,17 +204,27 @@ trans.ut.lrt2$type <- NULL
 names(trans.ut.lrt2) <- c("date", "lrt.u")
 
 #downloading data on population trend
-URL.population <- "https://data.gov.sg/dataset/d1778088-f56a-4353-891f-21f803b2dad5/resource/f9dbfc75-a2dc-42af-9f50-425e4107ae84/download/level1.csv"
-population <- repmis::source_data(URL.population)
+URL.residents <- "https://data.gov.sg/dataset/d1778088-f56a-4353-891f-21f803b2dad5/resource/f9dbfc75-a2dc-42af-9f50-425e4107ae84/download/level1.csv"
+residents <- repmis::source_data(URL.residents)
 #selecting only total residents
-population <- subset(population, level_1 == "Total Residents")
+residents <- subset(residents, level_1 == "Total Residents")
 #selecting only the time span of interest
-population <- subset(population, year > "1994")
-population <- subset(population, year < "2015")
+residents <- subset(residents, year > "1994")
+residents <- subset(residents, year < "2015")
 #eliminating useless column
-population$level_1 <- NULL
-#changing the name of the first columns
+residents$level_1 <- NULL
+#changing the name of the columns
+names(residents) <- c("date", "residents")
+
+# adding columns of total population including non residents
+population <- rio::import("population.trends.xls", sheet= 3)
+population <- population[32:51, c(1, 2)]
 names(population) <- c("date", "population")
+population$date <- 1995:2014
+population$population <- gsub(".000000", "", population$population)
+class(population$population)
+population[,2] <- as.integer(population$population)
+class(population$population)
 
 # Creating the very final data frame, inserting the missing data on utilization, as well as bottom 90% and top 10% average income
 data.final1 <- merge (almost.complete.dataframe, trans.ut.bus, by ='date')
@@ -229,29 +232,27 @@ data.final2 <- merge (data.final1, trans.ut.mrt, by ='date')
 data.final3 <- merge (data.final2, top.complete, by='date')
 data.final4 <- merge (data.final3, bottom.complete, by='date')
 data.final5 <- merge(data.final4, population, by = 'date')
-data.final <-  merge (data.final5, trans.ut.lrt2, by ='date')
+data.final6 <- merge(data.final5, residents, by = 'date')
+data.final <-  merge (data.final6, trans.ut.lrt2, by ='date')
 
 # Moving the columns
-#data.final <- data.final[,c(1,2,14,13,3,4,5,6,7,8,9,10,11,15)]
-#data.final
+data.final <- data.final[,c(1, 15,14, 2, 12, 13,3,4,5,6,7,8,9,10,11,16)]
 
-# Transforming  variables in terms of change
+# Transforming  some variables
 data.final["gdp.per.capita.ch"] <- log(data.final$gdp.per.capita)
-data.final["inequality.ch"] <- log(data.final$inequality)
 data.final["cars.ch"] <- log(data.final$cars)
-data.final["buses.ch"] <- log(data.final$buses)
-data.final["motorbikes.ch"] <- log(data.final$motorbikes)
-data.final["bus.u.ch"] <- log(data.final$bus.u)
-data.final["mrt.u.ch"] <- log(data.final$mrt.u)
 data.final["top.ch"] <- log(data.final$top)
 data.final["bottom.ch"] <- log(data.final$bottom)
 data.final["population.ch"] <- log(data.final$population)
-data.final["lrt.u.ch"] <- log(data.final$lrt.u)
+data.final["bus.u.pop"] <- (data.final$bus.u/data.final$population)*100000
+data.final["lrt.u.pop"] <- (data.final$lrt.u/data.final$population)*100000
+data.final["mrt.u.pop"] <- (data.final$mrt.u/data.final$population)*100000
+data.final["car.u.pop"] <- (data.final$cars/data.final$population)*100
 
-# Creating a one year lagged variable for lagged variables: car purchases, gdp percapita, top and bottom income) 
+# Creating lagged variables:  car purchases, gdp percapita, top and bottom income) 
 data.final <- 
   data.final %>%
-  mutate(lcars = lag(data.final$cars, 1)) #lagged for cars
+  mutate(lcar.u.pop = lag(data.final$car.u.pop, 1)) #lagged for cars by 100 people
 
 data.final <- 
   data.final %>%
@@ -261,80 +262,77 @@ data.final <-
   data.final %>%
   mutate(ltop = lag(data.final$top.ch, 1)) # lagged for 10% top income
 
+
 data.final <- 
   data.final %>%
-  mutate(lbottom = lag(data.final$bottom.ch, 1)) # lagged for 90% bottom income
-
-#Creating a new column gggregating the daily number of passengers on the various means (mrt, lrt, buses)   
-data.final["PTutilization"] <- data.final$bus.u + data.final$mrt.u + data.final$lrt.u
-
-#Transforming PTutilization into a variable in term of change
-data.final["PTutilization.%"] <- log(data.final$PTutilization)
+  mutate(lbottom = lag(data.final$bottom.ch, 1)) # lagged for 10% top income
 
 # Exporting the final data frame as csv file
 rio::export(data.final, "final.data.frame.csv", col.names = TRUE)
 
 # Modelling
-M1 <- lm(cars.ch ~ lcars + 
-           gdp.per.capita.ch + population.ch + inequality + 
-           bus.u + mrt.u + lrt.u , data = data.final)
+M1 <- lm(car.u.pop ~ lcar.u.pop + 
+           gdp.per.capita.ch + inequality + 
+           bus.u.pop + mrt.u.pop + lrt.u.pop , data = data.final)
 
-M2 <- lm(cars.ch ~ lcars + 
-           gdp.per.capita.ch + population.ch + lgdp + inequality + 
-           bus.u + mrt.u + lrt.u, data = data.final)
+M2 <- lm(car.u.pop ~ lcar.u.pop + 
+           gdp.per.capita.ch + lgdp + inequality + 
+           bus.u.pop + mrt.u.pop + lrt.u.pop, data = data.final)
 
-M3 <- lm(cars.ch ~ lcars + 
-           gdp.per.capita.ch + population.ch + lgdp + lbottom +
-           ltop + bus.u + mrt.u + lrt.u, data = data.final)
+M3 <- lm(car.u.pop ~ lcar.u.pop + 
+           gdp.per.capita.ch + lgdp + lbottom +
+           ltop + bus.u.pop + mrt.u.pop + lrt.u.pop, data = data.final)
 
-M4 <- lm(cars.ch ~ lcars +
-           gdp.per.capita.ch +
-           population.ch + lbottom +
-           ltop + bus.u + mrt.u + lrt.u, data = data.final)
+M4 <- lm(car.u.pop ~ lcar.u.pop + 
+           gdp.per.capita.ch + lbottom + ltop +  
+           bus.u.pop + mrt.u.pop + lrt.u.pop, data = data.final)
+
+
 
 #Creating a summary table of all the models
-labelsi <- c("Cars purchase change(log)")
-labelsd <- c("Car purchases (log/lag)", "Gdp per capita (log)", "Population (log)", "Gdp per capita (log/lag)", 
-              "Inequality gap", "Bottom 90% income(log/lag)", "Top 10 % (log/lag)", "Bus usage(000)", "MRT usage(000)","LRT usage (000)")
+labelsi <- c("Cars per 100 people")
+labelsd <- c("Cars per 100 people(lagged)", 
+             "Gdp per capita (log)", 
+             "Gdp per capita (log/lagged)", 
+             "Inequality gap", "Bus usage per 100 people", 
+             "MRT usage per 100 people","LRT usage per 100 people")
 
 
 
 #Creating a summary table of the model1
 
-labelsi1 <- c("Cars purchase change (lagged)")
-labelsd1 <- c("Percentage change in cars purchase", "Gdp per capita change (log)", "Population change (log)", "inequality gap", 
-              "usage of buses(000)", "usage of MRT(000)", "usage of LRT(000)",
-              "(Intercept)")
-
+labelsi1 <- c("Cars per 100 people")
+labelsd1 <- c("Cars per 100 people (log/lag)", 
+              "Gdp per capita (log)", 
+              "Inequality gap", "Bus usage(000)", 
+              "MRT usage(000)","LRT usage (000)")
 
 #Creating a summary table of the model2
 
-labelsi2 <- c("Cars purchase change (lagged)")
-labelsd2 <- c("Percentage change in cars purchase",
-              "Gdp per capita change (log)",
-              "Population change (log)",
-              "Gdp per capita change (lagged)",
-              "Inequality gap", "usage of buses(000)", "usage of MRT(000)", 
-              "usage of LRT(000)","(Intercept)")
+labelsi2 <- c("Cars per 100 people")
+labelsd2 <- c("Cars per 100 people (log/lag)", 
+              "Gdp per capita (log)", 
+              "Gdp per capita (log/lag)", 
+              "Inequality gap", "Bus usage(000)", 
+              "MRT usage(000)","LRT usage (000)")
 
 
 #Creating a summary table of the model3
 
-labelsi3 <- c("Cars purchase change (lagged)")
-labelsd3 <- c("Percentage change in cars purchase",
-              "Gdp per capita change (log)",
-              "Population change (log)",
-              "Gdp per capita change (lagged)",
-              "Bottom", "Top",
-              "usage of buses(000)", "usage of MRT(000)", 
-              "usage of LRT(000)","(Intercept)")
+labelsi3 <- c("Cars per 100 people")
+labelsd3 <- c("Cars per 100 people(log/lag)", 
+              "Gdp per capita (log)", 
+              "Gdp per capita(log/lag)", 
+              "Bottom(lagged)", "top(lagged)",
+              "Bus usage", 
+              "MRT usage","LRT usage")
 
-#Creating a summary table of the model3
+#Creating a summary table of the model4
 
-labelsi4 <- c("Cars purchase change (lagged)")
-labelsd4 <- c("Percentage change in cars purchase",
-              "GDP percapita change",
-              "Population change (log)",
-              "Bottom", "Top",
-              "usage of buses(000)", "usage of MRT(000)", 
-              "usage of LRT(000)")
+labelsi4 <- c("Cars per 100 people")
+labelsd4 <- c("Cars per 100 people(lagged)",
+              "Gdp per capita (log)",
+              "90% Bottom income(log/lagged)", "10% Top income(log/lagged)%",
+              "usage of buses", "usage of MRT", 
+              "usage of LRT")
+  

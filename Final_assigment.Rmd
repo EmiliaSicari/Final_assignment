@@ -33,9 +33,14 @@ library(knitr)
 library(corrplot)
 
 #Sourcing the external Rscripts in which we made all the preliminary analysee
-source("Preliminary_analyses.R")
-source("/Users/emiliasicari/Desktop/Final_assignment/Presentation/Figures.R")
+try(source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"))
+try(source("/Users/emiliasicari/Desktop/Final_assignment/Presentation/Figures.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Presentation/Figures.R"))
 
+# creating an object of the packages for citation purposes
+packages <- c('devtools', 'repmis', 'Quandl', 'data.table', 'rio', 'ggplot2', 'stargazer', 'pander', 'corrplot','WDI', 'dplyr', 'magrittr', 'knitr')
+repmis::LoadandCite(packages, file = 'packages.bib')
 ```
 
 # Introduction
@@ -57,7 +62,7 @@ Nevertheless, no definite causal relation has been found that allows generalizin
 
 According to rational choice theory, individuals have rational preferences and use the full and relevant information at their disposal to determine which options are available, rank them and choose the most preferred one in order to maximise their utility (optimization-based approach) [@levin2004introduction]. It is further assumed that individuals rationally pursue their self-interest taking into account all economics constraints (such as time, prices, income and capital). Particularly, in maximising utility, consumers are constrained by the total amount of wealth they draw upon to purchase goods/services, save money or invest. Moreover, it is assumed that goods have inherent and unique characteristics: for example, butter made by different companies should provide the same utility. Therefore, utility maximisation is a matter of arranging spending permitted by the budget constraint to achieve the highest total utility possible [@green2002rational]. 
 
-In recent years, the standard rational choice theory has been challenged by findings in the behavioural economics turf. The first critique came from Lancaster in 1996, when he wrote that *“Elementary textbooks bristle with substitution examples about butter and margarine, rather than about shoes and ships, as though the authors believed that there was something intrinsic to butter and margarine that made them good substitutes and about automobiles and gasoline that made them somehow intrinsically complementary”*. His conclusions are three-fold: 
+In recent years, the standard rational choice theory has been challenged by findings in the behavioural economics turf. The first critique came from Lancaster in 1996, when he wrote that *???Elementary textbooks bristle with substitution examples about butter and margarine, rather than about shoes and ships, as though the authors believed that there was something intrinsic to butter and margarine that made them good substitutes and about automobiles and gasoline that made them somehow intrinsically complementary???*. His conclusions are three-fold: 
 
 - it is not the good *per se* that gives utility to the consumer, but rather its characteristics;
 
@@ -79,16 +84,16 @@ Therefore, differently from the standard theory, behavioural economics draws on 
 
 Among the above-mentioned variables that may drive to luxury consumption, reference points are particularly relevant. Reference points are mental thresholds that individual set in order to compare themselves with others. It is often assumed that the relevant reference point for evaluating gains and losses is the current status of wealth and welfare, exhibited, for instance, by purchasing and expensive good [@Wilkinson2012]: in fact, especially when information is incomplete, people may use conspicuous consumption as a signal of their wealth to acquire acknowledgement of the social status [@jin2010income]. However, the reference point may also be the expected status, rather than the current one.
 
-The importance of reference points in making consumption decisions was further strengthened by Daniel Kahneman and Amos Tversky, theorising the model of choice under uncertainty, broadly known as Prospect Theory. *“Prospect theory distinguishes between gains and losses from a situation-specific reference point. The agent evaluates gains and losses differently and exhibits first-order risk aversion locally around the reference point. Utility depends on a reference point that partitions outcomes into gains and losses”* [@Pesendorfer:2006fy, p.1]. An example is provided by the decision to accept a low wage after long-term unemployment: in such case, unemployment acts as a reference point when taking the decision. 
-However, as Bogliacino [-@Bogliacino:2013jr, p.1] states, the entire literature has focused only on two very specific types of reference-points: the agents’ past choice and/or their status quo. However, there is a third additional element that seems to be playing an important role: the behaviour of others. For example, buying a Mercedes Benz instead a BMW since members of the closer network have made a similar decision. 
+The importance of reference points in making consumption decisions was further strengthened by Daniel Kahneman and Amos Tversky, theorising the model of choice under uncertainty, broadly known as Prospect Theory. *???Prospect theory distinguishes between gains and losses from a situation-specific reference point. The agent evaluates gains and losses differently and exhibits first-order risk aversion locally around the reference point. Utility depends on a reference point that partitions outcomes into gains and losses???* [@Pesendorfer:2006fy, p.1]. An example is provided by the decision to accept a low wage after long-term unemployment: in such case, unemployment acts as a reference point when taking the decision. 
+However, as Bogliacino [-@Bogliacino:2013jr, p.1] states, the entire literature has focused only on two very specific types of reference-points: the agents??? past choice and/or their status quo. However, there is a third additional element that seems to be playing an important role: the behaviour of others. For example, buying a Mercedes Benz instead a BMW since members of the closer network have made a similar decision. 
 
 In the case of cars, the literature shows two cases in which the reference points influence the consumption choice. 
 
-In a first study, a group of people claimed that their car preference was based not only on the desire to show their social status but also on the will to be environmentally conscious. However, when the same group of people was asked which are the reasons that drive other people to buy a car, status resulted as the main answer [@JohanssonStenman:2006jw, p.130]. This shows that people hide their preferences to avoid clashing with prevailing social norms, but also that subjective additional traits of the good can be the drivers of the consumption decision. A second study found that people tend to choose more luxury cars if they hypothetically could buy them, since they base the hedonic forecast on memories, experiences, representation of others, namely a “focusing illusion”. One of the factors that influences the most is the measure of social status by car ownership [@Xu:2006wa]. In this case, the study reveals that given a possibility, social norms of status address the potential purchase of consumers. 
+In a first study, a group of people claimed that their car preference was based not only on the desire to show their social status but also on the will to be environmentally conscious. However, when the same group of people was asked which are the reasons that drive other people to buy a car, status resulted as the main answer [@JohanssonStenman:2006jw, p.130]. This shows that people hide their preferences to avoid clashing with prevailing social norms, but also that subjective additional traits of the good can be the drivers of the consumption decision. A second study found that people tend to choose more luxury cars if they hypothetically could buy them, since they base the hedonic forecast on memories, experiences, representation of others, namely a ???focusing illusion???. One of the factors that influences the most is the measure of social status by car ownership [@Xu:2006wa]. In this case, the study reveals that given a possibility, social norms of status address the potential purchase of consumers. 
 
-Likewise, the so-called “anchoring effect” (initial reference point in estimating values) affects purchase of cars given that the “anchor” is set by others and is considered the threshold to reach. Similarly, ego as the behaviour to build positive self-image also highly influence purchasers [@green2002rational]. 
+Likewise, the so-called ???anchoring effect??? (initial reference point in estimating values) affects purchase of cars given that the ???anchor??? is set by others and is considered the threshold to reach. Similarly, ego as the behaviour to build positive self-image also highly influence purchasers [@green2002rational]. 
 
-Following these approaches, consumption decisions can therefore be explained not only by comparing costs and benefits related to them, but also by “irrational” and emotional decisions based on the desire to experiment a feeling of pleasure, happiness and gratification because of consumption [@bilge2015luxury].
+Following these approaches, consumption decisions can therefore be explained not only by comparing costs and benefits related to them, but also by ???irrational??? and emotional decisions based on the desire to experiment a feeling of pleasure, happiness and gratification because of consumption [@bilge2015luxury].
 
 To conclude, income inequality can generally produce two different consumption behaviours in the the people, depending on the social strata of which they are part. In the case of lower classes, inequality may strengthen the incentive to reduce consumption and accumulate wealth so as to improve social status. However, if both the poor and the rich tend to over-accumulate in the rat-race of status seeking, the poor have a stronger status-seeking incentive to save than rich families do: in fact, the diminishing marginal utility of status means that the poor get more pleasure from a marginal increase in their relative wealth than the rich. Sociologists have long emphasized that individuals care about social status, and their behaviour are often motivated by the desire to improve their ranks in the hierarchy, not less than by pecuniary rewards such as consumption [@jin2010income]. 
 
@@ -320,25 +325,16 @@ corrplot(cor(data.final.s), method = "number", type = "lower")
 
 ## Inferential Statistics
 
+
+
 **$$C_{T} = {\beta}_1 + {\beta}_2 EC_{t-1} + {\beta}_3 GDPpc_{ch} + {\beta}_4 POP_{ch} + {\beta}_5 BOT_{t-1} + {\beta}_6 TOP{t-1} + {\beta}_7 BUS_{u} + {\beta}_8 MRT_{u} + {\beta}_9 LRT_{u} $$**
 
-<<<<<<< Updated upstream
-```{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, results="asis", header=FALSE}
-stargazer::stargazer(M4, dep.var.labels=labelsi4, covariate.labels = labelsd4,
-                     title = 'Regression Results',
-<<<<<<< Updated upstream
-                     digits = 2, type = 'latex', out = 'Regression_Results.pdf', header = FALSE)
-=======
-                     single.row = TRUE, digits = 2, type = 'latex', out = 'Regression_Results.pdf', header = FALSE)
-=======
-``````{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, results="asis", header = FALSE}
 
-stargazer::stargazer(M4, dep.var.labels=labelsi4, covariate.labels = labelsd4,
+```{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, results="asis", header=FALSE}
+stargazer::stargazer(M1,M2,M3,M4, dep.var.labels=labelsi, 
+                     covariate.labels = labelsd, 
                      title = 'Regression Results',
-                     digits = 2, type = 'latex', header = FALSE,
-                     out = 'r')
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+                     digits = 2, type = 'latex', header = FALSE)
 ```
 
 \pagebreak

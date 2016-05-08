@@ -15,22 +15,22 @@ library(ggplot2)
 library(scales)
 
 #Creating the first figure: trend in number of cars
-CARS <- ggplot2::ggplot(data.final, aes(x=data.final$date, y=data.final$car.pop)) + geom_line(aes(group=1), colour="#3399FF") + theme_classic()
+CARS <- ggplot2::ggplot(data.final, aes(x=data.final$date, y=data.final$cars)) + geom_line(aes(group=1), colour="#3399FF") + theme_classic()
+
+#Changing the name of the variables in the y axis
+CARS <- CARS + labs(x = "years", y = "income inequality gap")
 
 #Changing the colour of the background of the plot
 CARS <- CARS + theme(panel.border = element_blank(),
-                       panel.grid.major = element_blank(),
-                       panel.grid.minor = element_blank(),
-                       axis.line.x = element_line(size = 0.25, linetype = "solid",
-                                                  colour = "black"), 
-                       axis.line.y = element_line(size = 0.25, linetype = "solid",
-                                                  colour = "black"))
-#Changing the scale of the y axis
-CARS <- CARS + scale_y_continuous(labels = comma)
+                                 panel.grid.major = element_blank(),
+                                 panel.grid.minor = element_blank(),
+                                 axis.line.x = element_line(size = 0.25, linetype = "solid",
+                                                            colour = "black"), 
+                                 axis.line.y = element_line(size = 0.25, linetype = "solid",
+                                                            colour = "black"))
 
-#Changing the name of the variables in the y axis
-CARS <- CARS + labs(x = "years", y = "Number of cars per 100 people")
-
+CARS <- CARS + scale_y_continuous(name= NULL, labels = comma)
+  
 #Calling the figure
 CARS
 
@@ -38,7 +38,7 @@ CARS
 INEQUALITY <- ggplot2::ggplot(data.final, aes(x=data.final$date, y=data.final$inequality)) + geom_line(aes(group=1), colour="#3399FF") + theme_classic()
 
 #Changing the name of the variables in the y axis
-INEQUALITY <- INEQUALITY + labs(x = "years", y = "income inequality gap: top 10% and bottom 90% earners")
+INEQUALITY <- INEQUALITY + labs(x = "years", y = NULL)
 
 #Changing the colour of the background of the plot
 INEQUALITY <- INEQUALITY + theme(panel.border = element_blank(),
@@ -95,7 +95,7 @@ PT <- PT + scale_color_manual(values=c("#000066", "#3399FF", "#33CCFF"),
                               labels=c("MRT", "LRT", "Buses"))
 
 #Changing the name of the variables in the axis
-PT <- PT + labs(x = "years", y = "mode usage per 100 people")
+PT <- PT + labs(x = "years", y = NULL)
 
 #Changing the position of the legend 
 PT <- PT + theme(legend.position="bottom")
@@ -122,10 +122,12 @@ POPULATION <- ggplot2::ggplot(data.final, aes(x=data.final$date)) +
 POPULATION <- POPULATION + scale_color_manual(values=c("#000066", "#3399FF"),
                               name = NULL,
                               breaks=c("residents", "non.residents"),
-                              labels=c("residents", "non residents"))
-POPULATION
+                              labels=comma)
+
+POPULATION <- POPULATION + scale_y_continuous(name= NULL, labels = comma)
+
 #Changing the name of the variables in the y axis
-POPULATION <- POPULATION + labs(x = "years", y = "absolute numbers")
+POPULATION <- POPULATION + labs(x = "years", y = NULL)
 
 #Changing the colour of the background of the plot
 POPULATION <- POPULATION + theme(panel.border = element_blank(),

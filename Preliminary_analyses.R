@@ -290,7 +290,7 @@ M4 <- lm(car.u.pop ~ lcar.u.pop +
 
 
 
-#Creating a summary table of all the models
+#Creating labesl for all the models
 labelsi <- c("Cars per 100 people")
 labelsd <- c("Cars per 100 people(lagged)", 
              "Gdp per capita (log)", 
@@ -300,6 +300,14 @@ labelsd <- c("Cars per 100 people(lagged)",
              "Bus usage per 100 people", 
              "MRT usage per 100 people","LRT usage per 100 people")
 
+#Creating labels for models 1 and 2
+labelsdM1.2 <- c("Cars per 100 people")
+labelsiM1.2 <- c("Cars per 100 people(lagged)", 
+             "Gdp per capita (log)", 
+             "Gdp per capita (log/lagged)", 
+             "Inequality gap", 
+             "Bus usage per 100 people", 
+             "MRT usage per 100 people","LRT usage per 100 people")
 
 #Creating a summary table of the model1
 

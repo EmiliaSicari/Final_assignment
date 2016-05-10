@@ -1,5 +1,5 @@
 --
-  output:
+output:
   html_document:
   highlight: kate
 self_contained: false

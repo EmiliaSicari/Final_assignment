@@ -1,11 +1,4 @@
---
-output:
-  html_document:
-  highlight: kate
-self_contained: false
-fig_caption: true
-theme: readable
-authors: Emilia Sicari and Rafael Lopez V.
+---
 
 ---
   
@@ -13,31 +6,57 @@ authors: Emilia Sicari and Rafael Lopez V.
 #Setting working directories
 getwd()
 try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Website/"), silent = TRUE)
-
+try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Website/"), silent = TRUE)
 #Loading packages
 library(dygraphs)
 library(DT)
+library(knitr)
+opts_chunk$set(fig.align='center')
+opts_chunk$set(dev='svg')
+opts_chunk$set(tidy=FALSE)
+opts_chunk$set(message=FALSE)
 
 #laoding data
-source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R")
-
+try(source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"))
 ```
-
+<br>
+<br>
+<br>
 <center>
-  # Why do you buy a car? 
-  ### Assessing consumers' choiche thorugh behavioural approach
-  </center>
-  
-  ### Determinants of consumption behaviour
-  
-  ## Project structure 
-  
-  ## Findings
-  
-  ## Limitations
-  
-  ## Next steps
-  
+# Why do Singaporans buy cars? 
+<br>
+<br>
+<br>
+<img src="Website/pictures/car.png" height="2000px" width="1500px" />
+<br>
+<br>
+<br>
+
+##Determinants of consumption behaviour
+
+#####By: [Emilia Sicari](https://github.com/EmiliaSicari) & [Rafael Lopez V.](https://github.com/rafalopezv)
+<br>
+<br>
+<img src="Website/pictures/arrow.ico" height="100px" width="100px" />
+<center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Project structure 
+
+## Findings
+
+## Limitations
+
+## Next steps
+
 ## References
 
 

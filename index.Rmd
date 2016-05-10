@@ -1,20 +1,120 @@
+--
+  output:
+  html_document:
+  highlight: kate
+self_contained: false
+fig_caption: true
+theme: readable
+authors: Emilia Sicari and Rafael Lopez V.
+
 ---
-title: "Untitled"
-output: html_document
----
+  
+```{r include=FALSE}
+#Setting working directories
+getwd()
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Website/"), silent = TRUE)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+#Loading packages
+library(dygraphs)
+library(DT)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+#laoding data
+source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R")
 
-```{r}
-summary(cars)
 ```
 
-You can also embed plots, for example:
+<center>
+  # Why do you buy a car? 
+  ### Assessing consumers' choiche thorugh behavioural approach
+  </center>
+  
+  ### Determinants of consumption behaviour
+  
+  ## Project structure 
+  
+  ## Findings
+  
+  ## Limitations
+  
+  ## Next steps
+  
+## References
 
-```{r, echo=FALSE}
-plot(cars)
+
+```{r include=TRUE, echo = FALSE, fig.align = 'center', fig.cap="GDP per capita and average income in Singapore (19995-2014)"}
+graph1 <- data.final[c("date", "gdp.per.capita", "top", "bottom")]
+dygraph(graph1, main = "Income distribution in Singapore (1995-2014)") %>% 
+  dySeries("gdp.per.capita", label = "GDP per capita") %>%
+  dySeries("top", label = "Top10%income") %>%
+  dySeries("bottom", label = "Bottom10%income") %>%
+  dyRangeSelector()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+graph2 <- data.final[c("date", "residents", "non.residents")]
+dygraph(graph2, main = "Population growth in Singapore (1995-2014)") %>%
+  dySeries("residents", label = "Residents") %>%
+  dySeries("non.residents", label = "Non Residents") %>%
+  dyOptions(stackedGraph = TRUE) %>%
+  dyRangeSelector(height = 20)
+
+```
+
+```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+graph3 <- data.final[c("date", "bus.u.pop", "lrt.u.pop", "mrt.u.pop")]
+dygraph(graph3, main = "Public Transportation use in Singapore (1995-2014)") %>%
+  dySeries("bus.u.pop", label = "Buses") %>%
+  dySeries("lrt.u.pop", label = "LRT") %>%
+  dySeries("mrt.u.pop", label = "MRT") %>%
+  dyRangeSelector()
+
+```
+
+```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+graph4 <- data.final[c("date", "inequality")]
+dygraph(graph4, main = "Inequality gap in Singapore (1995-2014)") %>%
+  dyOptions(fillGraph = TRUE, fillAlpha = 0.4)
+```
+
+
+```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+graph5 <- data.final[c("date", "car.u.pop")]
+dygraph(graph5, main = "Private Cars in Singapore (1995-2014)") %>%
+  dyOptions(drawPoints = TRUE, pointSize = 2)
+```
+
+```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+#Creating the final table with only the variables we used
+TABLE <- data.final
+#Eliminating useless columns
+TABLE$population <- NULL 
+TABLE$cars <- NULL 
+TABLE$rentalcars <- NULL 
+TABLE$taxis <- NULL 
+TABLE$buses <- NULL 
+TABLE$motorbikes <- NULL 
+TABLE$other <- NULL 
+TABLE$bus.u <- NULL 
+TABLE$mrt.u <- NULL 
+TABLE$lrt.u <- NULL 
+TABLE$gdp.per.capita.ch <- NULL 
+TABLE$cars.ch <- NULL 
+TABLE$top.ch <- NULL 
+TABLE$bottom.ch <- NULL 
+TABLE$population.ch <- NULL 
+TABLE$lcar.u.pop <- NULL 
+TABLE$lgdp <- NULL 
+TABLE$ltop <- NULL 
+TABLE$lbottom <- NULL 
+
+#Ordering the columns
+TABLE <- TABLE[,c(1,2,11,3,4,5,6,7,8,9,10)]
+
+#Changing the names of columns
+names(TABLE) <- c("Year", "Residents", "Non Residents", "GDP per capita", "Top10%income", "Bottom90%income", "Inequality gap", "Buses utilization", "MRT utilization", "LRT utilization", "Private Cars")
+
+# Creating an interactive table
+DT::datatable(TABLE)
+
+
+```

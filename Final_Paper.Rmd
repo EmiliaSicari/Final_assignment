@@ -1,5 +1,5 @@
 ---
-title: "Why would you buy a car?"
+title: "Why do Singaporans buy cars?"  
 subtitle: "Assessing consumers'choice through behavioral approach"
 author: "Emilia Sicari & Rafael Lopez V."
 date: "May 13, 2016"

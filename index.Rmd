@@ -1,5 +1,12 @@
 ---
-
+output:
+    html_document:
+        highlight: kate
+        self_contained: false
+        fig_caption: true
+bibliography:
+- bibliography.bib
+- packages.bib
 ---
   
 ```{r include=FALSE}
@@ -7,6 +14,7 @@
 getwd()
 try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Website/"), silent = TRUE)
 try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Website/"), silent = TRUE)
+
 #Loading packages
 library(dygraphs)
 library(DT)
@@ -23,85 +31,81 @@ try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"
 <br>
 <br>
 <br>
-<center>
-# Why do Singaporans buy cars? 
+<!-- Header -->
+<center><h1><i class="fa fa-thumb-tack"></i>Why do Singaporans buy cars?</h1></center>
+<center><h2>Assessing consumers'choice through rational choice theory and behavioral approach</h2></center>
 <br>
 <br>
 <br>
-<img src="Website/pictures/car.png" height="2000px" width="1500px" />
+<center><img src="Website/pictures/car.png" height="2000px" width="1500px" /></center>
 <br>
 <br>
 <br>
-
-##Determinants of consumption behaviour
-
-#####By: [Emilia Sicari](https://github.com/EmiliaSicari) & [Rafael Lopez V.](https://github.com/rafalopezv)
-<br>
-<br>
-<img src="Website/pictures/arrow.ico" height="100px" width="100px" />
-<center>
+<center>By: [Emilia Sicari](https://github.com/EmiliaSicari) & [Rafael Lopez V.](https://github.com/rafalopezv)</center>
 <br>
 <br>
 <br>
-<br>
-<br>
+<center><img src="Website/pictures/arrow.ico" height="100px" width="100px" /></center>
 <br>
 <br>
 <br>
 
-## Project structure 
+<h2>Determinants of consumption behaviour</h2>
 
-## Findings
+In economic theory, consumers' choice is investigated by two main alternative approaches: rational choice theory and behavioura economis. While the former considers that consumption is driven by purely rational factors (such as prices and income) and aimed at maximising utiliy, the latter draws on psychology and behavioural sciences in maintaining that there is a wide variety of cognitive, social and emotional variables that can influence consumers’ choice. These include: aversion to loss, frequently changing opinions, influence of social factors (social norms, ego, channels through which they receive information, etc.) and additional factors such as incapacity to value money (due to attached values, for instance), mental short-cuts when taking decisions, and emotions [@green2002rational]. However, **“Understanding consumption behaviour is a complex task: looking at consumption from a societal perspective, we can see that purchasing and behaviour decisions are influeced by many factors, including economic influences, marketing of products and technological innovation, regulations governing consumption, and not least by what the people around us and in the media are doing”** [@mont2013understanding].
 
-## Limitations
+The aim of this reseach work is to find causes for the purchase of cars in Singapore drawing from the paradigms of both rational choice theory and behavioural economics. Why Singapore? It is highly developed nation state, with strong institutions that can shed light to urban policies around the world. Despite it has all the elements for being considered a succesful rich country, it also struggles with the side effects of the success: high density, limited space, income inequality and tendency of car overpopulation.
 
-## Next steps
+The Singaporean government has imposed strict policies to deter the purchase of cars. For instance, car owners are obliged to buy a certificate of car entitlement, whose cost can be even higher than 70.000 Singaporean dollars. As a consequence, the price of a cars purchased in Singapore can be even five times higher than in other developed countries. However, cars are still being bought. Therefore, there must be other explanations rather than rational consumption behavior.
 
-## References
+On the “rational side” we asses the influence of income, GDP and usage of public transports on the purchase of cars, whereas inequalily and the presence of cars (as a status symbol) are the explanatory variables on the behavioral turf. Consequently we built three different multiple regression models and eventually chose one. The data cover a time span of 19 years (from 1995 until 2015), and were mainly gathered directly from open sources, transformed and presented in an readable way.
 
+For more detailed information on our research project see our [github repository](https://github.com/EmiliaSicari/Final_assignment).
 
-```{r include=TRUE, echo = FALSE, fig.align = 'center', fig.cap="GDP per capita and average income in Singapore (19995-2014)"}
-graph1 <- data.final[c("date", "gdp.per.capita", "top", "bottom")]
-dygraph(graph1, main = "Income distribution in Singapore (1995-2014)") %>% 
-  dySeries("gdp.per.capita", label = "GDP per capita") %>%
-  dySeries("top", label = "Top10%income") %>%
-  dySeries("bottom", label = "Bottom10%income") %>%
-  dyRangeSelector()
-```
+<h2>General overview of the project</h2>
 
-```{r include=TRUE, echo = FALSE, fig.align = 'center'}
-graph2 <- data.final[c("date", "residents", "non.residents")]
-dygraph(graph2, main = "Population growth in Singapore (1995-2014)") %>%
-  dySeries("residents", label = "Residents") %>%
-  dySeries("non.residents", label = "Non Residents") %>%
-  dyOptions(stackedGraph = TRUE) %>%
-  dyRangeSelector(height = 20)
+This work is aimed at investigating **how the rise in inequality, economic growth, usage of public transportation modes and the presence of cars influence the purchase of new cars in Singapore**. 
 
-```
+The relation between the variables is the following: 
 
-```{r include=TRUE, echo = FALSE, fig.align = 'center'}
-graph3 <- data.final[c("date", "bus.u.pop", "lrt.u.pop", "mrt.u.pop")]
-dygraph(graph3, main = "Public Transportation use in Singapore (1995-2014)") %>%
-  dySeries("bus.u.pop", label = "Buses") %>%
-  dySeries("lrt.u.pop", label = "LRT") %>%
-  dySeries("mrt.u.pop", label = "MRT") %>%
-  dyRangeSelector()
+- *Dependant variable:* Purchase of new cars.
 
-```
+- *Independant variables:* 
+    + GDP per capita;
+    + Income inequality;
+    + Use of public transportation modes;
+    + Population of cars;
+  
+The hypthesis to be tested, under certain assumptions, are:
 
-```{r include=TRUE, echo = FALSE, fig.align = 'center'}
-graph4 <- data.final[c("date", "inequality")]
-dygraph(graph4, main = "Inequality gap in Singapore (1995-2014)") %>%
-  dyOptions(fillGraph = TRUE, fillAlpha = 0.4)
-```
+- *H1:* The higher the economic growth, the higher the purchase of cars.
+    + *Assumption:* Economic growth increases disposable income, reduces budgetary constraints and increases propensity to spend, specially for the upper class.   
+    
+- *H2:* The higher the inequality, the higher the purchase of cars.
+    + *Assumption:* The emerging and consolidated social classes need to set reference points displaying their status, by buying cars (symbols).
 
+- *H3:* The less usage of public transport, the higher the purchase of cars.
+    + *Assumption:* Despite the density of public transportantion modes, commuters choose cars by incentives not explained by the rational choice standard model (ego, salience).  
+    
+- *H4:* The larger the car population, the higher the purchase of cars.
+    + *Assumption:* The average social reference point is having a car, that is the threshold to reach 
 
-```{r include=TRUE, echo = FALSE, fig.align = 'center'}
-graph5 <- data.final[c("date", "car.u.pop")]
-dygraph(graph5, main = "Private Cars in Singapore (1995-2014)") %>%
-  dyOptions(drawPoints = TRUE, pointSize = 2)
-```
+The following table describes the variables used in our analysis, including the sources from which we obtained the data. All the data were gatjered from open sources and then transformed for statistical purposes. Particularly, the time frame indicated in the table refers to time span available in the sources from which gathered the data; instead, our analysis only takes into account the 19 years from 1995 to 2014, period that we used as common ddenominator to merge the various data sets.
 
+| Variable | Description | Time frame | Source |
+| -------------------| ------------------------------------ | ---------------- |  ----------------------------------------------- 
+| GDP per capita | GDP per capita in singaporean dollars (thousands) at current prices | 1980-2021 |[Quandl](https://www.quandl.com/data/ODA/SGP_NGDPPC) 
+| Population | Singapore residents and non residents | 1871-2012 | [Population Trend](http://www.singstat.gov.sg/publications/publications-and-papers/population-and-population-structure/population-trends)|
+| Top 10% average income | Yearly average income earned by the top 10% of the populuation in real singaporean dollars at current prices | 1947-2009 | [Knoema](http://knoema.com/) 
+| Bottom 90% average income | Yearly average income earned by the bottom 90% of the populuation in real singaporean dollars at current prices | 1947-2009 |[Knoema](http://knoema.com/) 
+| Inequality | Difference between top 10% and bottom 90% average income (number of times) | 1947 - 2009 | 
+| Cars | Yearly number of private cars | 1960 - 2015 | [Singapore's open data portal](https://data.gov.sg/dataset/annual-motor-vehicle-population-by-type-of-vehicles) 
+| Usage of public tansports | Year average of daily use of MRT, LRT and buses per 1000 people | 1995-2014 | [Singapore's open data portal](https://data.gov.sg/dataset/public-transport-utilisation-average-public-transport-ridership)
+
+The following table shows the final dataframe that we created to run our astatistical analysis. 
+<br>
+<br>
+<br>
 ```{r include=TRUE, echo = FALSE, fig.align = 'center'}
 #Creating the final table with only the variables we used
 TABLE <- data.final
@@ -134,6 +138,120 @@ names(TABLE) <- c("Year", "Residents", "Non Residents", "GDP per capita", "Top10
 
 # Creating an interactive table
 DT::datatable(TABLE)
+```
+<br>
+<br>
 
+<h2>Main Findings</h2>
+
+<h3>Independent variables: trends between 1995-2014</h3>
+
+Figure 1 shows the trend from 1995 to 2014 of three explanatory variables: GDP per capita, bottom 90% and top 10% average income. As we can see, although slowly, the gdp per capita has risen thourghout the whole period, despite a slight decline between 2002 and 2005 and a more serious reduction in the years of the financial crisis, between 2008 and 2010. The top 10% average income shows the same trend: a steady increase throughout the whole period (in 2014 its value was more than 100% higher than the initial one), with a slight decline between 2002 and 2005, and a more serious reduction in the years of the financial crisis. Finally, although following the same pattern of the other two variables, the value of the bottom 90% average income has remained almost unchanged, enlarging the difference between the top and bottom populations. In short, the increse of the 10% income is higher, therefore the gap widens.
+<br>
+<br>
+```{r include=TRUE, echo = FALSE, fig.align = 'center', fig.cap="GDP per capita and average income in Singapore (19995-2014)"}
+graph1 <- data.final[c("date", "gdp.per.capita", "top", "bottom")]
+dygraph(graph1, main = "Income distribution in Singapore (1995-2014)") %>% 
+  dySeries("gdp.per.capita", label = "GDP per capita") %>%
+  dySeries("top", label = "Top10%income") %>%
+  dySeries("bottom", label = "Bottom10%income") %>%
+  dyRangeSelector()
+```
+<br>
+<br>
+The growing difference between the top and bottom earners is clarified by the figure 2. The figure confirms what was previoulsy highlighted: the difference between the rich and the poor has been increasing all the time, and the trend only reversed between 2002 and 2005 and between 2008 and 2010. The average ratio between both groups is 6.1 and has reaached a maximum value of 7.8 in 2014. Therefore, together with the trends observed in the previous figures, these patterns support the hypotheses that link high economic growth, high inequality and increase of cars’ purchase. A further assumption to be investigated is that such increase might be linked to the likewise rise in the top 10% average income: as the rich become richer, the purchase of luxury goods, such as cars, increases as well.
+<br>
+<br>
+```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+graph2 <- data.final[c("date", "residents", "non.residents")]
+dygraph(graph2, main = "Population growth in Singapore (1995-2014)") %>%
+  dySeries("residents", label = "Residents") %>%
+  dySeries("non.residents", label = "Non Residents") %>%
+  dyOptions(stackedGraph = TRUE) %>%
+  dyRangeSelector(height = 20)
 
 ```
+<br>
+<br>
+Both the number of residents and non residents have been growing over the period, as shown in figure 3. In total, Sigapore reahed almost 5,5 million people in 2014 where the highest growing rate belongs to the non resident category. Approximately, 20% of the people living in Singapore are not Singaporean born. This number has widened since 1994 where the ratio was 1 to 5, roughly.
+<br>
+<br>
+```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+graph3 <- data.final[c("date", "bus.u.pop", "lrt.u.pop", "mrt.u.pop")]
+dygraph(graph3, main = "Public Transportation use in Singapore (1995-2014)") %>%
+  dySeries("bus.u.pop", label = "Buses") %>%
+  dySeries("lrt.u.pop", label = "LRT") %>%
+  dySeries("mrt.u.pop", label = "MRT") %>%
+  dyRangeSelector()
+
+```
+<br>
+<br>
+Figure 4 shows the trends of utilization of public transportation modes. The number of passengers using the main public transportation modes, MRT and buses has increased and decresed respectively over time. In absolute numbers, all the modes of transport has increased, howver when they are compared to the population, then the usage of buses has dropped and the usage of MRT has risen. Clearly, the growing number of people does not translate directly into the more usage of buses, although it can be assumed the contrary for MRT and modestly for LRT. However, the rates of utilization are quite high for the last year, since buses and MRT commute between 50 and 70% of the population. However, these statistics do not have to be taken literally, since a singaporean, for example, going to work in the morning by MRT and going back home at night with the same mode, would be computed twice.
+<br>
+<br>
+```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+graph4 <- data.final[c("date", "inequality")]
+dygraph(graph4, main = "Inequality gap in Singapore (1995-2014)") %>%
+  dyOptions(fillGraph = TRUE, fillAlpha = 0.4)
+```
+<br>
+<br>
+
+<h3>Dependent variables: trends between 1995-2014</h3>
+
+A shown by figure 5, the number of private cars present in Singapore between 1995 and 2015 has been growing throughout the period, especially from 2006 onwards and with a slight reduction between 1997 and 1998 and between 2001 and 2002. Overall, the porcentage of people ownig a car does not surpass 12%. However, in 2012 the tendency is reversed and there is a downgrading trend in the onwnership. This may be becasuse the Certficate of Entitlement, does not allow to own a car for more than 10 years. Thus, it may be that the decrease is a succesful reflection of the policy.
+
+```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+graph5 <- data.final[c("date", "car.u.pop")]
+dygraph(graph5, main = "Private Cars in Singapore (1995-2014)") %>%
+  dyOptions(drawPoints = TRUE, pointSize = 2)
+```
+
+<h3>Statistical modelling</h3>
+
+After analysisng the trends in both dependent and explanatory variables, the inferential analysis was built on a  multiple regression model, in which we regressed the population of cars per 100 people on:
+
+- its one year lagged variable;
+
+- GDP per capita;
+
+- one year lagged GDP per capita;
+
+- lagged variables of top 10% and bottom 90% average income;
+
+- average daily utilization of buses, MRT and LRT per 100 people.
+
+The main assumptions of this model are to find out if the a higher the inequality increases the purchases of cars. Moreover, the model investigates the effect of lagged already existing cars as well as the GDP per capita of the previous year on the present purchase of cars. 
+The results of the model are shown in the following table, where our expectations on the impact of the explanatory variables are compared with the actual influence emerged from our analyses ("+"" stands for a positive influence, "-" indicates a negative impact, "0" indicates that the varible was nor significant).
+
+| Variable | Expected result | Empirical result |
+| ----------------------| ------------- | ------------- 
+| Lagged number of cars | + | + 
+| GDP per capita | + | 0 
+| Lagged GDP per capita | + | 0 
+| Lagged top 10% average income | + | 0 
+| Lagged Bottom 10% average income | + | 0 
+| Average daily utilization of buses per 100 people | - | 0 
+| Average daily utilization of MRT per 100 people | - | - 
+| Average daily utilization of LRT per 100 people | - | + 
+
+<h2>Conclusions</h2>
+
+If the reader is Singaporean, lives in Singapore and is asked what are the reasons to buy a car, the ideal answer, based on our hypthothesis, would be this: because the economomy of the country is doing well, because I have more money that I can spend, because I’d rather commute by car rather than using buses, MRT and/or LRT, because then I can show that I am better off than the rest of the population or I can show I am on the way of being better off.
+However the results show that the increase of the net economic activity of the country, namely GDP, has no effect on the population of cars, neither the present GDP nor the last years. Likewise, the increase of the income of the top 10% and bottom 90% average income has no statistical significance. If it would have had an impact, then we could have suggested that either top eaerners need to highliht their status by buying (more) cars, or bottom earners need to show economic progress and status through buying (more) cars. It could be that Singaporeans do have disposable income for purchasing a car and they simply decide not to for “rational reasons” or that the policies deterring the overpopulation of cars are effective. Further research is needed to assess both issues.
+When it comes to the trade-off between using public transport instead of buying a car, the usage of buses does not affect the purchase of cars. Interestingly, the ridership of buses is the highest among all the modes of transportation, which can suggest that it is not sensible to changes: people simply need to commute by buses and it is the best alternative to other modes. Conversely, the more people using MRT the less purchase of cars, keeping the rest of the variables constant. However, the usage of MRT should triplicate in order to reduce the purchase of cars in only 7%. Considering that, in average 32 out 100 people use the MRT daily, then the ratio should increase to 132 out of 100 people daily commuting by MRT. This means that, if we assume that a round trip is statistically computed twice then 62% of the population should use the MRT twice a day to reduce the number of cars per 100 people from 10 to 3. Furthermore, LRT has a positive impact on the population of cars. If 11 people out of 100 would use LRT daily (now is 1,3 per 100) the population of cars would double, from 10 to 20 per 100 people. This may be because LRT has the lowest density of all transport modes and it is the least prefered one. Finally, the presence of cars has a huge influence. Cars could reproduce cars at a rate of 1% out of 100 people per year.
+
+When we confront the results to the theory, there are some of them that can be explained by the standard theory and others by the behavioral economics approach. For example, the usage of MRT, considering its costs in comparison with riding a car, seems to be explained rationally. Commuters prefer MRT to cars. Many rational arguments are in favor of this: money, time, utility, etc. However, the presence of cars influencing the purchase of new cars is more a phsycological effect than a pure rational one. This would prove the theory of having the need to reach reference points, which have embedded utilities, different from what the satandard model assumes.
+
+The research would have needed more observations to increase its reliability. However the sources lacked the data needed. Likewise, further research is needed to prove that there is empirical evidence of “Standard model measures” affecting the dependent variable, since we have mainly focused on behavioral explanatory variables. In short, a research with hypothesis on the turf of the standard model is needed.
+If we assume that the existence of any kind of inequality enhances the presence of reference points, then the measures of the Singaporean govermnet seem to be in the direction of decoupling car purchases from inequality. This, through setting a new diferent reference point of commuting by the brand new generation of driverless cars. In this hypothetical scenario, a future analysis of the stragle of different reference points with different meanings should be imperative.
+
+<h2>Link to our githhub repository</h2>
+
+For more detailed information on our research project see our [github repository](https://github.com/EmiliaSicari/Final_assignment).
+
+<h2>References</h2>
+
+
+

@@ -93,20 +93,20 @@ The hypthesis to be tested, under certain assumptions, are:
 The following table describes the variables used in our analysis, including the sources from which we obtained the data. All the data were gatjered from open sources and then transformed for statistical purposes. Particularly, the time frame indicated in the table refers to time span available in the sources from which gathered the data; instead, our analysis only takes into account the 19 years from 1995 to 2014, period that we used as common ddenominator to merge the various data sets.
 
 | Variable | Description | Time frame | Source |
-| -------------------| ------------------------------------ | ---------------- |  ----------------------------------------------- 
-| GDP per capita | GDP per capita in singaporean dollars (thousands) at current prices | 1980-2021 |[Quandl](https://www.quandl.com/data/ODA/SGP_NGDPPC) 
+| -------------------| ------------------------------------ | ---------------- |  ----------------------------------------------- | 
+| GDP per capita | GDP per capita in singaporean dollars (thousands) at current prices | 1980-2021 |[Quandl](https://www.quandl.com/data/ODA/SGP_NGDPPC)|
 | Population | Singapore residents and non residents | 1871-2012 | [Population Trend](http://www.singstat.gov.sg/publications/publications-and-papers/population-and-population-structure/population-trends)|
-| Top 10% average income | Yearly average income earned by the top 10% of the populuation in real singaporean dollars at current prices | 1947-2009 | [Knoema](http://knoema.com/) 
-| Bottom 90% average income | Yearly average income earned by the bottom 90% of the populuation in real singaporean dollars at current prices | 1947-2009 |[Knoema](http://knoema.com/) 
+| Top 10% average income | Yearly average income earned by the top 10% of the populuation in real singaporean dollars at current prices | 1947-2009 | [Knoema](http://knoema.com/)|
+| Bottom 90% average income | Yearly average income earned by the bottom 90% of the populuation in real singaporean dollars at current prices | 1947-2009 |[Knoema](http://knoema.com/)|
 | Inequality | Difference between top 10% and bottom 90% average income (number of times) | 1947 - 2009 | 
-| Cars | Yearly number of private cars | 1960 - 2015 | [Singapore's open data portal](https://data.gov.sg/dataset/annual-motor-vehicle-population-by-type-of-vehicles) 
-| Usage of public tansports | Year average of daily use of MRT, LRT and buses per 1000 people | 1995-2014 | [Singapore's open data portal](https://data.gov.sg/dataset/public-transport-utilisation-average-public-transport-ridership)
+| Cars | Yearly number of private cars | 1960 - 2015 | [Singapore's open data portal](https://data.gov.sg/dataset/annual-motor-vehicle-population-by-type-of-vehicles)| 
+| Usage of public tansports | Year average of daily use of MRT, LRT and buses per 1000 people | 1995-2014 | [Singapore's open data portal](https://data.gov.sg/dataset/public-transport-utilisation-average-public-transport-ridership)|
 
 The following table shows the final dataframe that we created to run our astatistical analysis. 
 <br>
 <br>
 <br>
-```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+```{r, include=TRUE, echo = FALSE, results='asis'}
 #Creating the final table with only the variables we used
 TABLE <- data.final
 #Eliminating useless columns
@@ -149,7 +149,7 @@ DT::datatable(TABLE)
 Figure 1 shows the trend from 1995 to 2014 of three explanatory variables: GDP per capita, bottom 90% and top 10% average income. As we can see, although slowly, the gdp per capita has risen thourghout the whole period, despite a slight decline between 2002 and 2005 and a more serious reduction in the years of the financial crisis, between 2008 and 2010. The top 10% average income shows the same trend: a steady increase throughout the whole period (in 2014 its value was more than 100% higher than the initial one), with a slight decline between 2002 and 2005, and a more serious reduction in the years of the financial crisis. Finally, although following the same pattern of the other two variables, the value of the bottom 90% average income has remained almost unchanged, enlarging the difference between the top and bottom populations. In short, the increse of the 10% income is higher, therefore the gap widens.
 <br>
 <br>
-```{r include=TRUE, echo = FALSE, fig.align = 'center', fig.cap="GDP per capita and average income in Singapore (19995-2014)"}
+```{r, include=TRUE, echo = FALSE, fig.align = 'center', fig.cap="GDP per capita and average income in Singapore (19995-2014)"}
 graph1 <- data.final[c("date", "gdp.per.capita", "top", "bottom")]
 dygraph(graph1, main = "Income distribution in Singapore (1995-2014)") %>% 
   dySeries("gdp.per.capita", label = "GDP per capita") %>%
@@ -162,7 +162,7 @@ dygraph(graph1, main = "Income distribution in Singapore (1995-2014)") %>%
 The growing difference between the top and bottom earners is clarified by the figure 2. The figure confirms what was previoulsy highlighted: the difference between the rich and the poor has been increasing all the time, and the trend only reversed between 2002 and 2005 and between 2008 and 2010. The average ratio between both groups is 6.1 and has reaached a maximum value of 7.8 in 2014. Therefore, together with the trends observed in the previous figures, these patterns support the hypotheses that link high economic growth, high inequality and increase of cars’ purchase. A further assumption to be investigated is that such increase might be linked to the likewise rise in the top 10% average income: as the rich become richer, the purchase of luxury goods, such as cars, increases as well.
 <br>
 <br>
-```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+```{r, include=TRUE, echo = FALSE, fig.align = 'center'}
 graph2 <- data.final[c("date", "residents", "non.residents")]
 dygraph(graph2, main = "Population growth in Singapore (1995-2014)") %>%
   dySeries("residents", label = "Residents") %>%
@@ -176,7 +176,7 @@ dygraph(graph2, main = "Population growth in Singapore (1995-2014)") %>%
 Both the number of residents and non residents have been growing over the period, as shown in figure 3. In total, Sigapore reahed almost 5,5 million people in 2014 where the highest growing rate belongs to the non resident category. Approximately, 20% of the people living in Singapore are not Singaporean born. This number has widened since 1994 where the ratio was 1 to 5, roughly.
 <br>
 <br>
-```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+```{r, include=TRUE, echo = FALSE, fig.align = 'center'}
 graph3 <- data.final[c("date", "bus.u.pop", "lrt.u.pop", "mrt.u.pop")]
 dygraph(graph3, main = "Public Transportation use in Singapore (1995-2014)") %>%
   dySeries("bus.u.pop", label = "Buses") %>%
@@ -190,7 +190,7 @@ dygraph(graph3, main = "Public Transportation use in Singapore (1995-2014)") %>%
 Figure 4 shows the trends of utilization of public transportation modes. The number of passengers using the main public transportation modes, MRT and buses has increased and decresed respectively over time. In absolute numbers, all the modes of transport has increased, howver when they are compared to the population, then the usage of buses has dropped and the usage of MRT has risen. Clearly, the growing number of people does not translate directly into the more usage of buses, although it can be assumed the contrary for MRT and modestly for LRT. However, the rates of utilization are quite high for the last year, since buses and MRT commute between 50 and 70% of the population. However, these statistics do not have to be taken literally, since a singaporean, for example, going to work in the morning by MRT and going back home at night with the same mode, would be computed twice.
 <br>
 <br>
-```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+```{r, include=TRUE, echo = FALSE, fig.align = 'center'}
 graph4 <- data.final[c("date", "inequality")]
 dygraph(graph4, main = "Inequality gap in Singapore (1995-2014)") %>%
   dyOptions(fillGraph = TRUE, fillAlpha = 0.4)
@@ -202,7 +202,7 @@ dygraph(graph4, main = "Inequality gap in Singapore (1995-2014)") %>%
 
 A shown by figure 5, the number of private cars present in Singapore between 1995 and 2015 has been growing throughout the period, especially from 2006 onwards and with a slight reduction between 1997 and 1998 and between 2001 and 2002. Overall, the porcentage of people ownig a car does not surpass 12%. However, in 2012 the tendency is reversed and there is a downgrading trend in the onwnership. This may be becasuse the Certficate of Entitlement, does not allow to own a car for more than 10 years. Thus, it may be that the decrease is a succesful reflection of the policy.
 
-```{r include=TRUE, echo = FALSE, fig.align = 'center'}
+```{r, include=TRUE, echo = FALSE, fig.align = 'center'}
 graph5 <- data.final[c("date", "car.u.pop")]
 dygraph(graph5, main = "Private Cars in Singapore (1995-2014)") %>%
   dyOptions(drawPoints = TRUE, pointSize = 2)

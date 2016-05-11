@@ -13,14 +13,12 @@ try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"
 #Loading packages
 library(ggplot2)
 library(scales)
-library(ggplot2)
 
 #Creating the first figure: trend in number of cars
 CARS <- ggplot2::ggplot(data.final, aes(x=data.final$date, y=data.final$car.u.pop)) +
   geom_line(aes(group=1), colour="#3399FF") + 
   theme_classic()
 
-CARS
 #Changing the name of the variables in the y axis
 CARS <- CARS + labs(x = "years", y = "cars per 100 people")
 

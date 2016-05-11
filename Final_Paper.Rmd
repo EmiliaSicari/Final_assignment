@@ -1,6 +1,6 @@
 ---
 title: "Why do Singaporans buy cars?"  
-subtitle: "Assessing consumers'choice through behavioral approach"
+subtitle: "Assessing consumers’choice through rational choice theory and behavioral approach"
 author: "Emilia Sicari & Rafael Lopez V."
 date: "May 13, 2016"
 output: 

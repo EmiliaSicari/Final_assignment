@@ -5,7 +5,7 @@
 # Setting working directory
 getwd()
 try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE)
-try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
+try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Final.academic.paper/"), silent = TRUE)
 
 
 # Importing a preliminary cleaned table found here: http://www.lta.gov.sg/ltaacademy/doc/13Sep105-Pan_KeyTransportStatistics.pdf

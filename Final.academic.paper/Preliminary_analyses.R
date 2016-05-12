@@ -4,8 +4,8 @@
 
 #setting working directory
 getwd()
-try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE)
-try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Final.academic.paper/"), silent = TRUE)
+try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Final.academic.paper/"), silent = TRUE)
 
 #loading packages 
 library(Quandl)
@@ -249,6 +249,8 @@ data.final["lrt.u.pop"] <- (data.final$lrt.u/data.final$population)*100000
 data.final["mrt.u.pop"] <- (data.final$mrt.u/data.final$population)*100000
 data.final["car.u.pop"] <- (data.final$cars/data.final$population)*100
 data.final["non.residents"] <- data.final$population-data.final$residents
+data.final["residents.m"] <- data.final$residents/1000000
+data.final["non.residents.m"] <- data.final$non.residents/1000000
 
 # Creating lagged variables:  car purchases, gdp percapita, top and bottom income) 
 data.final <- 
@@ -295,8 +297,8 @@ labelsi <- c("Cars per 100 people")
 labelsd <- c("Cars per 100 people(lagged)", 
              "Gdp per capita (log)", 
              "Gdp per capita (log/lagged)", 
-             "Inequality gap", "Top 10% avegare income(lagged)",
-             "Bottom 90% average income",
+             "Inequality gap", "Top 10% average income(/loglagged)",
+             "Bottom 90% average income(log/lagged)",
              "Bus usage per 100 people", 
              "MRT usage per 100 people","LRT usage per 100 people")
 
@@ -330,12 +332,13 @@ labelsd2 <- c("Cars per 100 people (log/lag)",
 #Creating a summary table of the model3
 
 labelsi3 <- c("Cars per 100 people")
-labelsd3 <- c("Cars per 100 people(log/lag)", 
+labelsd3 <- c("Cars per 100 people(lagged)", 
               "Gdp per capita (log)", 
-              "Gdp per capita(log/lag)", 
-              "Bottom(lagged)", "top(lagged)",
-              "Bus usage", 
-              "MRT usage","LRT usage")
+              "Gdp per capita(log/lagged)", 
+              "Bottom income(log/lagged)", "Top income(log/lagged)",
+              "Bus usage per 100 people", 
+              "MRT usage per 100 people","LRT usage per 100 people")
+
 
 #Creating a summary table of the model4
 

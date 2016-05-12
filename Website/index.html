@@ -12,12 +12,22 @@
 
 <title></title>
 
-<script src="index_files/jquery-1.11.0/jquery.min.js"></script>
+<script src="index_files/jquery-1.11.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="index_files/bootstrap-3.3.1/css/readable.min.css" rel="stylesheet" />
+<link href="index_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
 <script src="index_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
 <script src="index_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
 <script src="index_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+<script src="index_files/htmlwidgets-0.6/htmlwidgets.js"></script>
+<link href="index_files/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="index_files/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="index_files/moment-2.8.4/moment.js"></script>
+<script src="index_files/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="index_files/dygraphs-binding-0.9/dygraphs.js"></script>
+<script src="index_files/datatables-binding-0.1/datatables.js"></script>
+<script src="index_files/datatables-1.10.7/jquery.dataTables.min.js"></script>
+<link href="index_files/datatables-default-1.10.7/dataTables.extra.css" rel="stylesheet" />
+<link href="index_files/datatables-default-1.10.7/jquery.dataTables.min.css" rel="stylesheet" />
 
 
 
@@ -46,16 +56,218 @@ img {
 
 
 
+<br> <br> <br> <!-- Header -->
 <center>
-<div id="why-do-you-buy-a-car" class="section level1">
-<h1>Why do you buy a car?</h1>
-<div id="assessing-consumers-choiche-thorugh-behavioura-approach" class="section level3">
-<h3>Assessing consumers’ choiche thorugh behavioura approach</h3>
+<h1>
+<i class="fa fa-thumb-tack"></i>Why do Singaporans buy cars?
+</h1>
 </center>
+<center>
+<h2>
+Assessing consumers’choice through rational choice theory and behavioral approach
+</h2>
+</center>
+<br> <br> <br>
+<center>
+<img src="pictures/car.png" height="2000px" width="1500px" />
+</center>
+<br> <br> <br>
+<center>
+By: <a href="https://github.com/EmiliaSicari">Emilia Sicari</a> &amp; <a href="https://github.com/rafalopezv">Rafael Lopez V.</a>
+</center>
+<br> <br> <br>
+<center>
+<img src="pictures/arrow.ico" height="100px" width="100px" />
+</center>
+<p><br> <br> <br></p>
+<center>
+<h2>
+What the project is about
+</h2>
+</center>
+<p><br></p>
+<p>The research tries to find out why people living in Singapore buy cars. Currently 11% of people living in Singapore own a car. However, Singapore can’t afford high rates of car ownership. Today the island has <strong>5,4 million people</strong>, <strong>3426 kilometers of road lenght</strong>, and <strong>810339 vehicles</strong>, including buses, rental cars, taxis and private cars, the latter represent <strong>75%</strong> of all the vehicles population. To <strong>clog</strong> all the roads of Singapore, it would be needed <strong>1918660 more cars</strong>. Let us show it in a diferent way; <strong>if 35% of the Singaporeans would own a car</strong> then it <strong>wouldn’t be ebough space</strong> in the road to drive or to transport by public buses the remamining 65% of teh population. <strong>Only 24% more of car ownership could literally paralize the roads.</strong></p>
+The problem is not limited to space. It extends to gas emissions, the right to commute of those lacking a car, and the paradigm of car ownership as a symbol of success and status. Hence, we tried to find out the motivations for buying cars. <br>
+<center>
+<h2>
+Why Singapore and why cars?
+</h2>
+</center>
+<p><br></p>
+<ul>
+<li>Nation state. It is a city and a city at the same time. Interesting for urban policies</li>
+<li>High density. 5,5 million people living in 700 square Kilometers, roughly. No room for many cars</li>
+<li>Rich society. for the last 20 years, has been ranked in the 10% richest countries in terms of GDP per capita. Therefore, more money , more consumption?</li>
+<li>Meritocracy is one of the bases of the Singaporean model. In this some wins and other loose. Those who win may need to show a symbol: muxury cars? and those who loose may want to have the symbol as weel.<br /></li>
+<li>Meritocracy is uneqaual in essence, so is income distribution in Singapore. In the last 20 years,the gap between the top 10% and the bottom 90% earners broadened from 4 to 8 times</li>
+<li>It has a world class public transportation system, but still people buy cars</li>
+<li>Singapore is trying to change the paradigm of car ownership: Driverless cars.</li>
+<li>Due to a number a policies, the average cost of a car in Singapore is 5 times higher than in a developed country</li>
+</ul>
+<center>
+<h2>
+Some theory about determinants of consumption behaviour
+</h2>
+</center>
+<p><br> We believe that the decision of purchasing a car can be motivated by <strong>rational</strong> traits, deeply understanding all upsides and downsides of the alternatives, but also driven by <strong>non rational</strong> causes, ego for example. The firts set of causes belong to the standard rational choice model whereas the second to behavioral economics.</p>
+<ul>
+<li>Consumption under the rational choice lens
+<ul>
+<li>Consumers want to maximize the utility of the good or service to be purchased or consumed</li>
+<li>Identical and quasi identical goods provide the same utility. For example, two Volkswagen Golf of the same year should privide the same utility regardless of one being red and the other being black</li>
+<li>The more disposable income the more propensity to consume</li>
+<li>Consumers rank the utilities of all the alternatives and choose the one that provides the highest</li>
+<li>Consumers have access to all the information needed to decide what to consume <br> <br></li>
+</ul></li>
+<li>Consumption under the behavioral economics lens
+<ul>
+<li>The good to be consumed has characteristics and these have different utilities. For example, a red Volkswagen with leather seats could have a differet utility than a black one with regular fabric seats</li>
+<li>Consumption is affected by what society considers to be fair (social norms). Having big cars in some societies is considered to be pretentious and environmentaly unfriendly<br /></li>
+<li>People tend to consume what others consume, even if that is rationally wrong. This is because people follow reference points when deciding</li>
+<li>People can exteriorize their ego through consumming certain goods</li>
+</ul></li>
+</ul>
+For more detailed information on our research project see our <a href="https://github.com/EmiliaSicari/Final_assignment">github repository</a>. <br> <br> <br>
+<center>
+<h3>
+Summarizing…we want to know:
+</h3>
+</center>
+<center>
+<h3>
+the purchase of new cars depends on GDP per capita, income inequality,use of public transportat and population of cars
+</h3>
+</center>
+<p><br> <br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Hypothesis</th>
+<th align="left">Assumption</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">The higher the economic growth, the higher the purchase of cars</td>
+<td align="left">Economic growth increases disposable income, reduces budgetary constraint</td>
+</tr>
+<tr class="even">
+<td align="left">The higher the inequality, the higher the purchase of cars</td>
+<td align="left">The emerging and consolidated social classes need to set reference points displaying their status, by buying cars (symbols)</td>
+</tr>
+<tr class="odd">
+<td align="left">The less usage of public transport, the higher the purchase of cars</td>
+<td align="left">Despite the density of public transportantion modes, commuters choose cars by incentives not explained by the rational choice standard model (ego, social norms,etc)</td>
+</tr>
+<tr class="even">
+<td align="left">The larger the car population, the higher the purchase of cars</td>
+<td align="left">The average social reference point is having a car, that is the threshold to reach</td>
+</tr>
+</tbody>
+</table>
+<center>
+<h2>
+Sources and data
+</h2>
+</center>
+<center>
+<h3>
+Time frame:1995-2014
+</h3>
+</center>
+<p><br></p>
+| Variable | Description | Source | | ———| ————|——— | GDP per capita | GDP per capita in singaporean dollars (thousands) at current prices | <a href="https://www.quandl.com/data/ODA/SGP_NGDPPC">Quandl</a> | Population | Singapore residents and non residents | <a href="http://www.singstat.gov.sg/publications/publications-and-papers/population-and-population-structure/population-trends">Population Trends</a> | Top 10% average income | Yearly average income earned by the top 10% of the populuation in real singaporean dollars at current prices | <a href="http://knoema.com/">Knoema</a> | Bottom 90% average income | Yearly average income earned by the bottom 90% of the populuation in real singaporean dollars at current prices | <a href="http://knoema.com/">Knoema</a> | Inequality | Difference between top 10% and bottom 90% average income (number of times) | Own elaboration | Cars | Yearly number of private cars | <a href="https://data.gov.sg/dataset/annual-motor-vehicle-population-by-type-of-vehicles">Singapore’s open data portal</a> | Usage of public tansport | Year average of daily use of MRT, LRT and buses per 1000 people | <a href="https://data.gov.sg/dataset/public-transport-utilisation-average-public-transport-ridership">Singapore’s open data portal</a> <br> <br> <br> <br> <br> <br>
+<center>
+<h2>
+Initial findings
+</h2>
+<br> <br> <div id="htmlwidget-7818" style="width:672px;height:480px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7818">{"x":{"attrs":{"axes":{"x":{"pixelsPerLabel":60,"drawAxis":true},"y":{"drawAxis":true}},"series":{"cars per 100 people":{"axis":"y"}},"title":"Private Cars in Singapore per 100 people","labels":["date","cars per 100 people"],"legend":"auto","retainDateWindow":false,"ylabel":"population percentage","xlabel":"years","stackedGraph":false,"fillGraph":false,"fillAlpha":0.15,"stepPlot":false,"drawPoints":true,"pointSize":2,"drawGapEdgePoints":false,"connectSeparatedPoints":false,"strokeWidth":1,"strokeBorderColor":"white","colorValue":0.5,"colorSaturation":1,"includeZero":false,"drawAxesAtZero":false,"logscale":false,"axisTickSize":3,"axisLineColor":"black","axisLineWidth":0.3,"axisLabelColor":"black","axisLabelFontSize":14,"axisLabelWidth":60,"drawGrid":false,"gridLineWidth":0.3,"rightGap":5,"digitsAfterDecimal":2,"labelsKMB":false,"labelsKMG2":false,"labelsUTC":false,"maxNumberWidth":6,"animatedZooms":false,"mobileDisableYTouch":true},"annotations":[],"shadings":[],"events":[],"format":"numeric","data":[[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],[9.71043885299103,9.86573692675846,9.83512283069875,9.44191211426526,9.54913996255863,9.60255339834509,9.63716393282571,9.53474059794777,9.7190743909949,9.88836632855445,10.1465341948285,10.575855444845,11.0270476892838,11.1678192898453,11.3603951260463,11.5113226382641,11.4274045814486,11.3911750859351,11.2478936546079,10.9726925892422]],"fixedtz":false,"tzone":""},"evals":[],"jsHooks":[]}</script> <br> <br> <br> <div id="htmlwidget-3931" style="width:672px;height:480px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3931">{"x":{"attrs":{"axes":{"x":{"pixelsPerLabel":60,"drawAxis":true},"y":{"drawAxis":true}},"series":{"GDP per capita":{"axis":"y"},"Top10%income":{"axis":"y"},"Bottom90%income":{"axis":"y"}},"title":"Income distribution in Singapore in singaporean dollars","labels":["date","GDP per capita","Top10%income","Bottom90%income"],"legend":"auto","retainDateWindow":false,"xlabel":"years","showRangeSelector":true,"rangeSelectorHeight":40,"rangeSelectorPlotFillColor":" #A7B1C4","rangeSelectorPlotStrokeColor":"#808FAB","interactionModel":"Dygraph.Interaction.defaultModel","stackedGraph":false,"fillGraph":false,"fillAlpha":0.15,"stepPlot":false,"drawPoints":true,"pointSize":2,"drawGapEdgePoints":false,"connectSeparatedPoints":false,"strokeWidth":1,"strokeBorderColor":"white","colorValue":0.5,"colorSaturation":1,"includeZero":false,"drawAxesAtZero":false,"logscale":false,"axisTickSize":3,"axisLineColor":"black","axisLineWidth":0.3,"axisLabelColor":"black","axisLabelFontSize":14,"axisLabelWidth":60,"drawGrid":false,"gridLineWidth":0.3,"rightGap":5,"digitsAfterDecimal":2,"labelsKMB":false,"labelsKMG2":false,"labelsUTC":false,"maxNumberWidth":6,"animatedZooms":false,"mobileDisableYTouch":true},"annotations":[],"shadings":[],"events":[],"format":"numeric","data":[[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],[35345.464,37030.853,39178.612,36524.706,36943.706,41018.455,38659.651,39423.341,41069.975,46320.39,49715.385,53355.039,59113.86,56201.311,56111.058,63497.758,66816.039,68204.574,70047.47,70966.89],[113402.46,121752.27,126460.79,130964.13,139277.67,156177.54,159140.26,156838.44,159243.33,161198.37,170744.33,185295.82,208443.98,202059.19,192490.78,210202,216514,222826,229138,235450],[29156.64,30231.9,31591.52,30026.42,27180.2,28242.94,22622.82,22602.43,25086.59,28106.08,31813,31204.08,34043.28,28969.67,30184.56,29642.8,29759.5,29876.2,29992.9,30109.6]],"fixedtz":false,"tzone":""},"evals":["attrs.interactionModel"],"jsHooks":[]}</script> <br> <br> <br> <div id="htmlwidget-4789" style="width:672px;height:480px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4789">{"x":{"attrs":{"axes":{"x":{"pixelsPerLabel":60,"drawAxis":true},"y":{"drawAxis":true}},"title":"Inequality gap in Singapore between top 10% and bottom 90% earners","labels":["date","inequality"],"legend":"auto","retainDateWindow":false,"stackedGraph":false,"fillGraph":true,"fillAlpha":0.4,"stepPlot":false,"drawPoints":true,"pointSize":1,"drawGapEdgePoints":false,"connectSeparatedPoints":false,"strokeWidth":1,"strokeBorderColor":"white","colorValue":0.5,"colorSaturation":1,"includeZero":false,"drawAxesAtZero":false,"logscale":false,"axisTickSize":3,"axisLineColor":"black","axisLineWidth":0.3,"axisLabelColor":"black","axisLabelFontSize":14,"axisLabelWidth":60,"drawGrid":false,"gridLineWidth":0.3,"rightGap":5,"digitsAfterDecimal":2,"labelsKMB":false,"labelsKMG2":false,"labelsUTC":false,"maxNumberWidth":6,"animatedZooms":false,"mobileDisableYTouch":true,"xlabel":"years"},"annotations":[],"shadings":[],"events":[],"format":"numeric","data":[[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],[3.88942141481323,4.02727813997797,4.00299795641362,4.36162985797175,5.1242327135194,5.52979045382669,7.03450144588517,6.93900788543533,6.34774714299552,5.73535583759813,5.3671244459812,5.93819205693614,6.12291118834613,6.9748530100619,6.37712724651279,7.0911654769455,7.27545825702717,7.45831129795623,7.63974140546596,7.81976512474427]],"fixedtz":false,"tzone":""},"evals":[],"jsHooks":[]}</script> <br> <br> <br> <div id="htmlwidget-4200" style="width:672px;height:480px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4200">{"x":{"attrs":{"axes":{"x":{"pixelsPerLabel":60,"drawAxis":true},"y":{"drawAxis":true}},"series":{"Buses":{"axis":"y"},"LRT":{"axis":"y"},"MRT":{"axis":"y"}},"title":"Public Transportation use in Singapore","labels":["date","Buses","LRT","MRT"],"legend":"auto","retainDateWindow":false,"showRangeSelector":true,"rangeSelectorHeight":40,"rangeSelectorPlotFillColor":" #A7B1C4","rangeSelectorPlotStrokeColor":"#808FAB","interactionModel":"Dygraph.Interaction.defaultModel","ylabel":"population percentage","xlabel":"years","stackedGraph":false,"fillGraph":false,"fillAlpha":0.4,"stepPlot":false,"drawPoints":false,"pointSize":1,"drawGapEdgePoints":false,"connectSeparatedPoints":false,"strokeWidth":1,"strokeBorderColor":"white","colorValue":0.5,"colorSaturation":1,"includeZero":false,"drawAxesAtZero":false,"logscale":false,"axisTickSize":3,"axisLineColor":"black","axisLineWidth":0.3,"axisLabelColor":"black","axisLabelFontSize":14,"axisLabelWidth":60,"drawGrid":false,"gridLineWidth":0.3,"rightGap":5,"digitsAfterDecimal":2,"labelsKMB":false,"labelsKMG2":false,"labelsUTC":false,"maxNumberWidth":6,"animatedZooms":false,"mobileDisableYTouch":true},"annotations":[],"shadings":[],"events":[],"format":"numeric","data":[[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],[85.3736665507166,84.9428338542143,82.0855850231215,79.4711160306304,81.1625365048274,80.7122940638603,79.289281906384,76.5574300458578,72.7126736343165,67.3200430848276,65.1466256204636,64.3663954250556,63.8974989969705,63.7889521750235,61.0918376533035,63.0129776399463,65.3009980538952,65.5254829374918,66.6955353441886,68.5775004369507],[0,0,0,0,0.682038121889306,0.968249605810689,0.990813946407115,0.933919227960105,1.21511820912962,1.32000084480054,1.61753046700683,1.68129659776001,1.72165839725807,1.81840874357048,1.80448486668767,1.96977110471855,2.14133258020159,2.33414532727635,2.44482384488556,2.504696763493],[20.995850198581,23.1563209673131,23.9987060192759,24.0883293063045,24.9070217845502,25.9937778790716,25.881993575659,25.8863252673044,28.4580684578157,30.4800195072125,30.9675035784931,31.9900758060284,33.2781312988997,35.0870232566213,35.7288003604158,40.7545641566267,44.2734979420058,47.5299754142967,48.5816132207183,50.4961493486691]],"fixedtz":false,"tzone":""},"evals":["attrs.interactionModel"],"jsHooks":[]}</script> <br> <br> <br> <div id="htmlwidget-2382" style="width:672px;height:480px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2382">{"x":{"attrs":{"axes":{"x":{"pixelsPerLabel":60,"drawAxis":true},"y":{"drawAxis":true}},"series":{"Residents":{"axis":"y"},"Non Residents":{"axis":"y"}},"title":"Population growth in Singapore (1995-2014)","labels":["date","Residents","Non Residents"],"legend":"auto","retainDateWindow":false,"stackedGraph":true,"fillGraph":false,"fillAlpha":0.15,"stepPlot":false,"drawPoints":false,"pointSize":1,"drawGapEdgePoints":false,"connectSeparatedPoints":false,"strokeWidth":1,"strokeBorderColor":"white","colorValue":0.5,"colorSaturation":1,"includeZero":false,"drawAxesAtZero":false,"logscale":false,"axisTickSize":3,"axisLineColor":"black","axisLineWidth":0.3,"axisLabelColor":"black","axisLabelFontSize":14,"axisLabelWidth":60,"drawGrid":false,"gridLineWidth":0.3,"rightGap":5,"digitsAfterDecimal":2,"labelsKMB":false,"labelsKMG2":false,"labelsUTC":false,"maxNumberWidth":6,"animatedZooms":false,"mobileDisableYTouch":true,"showRangeSelector":true,"rangeSelectorHeight":20,"rangeSelectorPlotFillColor":" #A7B1C4","rangeSelectorPlotStrokeColor":"#808FAB","interactionModel":"Dygraph.Interaction.defaultModel","ylabel":"in millions"},"annotations":[],"shadings":[],"events":[],"format":"numeric","data":[[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],[3.013515,3.068132,3.123403,3.180018,3.229681,3.273363,3.325902,3.382944,3.366891,3.413266,3.467814,3.525894,3.583082,3.642659,3.733876,3.771721,3.789251,3.818205,3.844751,3.870739],[0.510991,0.602572,0.672635,0.747195,0.729042,0.754524,0.81211,0.793006,0.747935,0.753398,0.797948,0.875471,1.005517,1.196737,1.253697,1.305011,1.394437,1.494232,1.554411,1.598985]],"fixedtz":false,"tzone":""},"evals":["attrs.interactionModel"],"jsHooks":[]}</script> <br>
+<h2>
+Statistical modelling
+</h2>
+</center>
+<p>After analysisng the trends in both dependent and explanatory variables, the inferential analysis was built on a multiple regression model, in which we regressed the population of cars per 100 people on:</p>
+<ul>
+<li><p>its one year lagged variable;</p></li>
+<li><p>GDP per capita;</p></li>
+<li><p>one year lagged GDP per capita;</p></li>
+<li><p>lagged variables of top 10% and bottom 90% average income;</p></li>
+<li><p>average daily utilization of buses, MRT and LRT per 100 people.</p></li>
+</ul>
+<p>The main assumptions of this model are to find out if the a higher the inequality increases the purchases of cars. Moreover, the model investigates the effect of lagged already existing cars as well as the GDP per capita of the previous year on the present purchase of cars. The results of the model are shown in the following table, where our expectations on the impact of the explanatory variables are compared with the actual influence emerged from our analyses (“+”&quot; stands for a positive influence, “-” indicates a negative impact, “0” indicates that the varible was nor significant).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Expected result</th>
+<th align="left">Empirical result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Lagged number of cars</td>
+<td align="left">+</td>
+<td align="left">+</td>
+</tr>
+<tr class="even">
+<td align="left">GDP per capita</td>
+<td align="left">+</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Lagged GDP per capita</td>
+<td align="left">+</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left">Lagged top 10% average income</td>
+<td align="left">+</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Lagged Bottom 10% average income</td>
+<td align="left">+</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left">Average daily utilization of buses per 100 people</td>
+<td align="left">-</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Average daily utilization of MRT per 100 people</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">Average daily utilization of LRT per 100 people</td>
+<td align="left">-</td>
+<td align="left">+</td>
+</tr>
+</tbody>
+</table>
+<h2>
+Conclusions
+</h2>
+<p>If the reader is Singaporean, lives in Singapore and is asked what are the reasons to buy a car, the ideal answer, based on our hypthothesis, would be this: because the economomy of the country is doing well, because I have more money that I can spend, because I???d rather commute by car rather than using buses, MRT and/or LRT, because then I can show that I am better off than the rest of the population or I can show I am on the way of being better off. However the results show that the increase of the net economic activity of the country, namely GDP, has no effect on the population of cars, neither the present GDP nor the last years. Likewise, the increase of the income of the top 10% and bottom 90% average income has no statistical significance. If it would have had an impact, then we could have suggested that either top eaerners need to highliht their status by buying (more) cars, or bottom earners need to show economic progress and status through buying (more) cars. It could be that Singaporeans do have disposable income for purchasing a car and they simply decide not to for ???rational reasons??? or that the policies deterring the overpopulation of cars are effective. Further research is needed to assess both issues. When it comes to the trade-off between using public transport instead of buying a car, the usage of buses does not affect the purchase of cars. Interestingly, the ridership of buses is the highest among all the modes of transportation, which can suggest that it is not sensible to changes: people simply need to commute by buses and it is the best alternative to other modes. Conversely, the more people using MRT the less purchase of cars, keeping the rest of the variables constant. However, the usage of MRT should triplicate in order to reduce the purchase of cars in only 7%. Considering that, in average 32 out 100 people use the MRT daily, then the ratio should increase to 132 out of 100 people daily commuting by MRT. This means that, if we assume that a round trip is statistically computed twice then 62% of the population should use the MRT twice a day to reduce the number of cars per 100 people from 10 to 3. Furthermore, LRT has a positive impact on the population of cars. If 11 people out of 100 would use LRT daily (now is 1,3 per 100) the population of cars would double, from 10 to 20 per 100 people. This may be because LRT has the lowest density of all transport modes and it is the least prefered one. Finally, the presence of cars has a huge influence. Cars could reproduce cars at a rate of 1% out of 100 people per year.</p>
+<p>When we confront the results to the theory, there are some of them that can be explained by the standard theory and others by the behavioral economics approach. For example, the usage of MRT, considering its costs in comparison with riding a car, seems to be explained rationally. Commuters prefer MRT to cars. Many rational arguments are in favor of this: money, time, utility, etc. However, the presence of cars influencing the purchase of new cars is more a phsycological effect than a pure rational one. This would prove the theory of having the need to reach reference points, which have embedded utilities, different from what the satandard model assumes.</p>
+<p>The research would have needed more observations to increase its reliability. However the sources lacked the data needed. Likewise, further research is needed to prove that there is empirical evidence of ???Standard model measures??? affecting the dependent variable, since we have mainly focused on behavioral explanatory variables. In short, a research with hypothesis on the turf of the standard model is needed. If we assume that the existence of any kind of inequality enhances the presence of reference points, then the measures of the Singaporean govermnet seem to be in the direction of decoupling car purchases from inequality. This, through setting a new diferent reference point of commuting by the brand new generation of driverless cars. In this hypothetical scenario, a future analysis of the stragle of different reference points with different meanings should be imperative.</p>
+<div id="htmlwidget-7862" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7862">{"x":{"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],[3013515,3068132,3123403,3180018,3229681,3273363,3325902,3382944,3366891,3413266,3467814,3525894,3583082,3642659,3733876,3771721,3789251,3818205,3844751,3870739],[510991,602572,672635,747195,729042,754524,812110,793006,747935,753398,797948,875471,1005517,1196737,1253697,1305011,1394437,1494232,1554411,1598985],[35345.464,37030.853,39178.612,36524.706,36943.706,41018.455,38659.651,39423.341,41069.975,46320.39,49715.385,53355.039,59113.86,56201.311,56111.058,63497.758,66816.039,68204.574,70047.47,70966.89],[113402.46,121752.27,126460.79,130964.13,139277.67,156177.54,159140.26,156838.44,159243.33,161198.37,170744.33,185295.82,208443.98,202059.19,192490.78,210202,216514,222826,229138,235450],[29156.64,30231.9,31591.52,30026.42,27180.2,28242.94,22622.82,22602.43,25086.59,28106.08,31813,31204.08,34043.28,28969.67,30184.56,29642.8,29759.5,29876.2,29992.9,30109.6],[3.88942141481323,4.02727813997797,4.00299795641362,4.36162985797175,5.1242327135194,5.52979045382669,7.03450144588517,6.93900788543533,6.34774714299552,5.73535583759813,5.3671244459812,5.93819205693614,6.12291118834613,6.9748530100619,6.37712724651279,7.0911654769455,7.27545825702717,7.45831129795623,7.63974140546596,7.81976512474427],[85.3736665507166,84.9428338542143,82.0855850231215,79.4711160306304,81.1625365048274,80.7122940638603,79.289281906384,76.5574300458578,72.7126736343165,67.3200430848276,65.1466256204636,64.3663954250556,63.8974989969705,63.7889521750235,61.0918376533035,63.0129776399463,65.3009980538952,65.5254829374918,66.6955353441886,68.5775004369507],[0,0,0,0,0.682038121889306,0.968249605810689,0.990813946407115,0.933919227960105,1.21511820912962,1.32000084480054,1.61753046700683,1.68129659776001,1.72165839725807,1.81840874357048,1.80448486668767,1.96977110471855,2.14133258020159,2.33414532727635,2.44482384488556,2.504696763493],[20.995850198581,23.1563209673131,23.9987060192759,24.0883293063045,24.9070217845502,25.9937778790716,25.881993575659,25.8863252673044,28.4580684578157,30.4800195072125,30.9675035784931,31.9900758060284,33.2781312988997,35.0870232566213,35.7288003604158,40.7545641566267,44.2734979420058,47.5299754142967,48.5816132207183,50.4961493486691],[9.71043885299103,9.86573692675846,9.83512283069875,9.44191211426526,9.54913996255863,9.60255339834509,9.63716393282571,9.53474059794777,9.7190743909949,9.88836632855445,10.1465341948285,10.575855444845,11.0270476892838,11.1678192898453,11.3603951260463,11.5113226382641,11.4274045814486,11.3911750859351,11.2478936546079,10.9726925892422]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> \u003c/th>\n      <th>Year\u003c/th>\n      <th>Residents\u003c/th>\n      <th>Non Residents\u003c/th>\n      <th>GDP per capita\u003c/th>\n      <th>Top10%income\u003c/th>\n      <th>Bottom90%income\u003c/th>\n      <th>Inequality gap\u003c/th>\n      <th>Buses utilization\u003c/th>\n      <th>MRT utilization\u003c/th>\n      <th>LRT utilization\u003c/th>\n      <th>Private Cars\u003c/th>\n    \u003c/tr>\n  \u003c/thead>\n\u003c/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"callback":null,"filter":"none"},"evals":[],"jsHooks":[]}</script>
+<h2>
+Link to our githhub repository
+</h2>
+<p>For more detailed information on our research project see our <a href="https://github.com/EmiliaSicari/Final_assignment">github repository</a>.</p>
+<h2>
+References
+</h2>
 <div class="references">
-<h3>Determinants of consumption behaviour</h3>
-</div>
-</div>
+
 </div>
 
 

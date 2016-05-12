@@ -13,7 +13,7 @@ output:
   fontsize: 12
   geometry: margin=3in
   linkcolour: blue
-bibliography: 
+bibliography:
   - bibliography.bib
   - packages.bib
 ---
@@ -24,8 +24,8 @@ bibliography:
 knitr::opts_chunk$set(echo = TRUE) 
 
 #Setting working directories
-try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE)
-try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Final.academic.paper/"), silent = TRUE)
+try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Final.academic.paper/"), silent = TRUE)
 
 #Loading packages 
 library(Quandl)
@@ -37,14 +37,12 @@ library(knitr)
 library(corrplot)
 
 #Sourcing the external Rscripts in which we made all the preliminary analysee
-try(source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R"))
-try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"))
-try(source("/Users/emiliasicari/Desktop/Final_assignment/Graphs.R"))
-
+source("Preliminary_analyses.R")
+source("Figures.R")
 
 # creating an object of the packages for citation purposes
-packages <- c('devtools', 'repmis', 'Quandl', 'data.table', 'rio', 'ggplot2', 'stargazer', 'pander', 'corrplot','WDI', 'dplyr', 'magrittr', 'knitr')
-repmis::LoadandCite(packages, file = 'packages.bib')
+#packages <- c('devtools', 'repmis', 'Quandl', 'data.table', 'rio', 'ggplot2', 'stargazer', #'pander', 'corrplot','WDI', 'dplyr', 'magrittr', 'knitr')
+#repmis::LoadandCite(packages, file = 'packages.bib')
 ```
 
 # Introduction
@@ -331,6 +329,13 @@ When we confront the results to the theory, there are some of them that can be e
 The research would have needed more observations to increase its reliability. However the sources lacked the data needed. Likewise, further research is needed to prove that there is empirical evidence of "Standard model measures" affecting the dependent variable, since we have mainly focused on behavioral explanatory variables. In short, a research with hypothesis on the turf of the standard model is needed.
 
 If we assume that the existence of any kind of inequality enhances the presence of reference points, then the measures of the Singaporean govermnet seem to be in the direction of decoupling car purchases from inequality. This, through setting a new diferent reference point of commuting by the brand new generation of driverless cars. In this hypothetical scenario, a future analysis of the stragle of different reference points with different meanings should be imperative.   
+
+
+```{r, echo=FALSE, include = FALSE, warning=FALSE, error=FALSE, message=FALSE, results="asis", header=FALSE}
+stargazer::stargazer(M3, dep.var.labels=labelsi3, covariate.labels = labelsd3,
+                     single.row = TRUE, no.space = TRUE, font.size = "tiny",
+                     digits = 2, type = 'latex', header = FALSE)
+```
 
 \newpage
 

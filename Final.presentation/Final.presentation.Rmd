@@ -1,13 +1,13 @@
 ---
-title: "Why do you buy a car?"
+title: "Why do Sigaporeans buy cars?"
 author: "Emilia Sicari & Rafael Lopez V."
-date: "Monday, 2nd May 2016"
+date: "Friday, 13th May 2016"
 output:
+  ioslides_presentation: null
   beamer_presentation:
     colortheme: beaver
     fonttheme: serif
     theme: Boadilla
-  ioslides_presentation: null
   slidy_presentation: default
 subtitle: Assessing consumers'choice through behavioral approach
 ---
@@ -16,14 +16,14 @@ subtitle: Assessing consumers'choice through behavioral approach
 knitr::opts_chunk$set(echo = FALSE)
 
 #Setting the working directories
-try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Presentation/"))
-try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Presentation/"))
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Final.presentation/"))
+try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Final.presentation/"))
 
 #Sourcing external files
-try(source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R"))
-try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"))
+try(source("/Users/emiliasicari/Desktop/Final_assignment/Final.academic.paper/Preliminary_analyses.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Final.academic.paper/Preliminary_analyses.R"))
 try(source("/Users/emiliasicari/Desktop/Final_assignment/Presentation/Figures.R"))
-try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Presentation/Figures.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary.presentation/Figures.R"))
 
 #Loading packages
 library(ggplot2)
@@ -133,16 +133,17 @@ plot(CARS)
 
 - We regressed the percentage change of cars (C) on the lagged existing number of cars (EC), the percentage change in GDP per capita (GDPpc), percentage change in population (POP), lagged bottom 90% average income (BOT), lagged top 10% average income, and average daily commuters on buses (BUS), MRT and LRT.
 
-<small>**$$C_{T} = {\beta}_1 + {\beta}_2 EC_{t-1} + {\beta}_3 GDPpc_{ch} + {\beta}_4 POP_{ch} + {\beta}_5 BOT_{t-1} + {\beta}_6 TOP{t-1} +$$**</small>
-<small>**$$+ {\beta}_7 BUS_{u} + {\beta}_8 MRT_{u} + {\beta}_9 LRT_{u} $$**</small>
+<small>**$$Cars_{t} = {\beta}_1 + {\beta}_2 Cars_{t-1} + {\beta}_3 GDPpc_{t} + {\beta}_4 GDPpc_{t-1} + {\beta}_5 top.10.inc_{t-1} + {\beta}_6 bottom.90.inc_{t-1} + {\beta}_7 Bus.usage_{t} + {\beta}_8 MRT.usage_{t} + {\beta}_9 LRT.usage_{t}$$**</small>
 
 ## <small>Regression results</small>
 
 ```{r, echo=FALSE, include = FALSE, warning=FALSE, error=FALSE, message=FALSE, results="asis", header=FALSE}
-stargazer::stargazer(M4, dep.var.labels=labelsi4, covariate.labels = labelsd4,
+stargazer::stargazer(M3, dep.var.labels=labelsi3, covariate.labels = labelsd3,
                      single.row = TRUE, no.space = TRUE, font.size = "tiny",
                      digits = 2, type = 'html', header = FALSE)
 ```
+
+
 
 ![](Images_presentation/RegressionResults.png)
 

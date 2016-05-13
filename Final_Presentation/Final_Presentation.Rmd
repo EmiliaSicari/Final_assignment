@@ -1,7 +1,7 @@
 ---
-title: "Why do you buy a car?"
+title: "Why would you buy a car?"
 author: "Emilia Sicari & Rafael Lopez V."
-date: "Monday, 2nd May 2016"
+date: "Friday, 13th May 2016"
 output:
   beamer_presentation: null
   colortheme: beaver
@@ -9,7 +9,7 @@ output:
   ioslides_presentation: null
   slidy_presentation: default
   theme: Boadilla
-subtitle: Assessing consumers'choice through behavioral approach
+subtitle: "Assessing consumers' choice through rational choice theory and behavioral economics in Singapore"
 ---
 
 ```{r setup, include=FALSE}
@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = FALSE)
 
 #Setting the working directories
 try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Final_Presentation/"))
-try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Presentation/"))
+try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Final_Presentation/"))
 getwd()
 
 #Sourcing external files
 try(source("/Users/emiliasicari/Desktop/Final_assignment/Final_Academic_Paper/Preliminary_analyses.R"))
-try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Final_Academic_Paper/Preliminary_analyses.R"))
 try(source("/Users/emiliasicari/Desktop/Final_assignment/Final_Academic_Paper/Graphs.R"))
-try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Presentation/Figures.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Final_Academic_Paper/Graphs.R"))
 
 #Loading packages
 library(ggplot2)
@@ -69,7 +69,7 @@ library(stargazer)
   
 ## <small>Research question and hypotheses</small>
   
-**How the rise in inequality, economic growth, population growth, the usage of public transportation modes, and the presence of cars influence the purchase of new cars in Singapore?**
+**how the rise in inequality, economic growth, usage of public transportation modes and the presence of cars influence the purchase of new cars in Singapore**
   
 - **H1:** The higher the economic growth, the higher the purchase of cars
   
@@ -77,9 +77,7 @@ library(stargazer)
   
 - **H3:** The less usage of public transport, the higher the purchase of cars
   
-- **H4:** The more population, the higher the purchase of cars
-  
-- **H5:** The  larger the car population, the higher the purchase of cars
+- **H4:** The  larger the car population, the higher the purchase of cars
   
 ## <small>Singapore</small>
   
@@ -143,7 +141,7 @@ library(stargazer)
   
 - The consumption behavior of the bottom 90% and top 10% average income have no statistical significance:
   
-  + assumption: Singaporeans might have disposable income for purchasing a car, but decide not to for “rational reasons” (good public transport system and high cost of certificate of car entitlement). Further research is needed to assess both issues.
+  + assumption: Singaporeans might have disposable income for purchasing a car, but decide not to for "rational reasons" (good public transport system and high cost of certificate of car entitlement). Further research is needed to assess both issues.
   
 - GDP has no effect on the population of cars, neither the present GDP nor the one of the previous years.
 

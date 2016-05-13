@@ -78,4 +78,4 @@ All the above mentioned elements - excluding the website - are included into thi
 
 To visit the website, click on the following link: https://emiliasicari.github.io/Final_assignment/
 
-To get access to the folder containing the materials used to build the website go to <a href="https://github.com/EmiliaSicari/Final_assignment/tree/gh-pages" gh-pages branch</a> 
+To get access to the folder containing the materials used to build the website go to https://github.com/EmiliaSicari/Final_assignment/tree/gh-pages

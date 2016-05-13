@@ -272,20 +272,20 @@ Model 1
 
 In the first model we regressed the population of cars per 100 people on its one year lagged variable, GDP per capita, inequality gap, average daily utilization of buses, MRT and LRT per 100 people. The aim was to test if a greater inequality leads to a higher number of cars purchased and if the existing population of cars has a one year lagged effect on the purchase of new cars.
 
-**$$Cars_{t} = {\beta}_1 + {\beta}_2 Cars_{t-1} + {\beta}_3 GDPpc_{t} + {\beta}_4 + Bus.usage_{t} + {\beta}_5 MRT.usage_{t} + {\beta}_6 LRT.usage_{t}$$**
+**$$Cars_{t} = {\beta}_1 + {\beta}_2 Cars_{t-1} + {\beta}_3 GDPpc_{t} + {\beta}_4 INEQ + {\beta}_5 Bus.usage_{t} + {\beta}_6 MRT.usage_{t} + {\beta}_7 LRT.usage_{t}$$**
 
 Model 2
 
 In the second model we regressed the population of cars per 100 people on its one year lagged variable, GDP per capita, one lagged GDP per capita, inequality gap, average daily utilization of buses, MRT and LRT per 100 people. The objective was assess if the a higher the inequality increases the purchases of cars, as well as investigate the effect of lagged already existing cars and GDP per capita of the previous year on the present purchase of cars.
 
-**$$Cars_{t} = {\beta}_1 + {\beta}_2 Cars_{t-1} + {\beta}_3 GDPpc_{t} + {\beta}_4 GDPpc_{t-1} + {\beta}_5 Bus.usage_{t} + {\beta}_6 MRT.usage_{t} + {\beta}_7 LRT.usage_{t}$$**
+**$$Cars_{t} = {\beta}_1 + {\beta}_2 Cars_{t-1} + {\beta}_3 GDPpc_{t} + {\beta}_4 GDPpc_{t-1} + {\beta}_5 INEQ + {\beta}_6 Bus.usage_{t} + {\beta}_7 MRT.usage_{t} + {\beta}_8 LRT.usage_{t}$$**
 
 Model 3
 
 The third model is a modification of model 2. It substitutes inequality for the one year lagged variables of top 10% and bottom 90% average income. The implication is to asses if different income groups have different impacts on the dependent variable. The rest of variables of the second model were kept.
 
-**$$C_{T} = {\beta}_1 + {\beta}_2 EC_{t-1} + {\beta}_3 GDPpc_{ch} + {\beta}_4 POP_{ch} + {\beta}_5 BOT_{t-1} + {\beta}_6 TOP{t-1} +$$**
-**$$+ {\beta}_7 BUS_{u} + {\beta}_8 MRT_{u} + {\beta}_9 LRT_{u} $$**
+**$$C_{T} = {\beta}_1 + {\beta}_2 EC_{t-1} + {\beta}_3 GDPpc_{t} + {\beta}_4 GDPpc_{t-1} {\beta}_5 TOP{ch} + {\beta}_6 BOT_{t-1} +$$**
+**$$+{\beta}_7 Bus.usage_{t} + {\beta}_8 MRT.usage_{t} + {\beta}_9 LRT.usage_{t}$$**
 
 The following table summarises our models. Among them, we consider that the third one has more explanatory power. The conclusions are directly linked to this model.
 

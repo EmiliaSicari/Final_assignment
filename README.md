@@ -28,20 +28,20 @@ All the data are available automatically by running the R codes. No authorizatio
 # Structure of the paper
 
 The paper is structured as follows:
-1. Introduction
-2. Literature review
-3. General overview of the project
+- Introduction
+- Literature review
+- General overview of the project
     + Research question and justification
     + Description of variables
     + Hypotheses
     + Methodology
     + Data sources and gathering
     + Cleaning, processing and merging data sets
-4. Statistical analysis
+- Statistical analysis
     + Descriptive statistics and central tendency
     + Correlation analysis
     + Inferential statistics
-5. Conclusions
+- Conclusions
 
 #Content of the repository
 
@@ -50,7 +50,7 @@ All the above mentioned elements - excluding the website - are included into thi
 ## Folder structure and files description
 
     .
- ├── Final Academic Paper                   # a folder containing all the materials used to write the final academic paper
+├── Final Academic Paper                    # a folder containing all the materials used to write the final academic paper
     ├── bibliography.bib                    # a text file containing all the sources referred to in the final paper
     ├── cities.transport.statistics.csv.    # a csv file including transportation statistics comparing Singapore with other countries in the world
     ├── Final_Paper.pdf                     # pdf version of the final paper 
@@ -60,7 +60,7 @@ All the above mentioned elements - excluding the website - are included into thi
     ├── ObservationData_zqpldgb.csv         # a csv file containing the time series of data on bottom 90% average income in Singapore from 1995 until 2014    
     ├── ObservationData_rblkfmd.csv         # a csv file containing the time series of data on top 10% average income in Singapore from 1995 until 2014
     ├── packages.bib                        # a text file with all the citations of the R packages used
-    ├── population.trends.xls               # an excel file downloaded from the internet containing open data on Singapore's residents and non residents. It was then transformed in csv format and imported into R
+    ├── population.trends.xls               # an excel with data on Singapore's residents and non residents then imported into R in csv format
     ├── Preliminary_analyses                # a R script including all the preliminary analyses done with data (gathering, cleaning, merging, etc.)
     ├── world.cities.R                      # a R script containing graphs comparing public transportation in Singapore with other world cities   
 ├── Final Presentation                      # a repository containing the final presentation updated to the final version of the analysis and its related materials
@@ -68,20 +68,14 @@ All the above mentioned elements - excluding the website - are included into thi
     ├── Final_Presentation.pdf              # pdf version of the final presentation
     ├── Final_Presentation.Rmd              # markdown version of the presentation from which extract the pdf and htlm versions
     ├── Images_presentation                 # a folder containing all the pictures in png, jpeg and gif format included in the presentation
-├── Preliminary Presentation               # a folder containing the presentation shown in class with the preliminary resuls of the analysis and its related materials
-    ├── Figures.R                          # a R script with the graphs plotted in the presentation
-    ├── Images_presentation                # a folder containing all the pictures in png, jpeg and gif format included in the presentation
-    ├── Preliminary_Presentation.html      # htlm version of the preliminary presentation
-    ├── Preliminary_Presentation.Rmd       # markdown version of the preliminary presentation
+├── Preliminary Presentation                # a folder containing the presentationwith the preliminary results
+    ├── Figures.R                           # a R script with the graphs plotted in the presentation
+    ├── Images_presentation                 # a folder containing all the pictures in png, jpeg and gif format included in the presentation
+    ├── Preliminary_Presentation.html       # htlm version of the preliminary presentation
+    ├── Preliminary_Presentation.Rmd        # markdown version of the preliminary presentation
    
-# Link to the website
 ## Link to the website
-
 
 To visit the website, click on the following link: https://emiliasicari.github.io/Final_assignment/
 
-To get access to the folder containing the materials used to build the website go to <a href="https://github.com/EmiliaSicari/Final_assignment/tree/gh-pages"</a> 
-
-
-
-<a href=
+To get access to the folder containing the materials used to build the website go to <a href="https://github.com/EmiliaSicari/Final_assignment/tree/gh-pages" gh-pages branch</a> 

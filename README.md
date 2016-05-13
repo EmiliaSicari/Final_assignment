@@ -50,29 +50,29 @@ All the above mentioned elements - excluding the website - are included into thi
 ## Folder structure and files description
 
     .
-├── Final Academic Paper                    # a folder containing all the materials used to write the final academic paper
-│   ├── bibliography.bib                    # a text file containing all the sources referred to in the final paper
-|   ├── cities.transport.statistics.csv.    # a csv file including transportation statistics comparing Singapore with other countries in the world
-|   ├── Final_Paper.pdf                     # pdf version of the final paper 
-|   ├── Final_Paper.Rmd                     # a markdown file used to produce the pdf version of the final paper
-|   ├── fina.data.frame.csv                 # the final data frame containing all the time series of the variables used for our analysis
-|   ├── Graphs.R                            # a R script including the graphs plotted in the final paper
-|   ├── ObservationData_zqpldgb.csv         # a csv file containing the time series of data on bottom 90% average income in Singapore from 1995 until 2014    
-|   ├── ObservationData_rblkfmd.csv         # a csv file containing the time series of data on top 10% average income in Singapore from 1995 until 2014
-|   ├── packages.bib                        # a text file with all the citations of the R packages used
-|   ├── population.trends.xls               # an excel with data on Singapore's residents and non residents then imported into R in csv format
-|   ├── Preliminary_analyses                # a R script including all the preliminary analyses done with data (gathering, cleaning, merging, etc.)
-|   ├── world.cities.R                      # a R script containing graphs comparing public transportation in Singapore with other world cities   
-├── Final Presentation                      # a repository containing the final presentation updated to the final version of the analysis and its related materials
-|   ├── Final_Presentation.html             # html version of the final presentation
-|   ├── Final_Presentation.pdf              # pdf version of the final presentation
-|   ├── Final_Presentation.Rmd              # markdown version of the presentation from which extract the pdf and htlm versions
-|   ├── Images_presentation                 # a folder containing all the pictures in png, jpeg and gif format included in the presentation
-├── Preliminary Presentation                # a folder containing the presentationwith the preliminary results
-|   ├── Figures.R                           # a R script with the graphs plotted in the presentation
-|   ├── Images_presentation                 # a folder containing all the pictures in png, jpeg and gif format included in the presentation
-|   ├── Preliminary_Presentation.html       # htlm version of the preliminary presentation
-|   ├── Preliminary_Presentation.Rmd        # markdown version of the preliminary presentation
+    ├── Final Academic Paper                    # a folder containing all the materials used to write the final academic paper
+    │   ├── bibliography.bib                    # a text file containing all the sources referred to in the final paper
+    |   ├── cities.transport.statistics.csv.    # a csv file including transportation statistics comparing Singapore with other countries in the world
+    |   ├── Final_Paper.pdf                     # pdf version of the final paper 
+    |   ├── Final_Paper.Rmd                     # a markdown file used to produce the pdf version of the final paper
+    |   ├── fina.data.frame.csv                 # the final data frame containing all the time series of the variables used for our analysis
+    |   ├── Graphs.R                            # a R script including the graphs plotted in the final paper
+    |   ├── ObservationData_zqpldgb.csv         # a csv file containing the time series of data on bottom 90% average income in Singapore from 1995 until 2014    
+    |   ├── ObservationData_rblkfmd.csv         # a csv file containing the time series of data on top 10% average income in Singapore from 1995 until 2014
+    |   ├── packages.bib                        # a text file with all the citations of the R packages used
+    |   ├── population.trends.xls               # an excel with data on Singapore's residents and non residents then imported into R in csv format
+    |   ├── Preliminary_analyses                # a R script including all the preliminary analyses done with data (gathering, cleaning, merging, etc.)
+    |   ├── world.cities.R                      # a R script containing graphs comparing public transportation in Singapore with other world cities   
+    ├── Final Presentation                      # a repository containing the final presentation updated to the final version of the analysis and its related materials
+    |   ├── Final_Presentation.html             # html version of the final presentation
+    |   ├── Final_Presentation.pdf              # pdf version of the final presentation
+    |   ├── Final_Presentation.Rmd              # markdown version of the presentation from which extract the pdf and htlm versions
+    |   ├── Images_presentation                 # a folder containing all the pictures in png, jpeg and gif format included in the presentation
+    ├── Preliminary Presentation                # a folder containing the presentationwith the preliminary results
+    |   ├── Figures.R                           # a R script with the graphs plotted in the presentation
+    |   ├── Images_presentation                 # a folder containing all the pictures in png, jpeg and gif format included in the presentation
+    |   ├── Preliminary_Presentation.html       # htlm version of the preliminary presentation
+    |   ├── Preliminary_Presentation.Rmd        # markdown version of the preliminary presentation
    
 ## Link to the website
 

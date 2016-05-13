@@ -4,6 +4,9 @@ output:
         highlight: kate
         self_contained: false
         fig_caption: true
+        toc_float:
+          smooth_scroll: true
+          collapsed: true
 bibliography:
 - bibliography.bib
 - packages.bib
@@ -26,7 +29,7 @@ opts_chunk$set(message=FALSE)
 
 #laoding data
 try(source("/Users/emiliasicari/Desktop/Final_assignment/Final_academic_paper/Preliminary_analyses.R"))
-try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Final_academic_paper/Preliminary_analyses.R"))
+try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Website/Preliminary_analysis.R"))
 ```
 <br>
 <br>
@@ -241,14 +244,25 @@ The results of the model are shown in the following table, where our expectation
 
 <h2>Conclusions</h2>
 
-If the reader is Singaporean, lives in Singapore and is asked what are the reasons to buy a car, the ideal answer, based on our hypthothesis, would be this: because the economomy of the country is doing well, because I have more money that I can spend, because I???d rather commute by car rather than using buses, MRT and/or LRT, because then I can show that I am better off than the rest of the population or I can show I am on the way of being better off.
-However the results show that the increase of the net economic activity of the country, namely GDP, has no effect on the population of cars, neither the present GDP nor the last years. Likewise, the increase of the income of the top 10% and bottom 90% average income has no statistical significance. If it would have had an impact, then we could have suggested that either top eaerners need to highliht their status by buying (more) cars, or bottom earners need to show economic progress and status through buying (more) cars. It could be that Singaporeans do have disposable income for purchasing a car and they simply decide not to for ???rational reasons??? or that the policies deterring the overpopulation of cars are effective. Further research is needed to assess both issues.
-When it comes to the trade-off between using public transport instead of buying a car, the usage of buses does not affect the purchase of cars. Interestingly, the ridership of buses is the highest among all the modes of transportation, which can suggest that it is not sensible to changes: people simply need to commute by buses and it is the best alternative to other modes. Conversely, the more people using MRT the less purchase of cars, keeping the rest of the variables constant. However, the usage of MRT should triplicate in order to reduce the purchase of cars in only 7%. Considering that, in average 32 out 100 people use the MRT daily, then the ratio should increase to 132 out of 100 people daily commuting by MRT. This means that, if we assume that a round trip is statistically computed twice then 62% of the population should use the MRT twice a day to reduce the number of cars per 100 people from 10 to 3. Furthermore, LRT has a positive impact on the population of cars. If 11 people out of 100 would use LRT daily (now is 1,3 per 100) the population of cars would double, from 10 to 20 per 100 people. This may be because LRT has the lowest density of all transport modes and it is the least prefered one. Finally, the presence of cars has a huge influence. Cars could reproduce cars at a rate of 1% out of 100 people per year.
+- Some hypotheses were right: 
+    + People living in Singapore buy cars just because other people own cars. This supports behavioral economics theory  
 
-When we confront the results to the theory, there are some of them that can be explained by the standard theory and others by the behavioral economics approach. For example, the usage of MRT, considering its costs in comparison with riding a car, seems to be explained rationally. Commuters prefer MRT to cars. Many rational arguments are in favor of this: money, time, utility, etc. However, the presence of cars influencing the purchase of new cars is more a phsycological effect than a pure rational one. This would prove the theory of having the need to reach reference points, which have embedded utilities, different from what the satandard model assumes.
+    + Now 11% of the people of Singapore owns a car. The only presence of caars increases the purchase of cars in 1% for every hundred people. For example, if today 11% of the population has cars this trigerrs 1% of the ppopulation to bur cars, rising the ratio to 12% of the population with car owbership. This 12% again triggers a new increase and so on.
+    
+    . The new population of cars would again push to buy more cars and so fort. 
+    + The more people using MRT the less purchase of cars. This supports rational choice theory. However, the usage of MRT should triplicate in order to reduce the purchase of cars in only 7%.
+    
+- Some hypotheses were wrong:
+    + People buy more cars if they use more LRT. It should be the opposite. 
+    
+- Some don???t affect the model at levels we can trust:
+    + The higher the income the more cars people buy 
+    + The higher the GDP per capita the higher the population of cars
+    + The more usage of public buses the less purchase or cars
+    + The research could improve if more data were available. The results are affected by the low number of observations
+    
+<center><h3>You can explore tha data we built the whole model from here</h3></center>
 
-The research would have needed more observations to increase its reliability. However the sources lacked the data needed. Likewise, further research is needed to prove that there is empirical evidence of ???Standard model measures??? affecting the dependent variable, since we have mainly focused on behavioral explanatory variables. In short, a research with hypothesis on the turf of the standard model is needed.
-If we assume that the existence of any kind of inequality enhances the presence of reference points, then the measures of the Singaporean govermnet seem to be in the direction of decoupling car purchases from inequality. This, through setting a new diferent reference point of commuting by the brand new generation of driverless cars. In this hypothetical scenario, a future analysis of the stragle of different reference points with different meanings should be imperative.
 
 ```{r include=TRUE, echo = FALSE, fig.align = 'center'}
 #Creating the final table with only the variables we used

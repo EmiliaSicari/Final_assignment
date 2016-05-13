@@ -16,13 +16,13 @@ subtitle: Assessing consumers'choice through behavioral approach
 knitr::opts_chunk$set(echo = FALSE)
 
 #Setting the working directories
-try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Presentation/"))
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Final_Presentation/"))
 try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/Presentation/"))
-
+getwd()
 #Sourcing external files
-try(source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R"))
+try(source("/Users/emiliasicari/Desktop/Final_assignment/Final_Academic_Paper/Preliminary_analyses.R"))
 try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"))
-try(source("/Users/emiliasicari/Desktop/Final_assignment/Presentation/Figures.R"))
+try(source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_Presentation/Figures.R"))
 try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Presentation/Figures.R"))
 
 #Loading packages
@@ -45,7 +45,7 @@ library(stargazer)
 
 ## <small>'The challenge of our time'</small>
 
-![](Images_presentation/GlobalInequality.jpeg)
+![](/Images_presentation/GlobalInequality.jpeg)
 
 ## <small>Some 'crude' facts about inequality</small>
 

@@ -4,7 +4,7 @@
 
 # Setting working directory
 getwd()
-try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE)
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Final_Academic_Paper/"), silent = TRUE)
 try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
 
 

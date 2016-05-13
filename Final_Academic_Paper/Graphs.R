@@ -3,11 +3,11 @@
 ###############
 
 #Setting working directory
-try(setwd("/Users/emiliasicari/Desktop/Final_assignment/"), silent = TRUE)
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Final_Academic_Paper/"), silent = TRUE)
 try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
 
 #Sourcing external file with preliminary analyses to data
-try(source("/Users/emiliasicari/Desktop/Final_assignment/Preliminary_analyses.R"))
+try(source("/Users/emiliasicari/Desktop/Final_assignment/Final_Academic_Paper/Preliminary_analyses.R"))
 try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Preliminary_analyses.R"))
 
 #Loading packages

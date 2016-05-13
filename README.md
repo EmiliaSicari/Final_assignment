@@ -75,6 +75,6 @@ All the above mentioned elements - excluding the website - are included into thi
    
 ## Link to the website
 
-To visit the website, click on the following link: https://emiliasicari.github.io/Final_assignment/
+To visit the website, click on the following link: http://emiliasicari.github.io/Final_assignment/Website/
 
 To get access to the folder containing the materials used to build the website go to https://github.com/EmiliaSicari/Final_assignment/tree/gh-pages

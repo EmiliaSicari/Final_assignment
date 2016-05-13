@@ -18,14 +18,18 @@ The deadline is May 13, 2016.
 This branch includes all the files used to create the website and it is structured as follows: 
 
     .
-    ├── Website                         # a folder containing the materials to build the website
-    │    ├── bibliography.bib           # a text file containing the sources cited in the website
-    │    ├── index.files                # an automatically generated folder containing files related to the website
-    │    │    ├── index.html            # the html version of the website
-    │    │    ├── index.rmd             # the markdown document used to create the html version of the website
-    │    ├── packages.bib               # a text file citing the packages used in our work
-    │    ├── pictures                   # a folder containing the images included in the website
-   
+    ├── Website                            # a folder containing the materials to build the website
+    │    ├── bibliography.bib              # a text file containing the sources cited in the website
+    │    ├── index.files                   # an automatically generated folder containing files related to the website
+    │    ├── index.html                    # the html version of the website
+    │    ├── index.rmd                     # the markdown document used to create the html version of the website
+    │    ├── ObservationData_rdlkfmd.csv   # a csv file containing the time series of data on top 10% average income in Singapore from 1995 until 2014     
+    │    ├── ObservationData_zqpldgb.csv   # a csv file containing the time series of data on bottom 90% average income in Singapore from 1995 until 2014    
+    │    ├── packages.bib                  # a text file citing the packages used in our work
+    │    ├── pictures                      # a folder containing the images included in the website
+    │    ├── population.trends.xls         # an excel with data on Singapore's residents and non residents then imported into R in csv format
+    │    ├── Preliminary_analysis.R        # a R script including all the preliminary analyses done with data (gathering, cleaning, merging, etc.)
+    
 ## Link to the website and master branch
 
 To visit the website, click on: https://emiliasicari.github.io/Final_assignment/

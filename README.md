@@ -32,6 +32,6 @@ This branch includes all the files used to create the website and it is structur
     
 ## Link to the website and master branch
 
-To visit the website, click on: https://emiliasicari.github.io/Final_assignment/
+To visit the website, click on: http://emiliasicari.github.io/Final_assignment/Website/
 
 To get more information about the research work, visit <a href="https://github.com/EmiliaSicari/Final_assignment">the master branch of the repository</a>, containing both the final version of the paper and the presentation. 

@@ -15,7 +15,7 @@ output:
   linkcolour: blue
 bibliography: 
   - bibliography.bib
-  - /Users/rafalopezv/Dropbox/R/Final_assignment/packages.bib
+  - packages.bib
 ---
 
 \pagebreak

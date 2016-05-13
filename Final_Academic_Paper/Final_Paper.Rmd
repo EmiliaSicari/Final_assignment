@@ -24,7 +24,7 @@ bibliography:
 knitr::opts_chunk$set(echo = TRUE) 
 
 #Setting working directories
-try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Final_Academic_Paper//"), silent = TRUE)
+try(setwd("/Users/emiliasicari/Desktop/Final_assignment/Final_Academic_Paper/"), silent = TRUE)
 try(setwd("/Users/rafalopezv/Dropbox/R/Final_assignment/"), silent = TRUE)
 
 #Loading packages 
@@ -43,7 +43,7 @@ try(source("/Users/emiliasicari/Desktop/Final_assignment/Final_Academic_Paper/Gr
 
 
 # creating an object of the packages for citation purposes
-packages <- c('devtools', 'repmis', 'Quandl', 'data.table', 'rio', 'ggplot2', 'stargazer', 'pander', 'corrplot','WDI', 'dplyr', 'magrittr', 'knitr')
+packages <- c('devtools', 'repmis', 'Quandl', 'data.table', 'rio', 'ggplot2', 'stargazer', 'pander', 'corrplot', 'dplyr', 'magrittr', 'knitr')
 repmis::LoadandCite(packages, file = 'packages.bib')
 ```
 

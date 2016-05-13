@@ -49,7 +49,7 @@ names(bottom) <- c("bottom", "date")
 bottom[,c(2,1)]
 #checking the class of the varibles
 sapply(bottom, class)
-#forecasrting the bottom 90% average income for the missing years (2010-2015) and creating a dataframe with the forecasted values
+#forecasting the bottom 90% average income for the missing years (2010-2015) and creating a dataframe with the forecasted values
 Forecast <- lm(bottom  ~ date, data = bottom)
 116.7*2010+(-204924.2) #forcasted bottom 90% average income for 2010
 116.7*2011+(-204924.2) #forcasted bottom 90% average income for 2011

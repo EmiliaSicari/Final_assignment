@@ -249,7 +249,8 @@ data.final["lrt.u.pop"] <- (data.final$lrt.u/data.final$population)*100000
 data.final["mrt.u.pop"] <- (data.final$mrt.u/data.final$population)*100000
 data.final["car.u.pop"] <- (data.final$cars/data.final$population)*100
 data.final["non.residents"] <- data.final$population-data.final$residents
-
+data.final["residents.m"] <- data.final$residents/1000000
+data.final["non.residents.m"] <- data.final$non.residents/1000000
 # Creating lagged variables:  car purchases, gdp percapita, top and bottom income) 
 data.final <- 
   data.final %>%
@@ -268,8 +269,6 @@ data.final <-
   data.final %>%
   mutate(lbottom = lag(data.final$bottom.ch, 1)) # lagged for 10% top income
 
-# Exporting the final data frame as csv file
-rio::export(data.final, "final.data.frame.csv", col.names = TRUE)
 
 # Modelling
 M1 <- lm(car.u.pop ~ lcar.u.pop + 

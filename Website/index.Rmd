@@ -4,9 +4,6 @@ output:
         highlight: kate
         self_contained: false
         fig_caption: true
-        toc_float:
-          smooth_scroll: true
-          collapsed: true
 bibliography:
 - bibliography.bib
 - packages.bib
@@ -29,7 +26,7 @@ opts_chunk$set(message=FALSE)
 
 #laoding data
 try(source("/Users/emiliasicari/Desktop/Final_assignment/Final_academic_paper/Preliminary_analyses.R"))
-try(source("/Users/rafalopezv/Dropbox/R/Final_assignment/Website/Preliminary_analysis.R"))
+try(source("Preliminary_analysis.R"))
 ```
 <br>
 <br>
@@ -87,43 +84,14 @@ We believe that the decision of purchasing a car can be motivated by **rational*
 - **Consumption under the behavioral economics lens** 
     + The good to be consumed has characteristics and these have different utilities. For example, a red Volkswagen with leather seats could have a differet utility than a black one with regular fabric seats [@Lancaster:1966kf]
     + Consumption is affected by what society considers to be fair (social norms). Having big cars in some societies is considered to be pretentious and environmentaly unfriendly [@DepartmentforTransport:2011ui]  
-    + People tend to consume what others consume, even if that is rationally wrong. This is because people follow reference points when deciding [@ilkinson2012] 
+    + People tend to consume what others consume, even if that is rationally wrong. This is because people follow reference points when deciding [@Wilkinson2012] 
     + People can exteriorize their ego through consumming certain goods [@DepartmentforTransport:2011ui]
 
 For more detailed information on our research project see our [github repository](https://github.com/EmiliaSicari/Final_assignment).
 <br>
 <br>
 <br>
-<center><h3>Summarizing...we want to know:</h3></center>
-<center><h3>the purchase of new cars depends on GDP per capita, income inequality,use of public transportat and population of cars</h3></center>
-<br>
-<br>
-
-| Hypothesis | Assumption | 
-| ----------------------------------- | --------------------------------------- |
-| The higher the economic growth, the higher the purchase of cars | Economic growth increases disposable income, reduces budgetary constraint 
-| The higher the inequality, the higher the purchase of cars | The emerging and consolidated social classes need to set reference points displaying their status, by buying cars (symbols) 
-| The less usage of public transport, the higher the purchase of cars | Despite the density of public transportantion modes, commuters choose cars by incentives not explained by the rational choice standard model (ego, social norms,etc) 
-| The larger the car population, the higher the purchase of cars | The average social reference point is having a car, that is the threshold to reach 
-
-<center><h2>Sources and data</h2></center>
-<center><h3>Time frame:1995-2014</h3></center>
-<br>
-
-| Variable | Description | Source |
-| ----------------------------------- | --------------------------------------- | ------------------- |
-| GDP per capita | Gdp per capita in singaporean dollars (thousands) at current prices | [Quandl](https://www.quandl.com/data/ODA/SGP_NGDPPC) | 
-| Population | Singaporean residents and non residents | [Population Trends](http://www.singstat.gov.sg/publications/publications-and-papers/population-and-population-structure/population-trends) |
-| Top 10% average income | Yearly average income earned by the top 10% of the populuation in real singaporean dollars at current prices | [Knoema](http://knoema.com/) |
-| Bottom 90% average income | Yearly average income earned by the bottom 90% of the populuation in real singaporean dollars at current prices | [Knoema](http://knoema.com/) |
-| Inequality | Difference between top 10% and bottom 90% average income (number of times) | Authors' elaboration |
-| Cars | Yearly number of private cars | [Singapore's open data portal](https://data.gov.sg/dataset/annual-motor-vehicle-population-by-type-of-vehicles) |
-| Usage of public tansport | Year average of daily use of MRT, LRT and buses per 1000 people | [Singapore's open data portal](https://data.gov.sg/dataset/public-transport-utilisation-average-public-transport-ridership) |
-<br>
-<br>
-<br>
-
- <center><h2>Intitially, we gathered this data from this sources</h2></center>
+<center><h2>Intitially, we gathered this data from this sources</h2></center>
 <center><h3>Time frame:1995-2014</h3></center>
 <br>
 
@@ -136,8 +104,6 @@ For more detailed information on our research project see our [github repository
 |Inequality|Difference between top 10% and bottom 90% average income (number of times)|Own elaboration
 |Cars|Yearly number of private vehicles|[Singapore's open data portal](https://data.gov.sg/dataset/annual-motor-vehicle-population-by-type-of-vehicles)
 |Usage of public tansport|Year average of daily use of MRT, LRT and buses by 1000 people|[Singapore's open data portal](https://data.gov.sg/dataset/public-transport-utilisation-average-public-transport-ridership)
-
-
 <br>
 <br>
 <br>
@@ -213,22 +179,8 @@ dygraph(graph2, main = "Population growth in Singapore (1995-2014)") %>%
 | The higher the economic growth in the current year and in the previous year, the higher the purchase of cars in the present year; therefore increasing the ratio of cars per inhabitants  | Economic growth increases disposable income, reduces budgetary constraint. People save money to spend in the future but also they may save in the first semester and spend it in the secod of the same year 
 | The higher the inequality, the higher the purchase of cars | The emerging and consolidated social classes need to set reference points displaying their status, by buying cars (symbols) 
 | The less usage of public transport, the higher the purchase of cars | Despite the density of public transportantion modes, commuters choose cars by incentives not explained by the rational choice standard model (ego, social norms,etc) 
-| The larger the car population of the previous year, the higher the purchase of cars in the present year | The average social reference point is having a car, that is the threshold to reach. People decide based on past experiences, in this case if people had cars or not the previpus year. 
+| The larger the car population of the previous year, the higher the purchase of cars in the present year | The average social reference point is having a car, that is the threshold to reach. People decide based on past experiences, in this case if people had cars or not the previous year. 
 
-
-After analysisng the trends in both dependent and explanatory variables, the inferential analysis was built on a  multiple regression model, in which we regressed the population of cars per 100 people on:
-
-- its one year lagged variable;
-
-- GDP per capita;
-
-- one year lagged GDP per capita;
-
-- lagged variables of top 10% and bottom 90% average income;
-
-- average daily utilization of buses, MRT and LRT per 100 people.
-
-The main assumptions of this model are to find out if the a higher the inequality increases the purchases of cars. Moreover, the model investigates the effect of lagged already existing cars as well as the GDP per capita of the previous year on the present purchase of cars. 
 The results of the model are shown in the following table, where our expectations on the impact of the explanatory variables are compared with the actual influence emerged from our analyses ("+"" stands for a positive influence, "-" indicates a negative impact, "0" indicates that the varible was not significant).
 
 | Variable | Expected result | Empirical result |
@@ -255,7 +207,7 @@ The results of the model are shown in the following table, where our expectation
 - Some hypotheses were wrong:
     + People buy more cars if they use more LRT. It should be the opposite. 
     
-- Some don???t affect the model at levels we can trust:
+- Some do not affect the model at levels we can trust:
     + The higher the income the more cars people buy 
     + The higher the GDP per capita the higher the population of cars
     + The more usage of public buses the less purchase or cars

@@ -2,6 +2,7 @@
 output:
     html_document:
         highlight: kate
+        theme: journal
         self_contained: false
         fig_caption: true
 bibliography:
